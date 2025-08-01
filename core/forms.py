@@ -360,52 +360,106 @@ class DatosBasicosDocenteForm(forms.ModelForm):
         widgets = {
             'fecha_nacimiento': forms.DateInput(attrs={
                 'type': 'date',
-                'class': 'w-full border border-gray-300 rounded px-3 py-2'
+                'class': 'form-control'
             }),
             'genero': forms.Select(attrs={
-                'class': 'w-full border border-gray-300 rounded px-3 py-2'
+                'class': 'form-select'
             }),
             'estado_civil': forms.Select(attrs={
-                'class': 'w-full border border-gray-300 rounded px-3 py-2'
+                'class': 'form-select'
             }),
             'pais_residencia': forms.Select(attrs={
-                'class': 'w-full border border-gray-300 rounded px-3 py-2'
+                'class': 'form-select'
             }),
             'departamento_residencia': forms.Select(attrs={
-                'class': 'w-full border border-gray-300 rounded px-3 py-2'
+                'class': 'form-select'
             }),
             'municipio_residencia': forms.Select(attrs={
-                'class': 'w-full border border-gray-300 rounded px-3 py-2'
+                'class': 'form-select'
             }),
             'direccion_linea1': forms.TextInput(attrs={
-                'class': 'w-full border border-gray-300 rounded px-3 py-2'
+                'class': 'form-control'
             }),
             'direccion_linea2': forms.TextInput(attrs={
-                'class': 'w-full border border-gray-300 rounded px-3 py-2'
+                'class': 'form-control'
             }),
             'estrato': forms.Select(attrs={
-                'class': 'w-full border border-gray-300 rounded px-3 py-2'
+                'class': 'form-select'
             }),
             'telefono_celular': forms.TextInput(attrs={
-                'class': 'w-full border border-gray-300 rounded px-3 py-2'
+                'class': 'form-control'
             }),
             'telefono_celular_alterno': forms.TextInput(attrs={
-                'class': 'w-full border border-gray-300 rounded px-3 py-2'
+                'class': 'form-control'
             }),
             'telefono_fijo': forms.TextInput(attrs={
-                'class': 'w-full border border-gray-300 rounded px-3 py-2'
+                'class': 'form-control'
             }),
             'telefono_fijo_ext': forms.TextInput(attrs={
-                'class': 'w-full border border-gray-300 rounded px-3 py-2'
+                'class': 'form-control'
             }),
             'correo_alterno': forms.EmailInput(attrs={
-                'class': 'w-full border border-gray-300 rounded px-3 py-2'
+                'class': 'form-control'
             }),
             'resumen': forms.Textarea(attrs={
                 'rows': 4,
-                'class': 'w-full border border-gray-300 rounded px-3 py-2'
+                'class': 'form-control'
             }),
         }
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        
+        # Hacer campos opcionales más claros
+        self.fields['estado_civil'].required = False
+        self.fields['genero'].required = False
+        self.fields['pais_residencia'].required = False
+        self.fields['departamento_residencia'].required = False
+        self.fields['municipio_residencia'].required = False
+        self.fields['estrato'].required = False
+        self.fields['telefono_celular_alterno'].required = False
+        self.fields['telefono_fijo'].required = False
+        self.fields['telefono_fijo_ext'].required = False
+        self.fields['correo_alterno'].required = False
+        self.fields['direccion_linea2'].required = False
+        
+        # Agregar placeholders y ayuda
+        self.fields['estado_civil'].help_text = "Opcional"
+        self.fields['genero'].help_text = "Opcional"
+        self.fields['estrato'].help_text = "Opcional"
+    
+    def clean(self):
+        cleaned_data = super().clean()
+        fecha_nacimiento = cleaned_data.get('fecha_nacimiento')
+        direccion_linea1 = cleaned_data.get('direccion_linea1')
+        telefono_celular = cleaned_data.get('telefono_celular')
+        resumen = cleaned_data.get('resumen')
+        
+        # Validar campos requeridos
+        if not fecha_nacimiento:
+            raise forms.ValidationError("La fecha de nacimiento es obligatoria.")
+        
+        if not direccion_linea1 or len(direccion_linea1.strip()) < 10:
+            raise forms.ValidationError("La dirección debe tener al menos 10 caracteres.")
+        
+        if not telefono_celular or len(telefono_celular.strip()) < 7:
+            raise forms.ValidationError("El teléfono celular debe tener al menos 7 dígitos.")
+        
+        if not resumen or len(resumen.strip()) < 20:
+            raise forms.ValidationError("El resumen debe tener al menos 20 caracteres.")
+        
+        # Validar edad
+        if fecha_nacimiento:
+            from datetime import date
+            today = date.today()
+            age = today.year - fecha_nacimiento.year - ((today.month, today.day) < (fecha_nacimiento.month, fecha_nacimiento.day))
+            
+            if age < 18:
+                raise forms.ValidationError("La edad mínima debe ser 18 años.")
+            if age > 100:
+                raise forms.ValidationError("La edad máxima debe ser 100 años.")
+        
+        return cleaned_data
 
 # Identificación Formulario
 class IdentificacionForm(forms.ModelForm):
@@ -414,22 +468,30 @@ class IdentificacionForm(forms.ModelForm):
         label="Municipio de Identificación",
         required=False,
         widget=forms.Select(attrs={
-            'class': 'w-full border border-gray-300 rounded px-3 py-2'
+            'class': 'form-select'
         })
     )
 
     class Meta:
         model = Usuario
-        fields = ['tipo_documento', 'numero_documento', 'municipio_identificacion']  # 👈 AGRÉGALO AQUÍ
+        fields = ['tipo_documento', 'numero_documento', 'municipio_identificacion']
         widgets = {
             'tipo_documento': forms.Select(attrs={
-                'class': 'w-full border border-gray-300 rounded px-3 py-2'
+                'class': 'form-select'
             }),
             'numero_documento': forms.TextInput(attrs={
-                'class': 'w-full border border-gray-300 rounded px-3 py-2'
+                'class': 'form-control'
             }),
-            # Puedes personalizar municipio_identificacion aquí si prefieres
         }
+    
+    def clean_numero_documento(self):
+        numero_documento = self.cleaned_data.get('numero_documento')
+        if numero_documento:
+            # Remover espacios y caracteres especiales
+            numero_documento = ''.join(filter(str.isalnum, numero_documento))
+            if len(numero_documento) < 8:
+                raise forms.ValidationError("El número de documento debe tener al menos 8 caracteres.")
+        return numero_documento
 
 
         
@@ -440,28 +502,81 @@ class IdentidadForm(forms.ModelForm):
         fields = ['primer_nombre', 'segundo_nombre', 'primer_apellido', 'segundo_apellido']
         widgets = {
             'primer_nombre': forms.TextInput(attrs={
-                'class': 'w-full border border-gray-300 rounded px-3 py-2'
+                'class': 'form-control'
             }),
             'segundo_nombre': forms.TextInput(attrs={
-                'class': 'w-full border border-gray-300 rounded px-3 py-2'
+                'class': 'form-control'
             }),
             'primer_apellido': forms.TextInput(attrs={
-                'class': 'w-full border border-gray-300 rounded px-3 py-2'
+                'class': 'form-control'
             }),
             'segundo_apellido': forms.TextInput(attrs={
-                'class': 'w-full border border-gray-300 rounded px-3 py-2'
+                'class': 'form-control'
             }),
         }
+    
+    def clean(self):
+        cleaned_data = super().clean()
+        primer_nombre = cleaned_data.get('primer_nombre')
+        primer_apellido = cleaned_data.get('primer_apellido')
+        
+        if primer_nombre and len(primer_nombre.strip()) < 2:
+            raise forms.ValidationError("El primer nombre debe tener al menos 2 caracteres.")
+        
+        if primer_apellido and len(primer_apellido.strip()) < 2:
+            raise forms.ValidationError("El primer apellido debe tener al menos 2 caracteres.")
+        
+        return cleaned_data
 
 class EducacionDocenteForm(forms.ModelForm):
     class Meta:
         model = EducacionDocente
-        fields = '__all__'
+        fields = ['nivel', 'institucion', 'titulo_obtenido', 'fecha_inicio', 'fecha_fin']
+        widgets = {
+            'nivel': forms.Select(attrs={
+                'class': 'form-control',
+                'placeholder': 'Selecciona el nivel educativo'
+            }),
+            'institucion': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Nombre de la institución'
+            }),
+            'titulo_obtenido': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Título obtenido'
+            }),
+            'fecha_inicio': forms.DateInput(attrs={
+                'class': 'form-control',
+                'type': 'date'
+            }),
+            'fecha_fin': forms.DateInput(attrs={
+                'class': 'form-control',
+                'type': 'date'
+            }),
+        }
+    
+    def clean(self):
+        cleaned_data = super().clean()
+        fecha_inicio = cleaned_data.get('fecha_inicio')
+        fecha_fin = cleaned_data.get('fecha_fin')
+        
+        if fecha_inicio and fecha_fin and fecha_inicio > fecha_fin:
+            raise forms.ValidationError("La fecha de inicio no puede ser posterior a la fecha de fin.")
+        
+        return cleaned_data
 
 class CapacitacionDocenteForm(forms.ModelForm):
     class Meta:
         model = CapacitacionDocente
-        fields = '__all__'
+        exclude = ['hoja_de_vida']  # Oculta el campo en el formulario
+        widgets = {
+            'nombre_curso': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nombre del curso'}),
+            'institucion': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Institución'}),
+            'duracion_horas': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Duración en horas'}),
+            'documento_soporte': forms.ClearableFileInput(attrs={'class': 'form-control'}),
+            
+        }
+
 
 class IdiomaDocenteForm(forms.ModelForm):
     class Meta:

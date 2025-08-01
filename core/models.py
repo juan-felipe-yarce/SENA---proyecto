@@ -138,6 +138,10 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.correo
 
+    def get_full_name(self):
+        nombres = [self.primer_nombre, self.segundo_nombre, self.primer_apellido, self.segundo_apellido]
+        return " ".join([n for n in nombres if n])
+
 
 # ────────────────────────────────
 # PERFIL DE USUARIO
@@ -177,9 +181,21 @@ class RelacionAcudienteEstudiante(models.Model):
 
 class NivelEducativo(models.Model):
     nombre = models.CharField(max_length=50, unique=True)
+    categoria = models.CharField(
+        max_length=30,
+        choices=[
+            ('preescolar', 'Preescolar'),
+            ('primaria', 'Primaria'),
+            ('secundaria', 'Secundaria'),
+            ('media', 'Media'),
+            ('superior', 'Superior'),
+        ],
+        null=False,
+        default='primaria',
+    )
 
     def __str__(self):
-        return self.nombre
+        return f"{self.nombre} ({self.get_categoria_display()})"
 
 class Grado(models.Model):
     nivel = models.ForeignKey(NivelEducativo, on_delete=models.CASCADE, related_name="grados")
@@ -320,11 +336,14 @@ class HojaDeVidaDocente(models.Model):
     resumen = models.TextField()
 
     def __str__(self):
-        return f"Hoja de Vida - {self.usuario.get_full_name()}"
+        perfil = getattr(self.usuario, 'perfildeusuario', None)
+        if perfil:
+            return f"Hoja de Vida - {perfil.primer_nombre} {perfil.primer_apellido}"
+        return f"Hoja de Vida - {self.usuario.correo}"  # O cualquier campo que sí exista
 
 class EducacionDocente(models.Model):
     hoja_de_vida = models.ForeignKey(HojaDeVidaDocente, on_delete=models.CASCADE)
-    nivel = models.CharField(max_length=50)  # Primaria, Secundaria, Superior
+    nivel = models.ForeignKey(NivelEducativo, on_delete=models.CASCADE)  # Cambia esto explicacion
     institucion = models.CharField(max_length=100)
     titulo_obtenido = models.CharField(max_length=100)
     fecha_inicio = models.DateField()

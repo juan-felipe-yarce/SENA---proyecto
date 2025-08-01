@@ -8,13 +8,13 @@ from core.vistas.autenticacion.autenticacion import (
 from core.vistas.docente.panel import panel_docente_view
 from core.vistas.navegacion.inicio import bienvenida, inicio
 from core.vistas.perfil.perfil_usuario import perfil_usuario, editar_perfil
-from core.vistas.estudiante.panel import panel_estudiante
+from core.vistas.estudiante.panel import panel_estudiante_inicio
 from core.vistas.acudiente.panel import panel_acudiente
 from core.vistas.docente.capacitacion import docente_capacitacion_view
 from core.vistas.ajax.ubicaciones import obtener_departamentos, obtener_ciudades
 # Importamos la vista modular del docente (desde carpeta vistas_docente)
 from core.vistas.docente.docente_hoja_vida import docente_datos_basicos_view
-from core.vistas.docente.educacion import docente_educacion_view
+from core.vistas.docente.educacion import docente_educacion_view, editar_educacion, eliminar_educacion
 
 from core.vistas.docente.idiomas import docente_idiomas_view
 from core.vistas.docente.experiencia import docente_experiencia_view
@@ -55,7 +55,7 @@ urlpatterns = [
 
     # Paneles por rol
     path('panel-docente/', panel_docente_view, name='panel_docente'),
-    path('panel-estudiante/', panel_estudiante, name='panel_estudiante'),
+    path('panel-estudiante/', panel_estudiante_inicio, name='panel_estudiante'),
     path('panel-coordinador/', panel_coordinador, name='panel_coordinador'),
     path('panel-acudiente/', panel_acudiente, name='panel_acudiente'),
     
@@ -128,6 +128,8 @@ urlpatterns = [
     # Docentes - Hoja de Vida
     path('docente/hoja-vida/datos-basicos/', docente_datos_basicos_view, name='docente_datos_basicos'),
     path('docente/hoja-vida/educacion/', docente_educacion_view, name='docente_educacion'),
+    path('docente/hoja-vida/educacion/editar/<int:educacion_id>/', editar_educacion, name='editar_educacion'),
+    path('docente/hoja-vida/educacion/eliminar/<int:educacion_id>/', eliminar_educacion, name='eliminar_educacion'),
     path('docente/hoja-vida/capacitacion/', docente_capacitacion_view, name='docente_capacitacion'),
     path('docente/hoja-vida/idiomas/', docente_idiomas_view, name='docente_idiomas'),
     path('docente/hoja-vida/experiencia/', docente_experiencia_view, name='docente_experiencia'),

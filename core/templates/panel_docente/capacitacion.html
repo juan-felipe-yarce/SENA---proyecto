@@ -1,12 +1,67 @@
-{% extends 'panel_docente/dashboard_base.html' %}
+{% extends "panel_docente/dashboard_base.html" %}
 {% load static %}
-{% block panel_content %}
-  <div class="p-4 bg-white rounded-4 shadow mt-3" style="max-width: 700px; margin:auto;">
-    <h1 class="h4 fw-bold text-primary mb-3">
-      <i class="bi bi-lightbulb"></i> Capacitaciones del Docente
-    </h1>
-    <p class="text-secondary">
-      Esta sección está en construcción. Aquí se mostrará la capacitación complementaria del docente.
-    </p>
-  </div>
+{% block content %}
+
+<h2>Capacitaciones del Docente</h2>
+
+<!-- Mensajes de éxito/error -->
+{% if messages %}
+  {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} mt-2">{{ message }}</div>
+  {% endfor %}
+{% endif %}
+
+<!-- Formulario mejorado -->
+<form method="post" enctype="multipart/form-data" class="row g-3 mb-4">
+    {% csrf_token %}
+    <div class="col-md-6">
+        {{ form.nombre_curso.label_tag }} {{ form.nombre_curso }}
+    </div>
+    <div class="col-md-6">
+        {{ form.institucion.label_tag }} {{ form.institucion }}
+    </div>
+    <div class="col-md-4">
+        {{ form.duracion_horas.label_tag }} {{ form.duracion_horas }}
+    </div>
+    <div class="col-md-8">
+        {{ form.documento_soporte.label_tag }} {{ form.documento_soporte }}
+    </div>
+    <div class="col-12">
+        <button type="submit" class="btn btn-primary">Agregar capacitación</button>
+    </div>
+</form>
+
+<!-- Tabla de capacitaciones -->
+<h3>Capacitaciones registradas</h3>
+<table class="table table-striped mt-2">
+    <thead>
+        <tr>
+            <th>Curso</th>
+            <th>Institución</th>
+            <th>Duración (horas)</th>
+            <th>Documento</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for cap in capacitaciones %}
+        <tr>
+            <td>{{ cap.nombre_curso }}</td>
+            <td>{{ cap.institucion }}</td>
+            <td>{{ cap.duracion_horas }}</td>
+            <td>
+                {% if cap.documento_soporte %}
+                    <a href="{{ cap.documento_soporte.url }}" target="_blank" class="btn btn-sm btn-outline-info">Ver</a>
+                {% else %}
+                    <span class="text-muted">No adjunto</span>
+                {% endif %}
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4" class="text-center">No hay capacitaciones registradas.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
 {% endblock %}

@@ -158,5 +158,18 @@ SESSION_SAVE_EVERY_REQUEST = False
 
 INTERNAL_IPS = [
     '127.0.0.1',
+    'localhost',
+    '::1',
 ]
+
+# Configuración adicional para debug_toolbar
+if DEBUG:
+    import socket
+    hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+    INTERNAL_IPS += [ip[: ip.rfind(".")] + ".1" for ip in ips]
+
+# Configuración de debug_toolbar
+DEBUG_TOOLBAR_CONFIG = {
+    'SHOW_TOOLBAR_CALLBACK': lambda request: DEBUG,
+}
 

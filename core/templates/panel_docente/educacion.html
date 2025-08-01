@@ -1,10 +1,177 @@
 {% extends 'panel_docente/dashboard_base.html' %}
 {% load static %}
+
 {% block panel_content %}
-  <div class="p-4 bg-white rounded-4 shadow mt-3" style="max-width: 700px; margin:auto;">
-    <h1 class="h4 fw-bold text-primary mb-3">
-      <i class="bi bi-mortarboard"></i> Educación del Docente
-    </h1>
-    <p class="text-secondary">Esta sección está en construcción. Aquí se mostrará la formación académica del docente.</p>
-  </div>
+<div class="container-fluid">
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h3 mb-0">
+            <i class="bi bi-mortarboard text-primary"></i>
+            Educación Académica
+        </h1>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEducacion">
+            <i class="bi bi-plus-circle"></i>
+            Agregar Educación
+        </button>
+    </div>
+
+    <!-- Mensajes -->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <!-- Lista de Educación -->
+    {% if educaciones %}
+        <div class="row">
+            {% for educacion in educaciones %}
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="card-title mb-0">
+                                <i class="bi bi-mortarboard"></i>
+                                {{ educacion.nivel }}
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <h6 class="card-subtitle mb-2 text-muted">{{ educacion.institucion }}</h6>
+                            <p class="card-text"><strong>Título:</strong> {{ educacion.titulo_obtenido }}</p>
+                            <p class="card-text">
+                                <small class="text-muted">
+                                    <i class="bi bi-calendar"></i>
+                                    {{ educacion.fecha_inicio|date:"M Y" }} - {{ educacion.fecha_fin|date:"M Y" }}
+                                </small>
+                            </p>
+                        </div>
+                        <div class="card-footer bg-transparent">
+                            <div class="btn-group w-100" role="group">
+                                <a href="{% url 'editar_educacion' educacion.id %}" 
+                                   class="btn btn-outline-primary btn-sm">
+                                    <i class="bi bi-pencil"></i> Editar
+                                </a>
+                                <button type="button" 
+                                        class="btn btn-outline-danger btn-sm"
+                                        onclick="eliminarEducacion({{ educacion.id }})">
+                                    <i class="bi bi-trash"></i> Eliminar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="text-center py-5">
+            <i class="bi bi-mortarboard display-1 text-muted"></i>
+            <h4 class="text-muted mt-3">No hay registros de educación</h4>
+            <p class="text-muted">Comienza agregando tu formación académica.</p>
+        </div>
+    {% endif %}
+</div>
+
+<!-- Modal para agregar educación -->
+<div class="modal fade" id="modalEducacion" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    <i class="bi bi-plus-circle"></i>
+                    Agregar Educación
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form method="post">
+                {% csrf_token %}
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form.nivel.id_for_label }}" class="form-label">
+                                Nivel Educativo *
+                            </label>
+                            {{ form.nivel }}
+                            {% if form.nivel.errors %}
+                                <div class="text-danger small">{{ form.nivel.errors.0 }}</div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form.institucion.id_for_label }}" class="form-label">
+                                Institución *
+                            </label>
+                            {{ form.institucion }}
+                            {% if form.institucion.errors %}
+                                <div class="text-danger small">{{ form.institucion.errors.0 }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="{{ form.titulo_obtenido.id_for_label }}" class="form-label">
+                            Título Obtenido *
+                        </label>
+                        {{ form.titulo_obtenido }}
+                        {% if form.titulo_obtenido.errors %}
+                            <div class="text-danger small">{{ form.titulo_obtenido.errors.0 }}</div>
+                        {% endif %}
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form.fecha_inicio.id_for_label }}" class="form-label">
+                                Fecha de Inicio *
+                            </label>
+                            {{ form.fecha_inicio }}
+                            {% if form.fecha_inicio.errors %}
+                                <div class="text-danger small">{{ form.fecha_inicio.errors.0 }}</div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form.fecha_fin.id_for_label }}" class="form-label">
+                                Fecha de Fin *
+                            </label>
+                            {{ form.fecha_fin }}
+                            {% if form.fecha_fin.errors %}
+                                <div class="text-danger small">{{ form.fecha_fin.errors.0 }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-check-circle"></i>
+                        Guardar Educación
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Script para eliminar educación -->
+<script>
+function eliminarEducacion(educacionId) {
+    if (confirm('¿Estás seguro de que quieres eliminar esta educación?')) {
+        fetch(`/docente/educacion/eliminar/${educacionId}/`, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                location.reload();
+            } else {
+                alert('Error: ' + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error al eliminar la educación');
+        });
+    }
+}
+</script>
 {% endblock %}
