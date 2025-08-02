@@ -3,12 +3,60 @@
 {% block title %}Idiomas del Docente{% endblock %}
 
 {% block panel_content %}
-  <div class="p-4 bg-white rounded-4 shadow mt-3" style="max-width: 700px; margin:auto;">
+<div class="p-4 bg-white rounded-4 shadow mt-3" style="max-width: 800px; margin:auto;">
     <h1 class="h4 fw-bold text-primary mb-3">
-      <i class="bi bi-translate"></i> Idiomas del Docente
+        <i class="bi bi-translate"></i> Idiomas del Docente
     </h1>
-    <p class="text-secondary">
-      Esta sección estará disponible próximamente.
-    </p>
-  </div>
+
+    <!-- Mensajes -->
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} mt-2">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+
+    <!-- Formulario -->
+    <form method="post" enctype="multipart/form-data" class="row g-3 mb-4">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Agregar idioma</button>
+        </div>
+    </form>
+
+    <!-- Tabla de idiomas -->
+    <h3>Idiomas registrados</h3>
+    <table class="table table-striped mt-2">
+        <thead>
+            <tr>
+                <th>Idioma</th>
+                <th>Habla</th>
+                <th>Lee</th>
+                <th>Escribe</th>
+                <th>Documento</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for idioma in idiomas %}
+            <tr>
+                <td>{{ idioma.idioma }}</td>
+                <td>{{ idioma.nivel_habla }}</td>
+                <td>{{ idioma.nivel_lee }}</td>
+                <td>{{ idioma.nivel_escribe }}</td>
+                <td>
+                    {% if idioma.documento_soporte %}
+                        <a href="{{ idioma.documento_soporte.url }}" target="_blank" class="btn btn-sm btn-outline-info">Ver</a>
+                    {% else %}
+                        <span class="text-muted">No adjunto</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5" class="text-center">No hay idiomas registrados.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}

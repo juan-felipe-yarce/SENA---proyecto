@@ -135,12 +135,6 @@ urlpatterns = [
     path('docente/hoja-vida/experiencia/', docente_experiencia_view, name='docente_experiencia'),
 
 
-    # (Los demás se agregarán más adelante)
-    # path('docente/hoja-vida/educacion/', docente_educacion_view, name='docente_educacion'),
-    # path('docente/hoja-vida/capacitacion/', docente_capacitacion_view, name='docente_capacitacion'),
-    # path('docente/hoja-vida/idiomas/', docente_idiomas_view, name='docente_idiomas'),
-    # path('docente/hoja-vida/experiencia/', docente_experiencia_view, name='docente_experiencia'),
-
     path('ajax/departamentos/', obtener_departamentos, name='ajax_departamentos'),
     path('ajax/ciudades/', obtener_ciudades, name='ajax_ciudades'),
 

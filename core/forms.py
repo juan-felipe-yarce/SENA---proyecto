@@ -581,10 +581,24 @@ class CapacitacionDocenteForm(forms.ModelForm):
 class IdiomaDocenteForm(forms.ModelForm):
     class Meta:
         model = IdiomaDocente
-        fields = '__all__'
+        exclude = ['hoja_de_vida']
+        widgets = {
+            'idioma': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Idioma'}),
+            'nivel_habla': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nivel de habla (ej: Básico, Intermedio, Avanzado)'}),
+            'nivel_lee': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nivel de lectura'}),
+            'nivel_escribe': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nivel de escritura'}),
+            'documento_soporte': forms.ClearableFileInput(attrs={'class': 'form-control'}),
+        }
 
 class ExperienciaDocenteForm(forms.ModelForm):
     class Meta:
         model = ExperienciaDocente
-        fields = '__all__' 
+        exclude = ['hoja_de_vida']
+        widgets = {
+            'institucion': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Institución'}),
+            'cargo': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Cargo'}),
+            'fecha_inicio': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+            'fecha_fin': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+            'descripcion': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Descripción', 'rows': 2}),
+        }
         

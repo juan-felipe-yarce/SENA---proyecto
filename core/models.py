@@ -377,14 +377,13 @@ class IdiomaDocente(models.Model):
 
 
 class ExperienciaDocente(models.Model):
-    hoja_de_vida = models.ForeignKey(HojaDeVidaDocente, on_delete=models.CASCADE)
+    hoja_de_vida = models.ForeignKey('HojaDeVidaDocente', on_delete=models.CASCADE)
     institucion = models.CharField(max_length=100)
     cargo = models.CharField(max_length=100)
     fecha_inicio = models.DateField()
-    fecha_fin = models.DateField()
-    descripcion = models.TextField()
-    documento_soporte = models.FileField(upload_to='experiencias/', blank=True, null=True)
+    fecha_fin = models.DateField(null=True, blank=True)
+    descripcion = models.TextField(blank=True)
 
     def __str__(self):
-        return f"{self.institucion} - {self.cargo}"
+        return f"{self.cargo} en {self.institucion}"
 
