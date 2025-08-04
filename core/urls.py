@@ -10,8 +10,7 @@ from core.vistas.navegacion.inicio import bienvenida, inicio
 from core.vistas.perfil.perfil_usuario import perfil_usuario, editar_perfil
 from core.vistas.estudiante.panel import panel_estudiante_inicio
 from core.vistas.acudiente.panel import panel_acudiente
-from core.vistas.docente.capacitacion import docente_capacitacion_view
-from core.vistas.ajax.ubicaciones import obtener_departamentos, obtener_ciudades
+from core.vistas.docente.capacitacion import docente_capacitacion_view  # editar_capacitacion, eliminar_capacitacion (comentado para futuras mejoras)
 # Importamos la vista modular del docente (desde carpeta vistas_docente)
 from core.vistas.docente.docente_hoja_vida import docente_datos_basicos_view
 from core.vistas.docente.educacion import docente_educacion_view, editar_educacion, eliminar_educacion
@@ -37,7 +36,7 @@ from core.vistas.coordinador.gestion_academica import (
 )
 
 from django.contrib.auth import views as auth_views
-
+from core.vistas.ajax.ubicaciones import obtener_departamentos, obtener_ciudades
 
 
 urlpatterns = [
@@ -131,10 +130,10 @@ urlpatterns = [
     path('docente/hoja-vida/educacion/editar/<int:educacion_id>/', editar_educacion, name='editar_educacion'),
     path('docente/hoja-vida/educacion/eliminar/<int:educacion_id>/', eliminar_educacion, name='eliminar_educacion'),
     path('docente/hoja-vida/capacitacion/', docente_capacitacion_view, name='docente_capacitacion'),
+    # path('docente/hoja-vida/capacitacion/editar/<int:capacitacion_id>/', editar_capacitacion, name='editar_capacitacion'),  # Comentado para futuras mejoras
+    # path('docente/hoja-vida/capacitacion/eliminar/<int:capacitacion_id>/', eliminar_capacitacion, name='eliminar_capacitacion'),  # Comentado para futuras mejoras
     path('docente/hoja-vida/idiomas/', docente_idiomas_view, name='docente_idiomas'),
     path('docente/hoja-vida/experiencia/', docente_experiencia_view, name='docente_experiencia'),
-
-
     path('ajax/departamentos/', obtener_departamentos, name='ajax_departamentos'),
     path('ajax/ciudades/', obtener_ciudades, name='ajax_ciudades'),
 

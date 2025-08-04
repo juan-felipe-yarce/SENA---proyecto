@@ -5,7 +5,7 @@ from .models import (
     Genero, EstadoCivil, Estrato,
     NivelEducativo, Grado, Area, Asignatura,
     Tema, Logro, Aula,
-    PerfilDeUsuario, AsignacionDocente, Grupo
+    PerfilDeUsuario, AsignacionDocente, Grupo, RelacionAcudienteEstudiante
 )
 
 @admin.register(Usuario)
@@ -41,6 +41,15 @@ class UsuarioAdmin(admin.ModelAdmin):
 class RolAdmin(admin.ModelAdmin):
     list_display = ('nombre',)
     
+class RelacionAcudienteEstudianteInline(admin.TabularInline):
+    model = RelacionAcudienteEstudiante
+    fk_name = 'acudiente'
+    extra = 1
+
+class PerfilDeUsuarioAdmin(admin.ModelAdmin):
+    inlines = [RelacionAcudienteEstudianteInline]
+    list_display = ('primer_nombre', 'primer_apellido', 'usuario', 'grupo')
+
 admin.site.register(TipoDocumento)
 admin.site.register(Pais)
 admin.site.register(Departamento)
@@ -48,7 +57,7 @@ admin.site.register(Ciudad)
 admin.site.register(Genero)
 admin.site.register(EstadoCivil)
 admin.site.register(Estrato)
-admin.site.register(PerfilDeUsuario)
+admin.site.register(PerfilDeUsuario, PerfilDeUsuarioAdmin)
 admin.site.register(AsignacionDocente)
 admin.site.register(Grupo)
 admin.site.register(Aula)
