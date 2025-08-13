@@ -10,6 +10,7 @@ def es_coordinador(user):
 @login_required
 @user_passes_test(es_coordinador)
 def panel_coordinador(request):
+    # TODO: Mostrar un dashboard/resumen en vez de solo redirigir a lista_niveles
     return redirect('lista_niveles')
 
 @login_required

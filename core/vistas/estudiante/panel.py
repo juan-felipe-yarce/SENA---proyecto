@@ -34,7 +34,9 @@ def panel_estudiante_inicio(request):
     # Preparar el nombre completo
     nombre_completo = ""
     if perfil:
+        # TODO: Mover el formateo de nombre completo a un método en el modelo PerfilDeUsuario
         nombre_completo = f"{perfil.primer_nombre} {perfil.segundo_nombre or ''} {perfil.primer_apellido} {perfil.segundo_apellido or ''}".strip()
+    # TODO: Modularizar la obtención de asignaturas en un método del modelo o manager
     
     context = {
         'usuario': usuario,

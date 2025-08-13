@@ -11,6 +11,7 @@ from core.forms import (
 
 @login_required
 def docente_datos_basicos_view(request):
+    # TODO: Refactorizar a una Class-Based View (FormView) para manejar múltiples formularios de forma más limpia
     usuario = request.user
     perfil = getattr(usuario, 'perfil', None)
 
@@ -59,7 +60,7 @@ def docente_datos_basicos_view(request):
             except Exception as e:
                 messages.error(request, f"❌ Error al guardar: {str(e)}")
         else:
-            # Mostrar errores específicos con detalles
+            # TODO: Usar un helper para mostrar errores de formularios de manera DRY
             if not identificacion_valido:
                 messages.error(request, "❌ Errores en datos de identificación")
                 for field, errors in form_identificacion.errors.items():
