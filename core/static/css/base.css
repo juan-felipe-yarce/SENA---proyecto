@@ -61,13 +61,12 @@ body .layout-aside {
 /* === LAYOUT CONTENT === */
 html body .layout-content,
 body .layout-content {
-    position: absolute !important;
+    position: relative !important; /* antes estaba absolute */
     left: 240px !important;
     right: 0 !important;
-    top: 64px !important;
-    bottom: 95px !important; /* ajustado para nuevo footer */
-    overflow-y: auto !important;
+    top: 64px !important;          /* deja el margen del navbar */
     padding: 2rem 2rem 1.5rem 2rem !important;
+    overflow-y: visible !important; /* deja que el body maneje el scroll */
 }
 /*-----------------------------------------------------------------------------------------------------------*/
 /* === FOOTER CAPSULA VERDE (EFECTO ORIGINAL) === */
@@ -764,3 +763,7 @@ body.no-aside .login-container{
   box-sizing: border-box !important;
 }
 
+/* === FIX: Compensar navbar en páginas sin aside === */
+body.no-aside {
+  padding-top: 64px !important; /* igual al alto del navbar */
+}
