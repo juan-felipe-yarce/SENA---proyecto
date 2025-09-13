@@ -127,6 +127,7 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     user_permissions = models.ManyToManyField(Permission, blank=True, related_name='usuario_set')
 
     USERNAME_FIELD = 'correo'
+    EMAIL_FIELD = 'correo'   
     REQUIRED_FIELDS = []
 
     objects = UsuarioManager()

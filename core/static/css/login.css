@@ -1,33 +1,187 @@
-/* static/css/login.css */
+/* === CSS LOGIN GLASSMORPHISM VERDOSO COMPLETO === */
+
+html, body {
+    height: 100% !important;
+    margin: 0;
+    padding: 0;
+    overflow: hidden !important; /* ❌ quita scroll vertical */
+}
 
 .login-container {
-    min-height: 80vh;
+    min-height: 100vh !important;
     display: flex;
     align-items: center;
     justify-content: center;
-    /* Fondo claro opcional: */
-    /* background: #f6fafd; */
+    padding: 0 !important;
+    margin: 0 !important;
+    box-sizing: border-box;
 }
 
+/* === TARJETA === */
 .login-card {
-    border-radius: 1.25rem;
-    box-shadow: 0 2px 20px 2px rgba(30,70,160,0.05);
-    border: 0;
+    position: relative;
+    background: rgba(40, 62, 6, 0.3); /* 💚 translúcido verdoso */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 20px;
+    border: 1px solid rgba(150, 172, 96, 0.4);
+    box-shadow: 
+        0 8px 32px rgba(0,0,0,0.45),
+        inset 0 1px 0 rgba(150,172,96,0.15),
+        0 0 0 1px rgba(150,172,96,0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 2rem;
+    max-width: 400px;
+    width: 100%;
+    margin: 0 auto;
 }
 
+.login-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 
+        0 12px 40px rgba(0,0,0,0.6),
+        inset 0 1px 0 rgba(150,172,96,0.25),
+        0 0 0 1px rgba(150,172,96,0.25);
+}
+
+/* === EFECTOS DE BRILLO === */
+.login-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #96ac60, transparent);
+    border-radius: 20px 20px 0 0;
+    opacity: 0.8;
+    z-index: 1;
+}
+.login-card::after {
+    content: '';
+    position: absolute;
+    top: 20px; left: 0;
+    width: 2px; height: 60%;
+    background: linear-gradient(180deg, #96ac60, transparent);
+    border-radius: 0 0 0 20px;
+    z-index: 1;
+}
+.login-card > * { position: relative; z-index: 2; }
+
+/* === TÍTULOS === */
+.login-card h1, .login-card h2, .login-card h3,
+.login-card .h1, .login-card .h2, .login-card .h3,
+html body .login-card .text-primary {
+    color: #eaf3d1 !important;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.6) !important;
+    font-weight: 700 !important;
+    margin-bottom: 1.5rem !important;
+}
+
+/* === LABELS === */
+.login-card .form-label, html body .login-card label {
+    font-weight: 600 !important;
+    color: #d9ef9f !important;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.4) !important;
+    margin-bottom: 0.5rem !important;
+}
+
+/* === INPUTS === */
+.login-card .form-control {
+    background: rgba(40, 62, 6, 0.25) !important;
+    border: 1px solid rgba(150,172,96,0.3) !important;
+    border-radius: 12px !important;
+    color: #eaf3d1 !important;
+    font-weight: 500 !important;
+    padding: 0.75rem 1rem !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 
+        0 4px 15px rgba(40,62,6,0.25),
+        inset 0 1px 0 rgba(150,172,96,0.15) !important;
+}
+.login-card .form-control::placeholder {
+    color: rgba(233,243,209,0.7) !important;
+}
+.login-card .form-control:focus {
+    background: rgba(40,62,6,0.35) !important;
+    border: 1px solid rgba(150,172,96,0.5) !important;
+    box-shadow: 
+        0 6px 20px rgba(40,62,6,0.35),
+        inset 0 1px 0 rgba(150,172,96,0.2),
+        0 0 0 3px rgba(150,172,96,0.25) !important;
+    color: #ffffff !important;
+    outline: none !important;
+}
+
+/* === BOTÓN PRINCIPAL === */
+.login-card .btn-primary {
+    background: rgba(150,172,96,0.9) !important;
+    border: 1px solid rgba(233,243,209,0.3) !important;
+    border-radius: 12px !important;
+    color: #203500 !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.02em !important;
+    padding: 0.75rem 2rem !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 15px rgba(150,172,96,0.35) !important;
+    width: 100% !important;
+}
+.login-card .btn-primary:hover,
+.login-card .btn-primary:focus {
+    background: #96ac60 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 25px rgba(150,172,96,0.45) !important;
+    border: 1px solid rgba(233,243,209,0.4) !important;
+}
+
+/* === ENLACES === */
+.login-card a {
+    color: #d9ef9f !important;
+    text-decoration: none !important;
+    transition: all 0.3s ease !important;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.4) !important;
+}
+.login-card a:hover {
+    color: #ffffff !important;
+    text-shadow: 0 1px 5px rgba(0,0,0,0.5) !important;
+    text-decoration: underline !important;
+}
+
+/* === TEXTO GENERAL === */
+.login-card p, .login-card span, .login-card small {
+    color: #eaf3d1 !important;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3) !important;
+}
+
+/* === RESPONSIVE === */
 @media (max-width: 576px) {
     .login-card {
-        border-radius: 0.7rem;
-        padding: 0.5rem;
+        border-radius: 15px !important;
+        padding: 1.5rem !important;
+        margin: 0 !important;
+        max-width: none !important;
+        width: calc(100% - 1rem) !important;
+    }
+    .login-card::after { display: none !important; }
+    .login-card .form-control { font-size: 16px !important; }
+    .login-card .btn-primary { padding: 0.875rem 1.5rem !important; }
+}
+@media (max-width: 400px) {
+    .login-container { padding: 0.5rem !important; }
+    .login-card {
+        padding: 1rem !important;
+        margin: 0 !important;
+        border-radius: 12px !important;
+        width: 100% !important;
     }
 }
 
-.login-card .form-label {
-    font-weight: 500;
-    color: #23448c;
+/* === ANIMACIONES === */
+.login-card { animation: fadeInUp 0.8s ease-out; }
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px) scale(0.95); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
 }
-
-.login-card .btn-primary {
-    font-weight: 600;
-    letter-spacing: 0.02em;
+.login-card .form-control { animation: inputFadeIn 0.5s ease-out; }
+@keyframes inputFadeIn {
+    from { opacity: 0; transform: translateX(-10px); }
+    to   { opacity: 1; transform: translateX(0); }
 }

@@ -17,6 +17,7 @@ function togglePasswordIcon(id, btn) {
 // 🔒 Verificación de fuerza de contraseña
 document.addEventListener("DOMContentLoaded", function () {
     const passwordField = document.getElementById("id_password");
+    const confirmField = document.getElementById("id_confirmar_password");
     const bar = document.getElementById("password-strength");
     const checks = {
         len: document.getElementById("len"),
@@ -76,10 +77,38 @@ document.addEventListener("DOMContentLoaded", function () {
             } else {
                 bar.classList.add("bg-success");
             }
+
+            // Actualizar validación de confirmación al mismo tiempo
+            if (confirmField && confirmField.value.length > 0) {
+                if (confirmField.value !== passwordField.value) {
+                    confirmField.classList.add("is-invalid");
+                    confirmField.classList.remove("is-valid");
+                } else {
+                    confirmField.classList.add("is-valid");
+                    confirmField.classList.remove("is-invalid");
+                }
+            }
         });
     }
 
-    // Carga dinámica de País → Departamento → Ciudad
+    // ✅ Validación de confirmación de contraseña
+    if (passwordField && confirmField) {
+        confirmField.addEventListener("input", function () {
+            if (confirmField.value.length > 0) {
+                if (confirmField.value !== passwordField.value) {
+                    confirmField.classList.add("is-invalid");
+                    confirmField.classList.remove("is-valid");
+                } else {
+                    confirmField.classList.add("is-valid");
+                    confirmField.classList.remove("is-invalid");
+                }
+            } else {
+                confirmField.classList.remove("is-valid", "is-invalid");
+            }
+        });
+    }
+
+    // 🌍 Carga dinámica País → Departamento → Ciudad
     const paisSelect = document.getElementById("id_pais_identificacion");
     const departamentoSelect = document.getElementById("id_departamento_identificacion");
     const municipioSelect = document.getElementById("id_municipio_identificacion");
@@ -115,7 +144,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Mostrar alerta si el rol seleccionado es Coordinador Académico
+    // ⚠️ Mostrar alerta si el rol seleccionado es Coordinador
     const rolSelect = document.getElementById("id_rol");
     const alertaDiv = document.getElementById("coordinador-alerta");
 

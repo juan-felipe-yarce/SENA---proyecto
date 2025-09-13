@@ -1,30 +1,36 @@
-{% extends "base.html" %}
+{% load static %}
 
-{% block content %}
-<div class="dashboard-flex-layout">
-  <!-- Menú lateral -->
-  <aside class="dashboard-sidebar">
-    <h2 class="dashboard-sidebar-title">🎓 Coordinador Académico</h2>
-    <nav class="dashboard-nav">
-      <a href="{% url 'panel_coordinador' %}" class="dashboard-nav-link">🏠 Inicio</a>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Sistema Escolar{% endblock %}</title>
 
-      <a href="{% url 'usuarios_pendientes' %}" class="dashboard-nav-link dashboard-nav-pending">
-        🕒 Validar Usuarios
-        {% if pending_count > 0 %}
-          <span class="dashboard-badge-pending">{{ pending_count }}</span>
-        {% endif %}
-      </a>
+  <!-- Estilos globales -->
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+  <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+  <link rel="stylesheet" href="{% static 'css/panel_base.css' %}"> <!-- nuestro CSS al final -->
 
-      <a href="{% url 'lista_asignaciones' %}" class="dashboard-nav-link">📚 Asignaciones</a>
+  {% block extra_head %}{% endblock %}
+</head>
+<body>
+  <!-- NAVBAR GLOBAL -->
+  <nav class="layout-navbar">
+    {% include "includes/navbar.html" %}
+  </nav>
 
-      <a href="{% url 'logout' %}" class="dashboard-nav-link dashboard-nav-logout">🚪 Cerrar sesión</a>
-    </nav>
-  </aside>
-
-  <!-- Contenido del panel -->
-  <main class="dashboard-main-content">
-    {% block panel_content %}{% endblock %}
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="layout-content">
+    {% block content %}{% endblock %}
   </main>
-</div>
-<link rel="stylesheet" href="{% static 'css/panel_base.css' %}">
-{% endblock %}
+
+  <!-- FOOTER -->
+  <footer class="layout-footer">
+    <p>© 2025 Sistema Escolar. Todos los derechos reservados. | Contacto: colegio@example.edu.co</p>
+  </footer>
+
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

@@ -602,3 +602,29 @@ class ExperienciaDocenteForm(forms.ModelForm):
             'descripcion': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Descripción', 'rows': 2}),
         }
         
+from django import forms
+from django.contrib.auth.forms import PasswordResetForm
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
+
+class CustomPasswordResetForm(PasswordResetForm):
+    email = forms.EmailField(  # 👈 mantenemos "email", Django lo espera así
+        label="Correo electrónico",
+        max_length=254,
+        widget=forms.EmailInput(attrs={
+            "autocomplete": "email",
+            "class": "form-control",
+            "placeholder": "Ingresa tu correo"
+        })
+    )
+
+    def get_users(self, email):
+        """Buscar usuarios activos usando el campo 'correo' de tu modelo."""
+        active_users = User._default_manager.filter(
+            **{
+                f"{User.EMAIL_FIELD}__iexact": email,  # 👈 respeta lo definido en el modelo
+                "is_active": True,
+            }
+        )
+        return (u for u in active_users if u.has_usable_password())

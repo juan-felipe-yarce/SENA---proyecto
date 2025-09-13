@@ -1,13 +1,194 @@
+/* === GLASSMORPHISM PÁGINA DE INICIO === */
+body {
+    margin: 0 !important;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+    color: #333333 !important;
+    background: url("../img/Fondo.jpg") no-repeat center center fixed !important;
+    background-size: cover !important;
+}
+
+/* Layout principal */
 .layout-content-bienvenida {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: calc(100vh - 112px); /* 64px navbar + 48px footer */
-  padding: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
+    min-height: calc(100vh - 128px) !important; /* resta navbar (64px) + footer (64px) */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 2rem 1rem !important;
+    position: relative !important;
+    box-sizing: border-box !important;
+}
+
+/* === CAJA PRINCIPAL GLASSMORPHISM === */
+.bienvenida-box {
+    position: relative !important;
+    background: rgba(40, 62, 6, 0.3) !important; /* 💚 tono más claro, igual que login */
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-radius: 24px !important;
+    border: 1px solid rgba(150, 172, 96, 0.4) !important;
+    box-shadow: 
+        0 12px 40px 0 rgba(32, 53, 0, 0.45),
+        inset 0 1px 0 rgba(150, 172, 96, 0.15),
+        0 0 0 1px rgba(150, 172, 96, 0.05) !important;
+    padding: 3rem 2.5rem !important;
+    max-width: 500px !important;
+    width: 100% !important;
+    transition: all 0.4s ease !important;
+    animation: fadeInScale 1s ease-out !important;
+}
+
+/* Hover effect para la caja */
+.bienvenida-box:hover {
+    transform: translateY(-2px) scale(1.01) !important; /* más sutil */
+    box-shadow: 
+        0 16px 45px 0 rgba(32, 53, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        0 0 0 1px rgba(255, 255, 255, 0.1) !important;
+    transition: transform 0.5s ease, box-shadow 0.5s ease !important; /* animación más fluida */
+}
+
+/* Efectos de brillo en la caja */
+.bienvenida-box::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 3px !important;
+    background: linear-gradient(90deg, transparent, rgba(217, 239, 159, 0.7), transparent) !important;
+    border-radius: 24px 24px 0 0 !important;
+    opacity: 0.9 !important;
+    z-index: 1 !important;
+}
+
+.bienvenida-box::after {
+    content: '' !important;
+    position: absolute !important;
+    top: 30px !important;
+    left: 0 !important;
+    width: 3px !important;
+    height: 70% !important;
+    background: linear-gradient(180deg, rgba(217, 239, 159, 0.3), transparent) !important;
+    border-radius: 0 0 0 24px !important;
+    z-index: 1 !important;
+}
+
+/* Contenido con z-index mayor */
+.bienvenida-box > * {
+    position: relative !important;
+    z-index: 2 !important;
+}
+
+/* === TÍTULO PRINCIPAL === */
+.bienvenida-box .display-4,
+.bienvenida-box h1,
+html body .bienvenida-box .text-primary,
+html body .bienvenida-box h1.text-primary {
+    color: #d9ef9f !important; /* verde claro */
+    text-shadow: 0 3px 10px rgba(0, 0, 0, 0.6) !important;
+    margin-bottom: 1.5rem !important;
+    font-weight: 700 !important;
+    animation: titleGlow 2s ease-in-out infinite alternate !important;
+}
+
+/* === TEXTO SECUNDARIO === */
+.bienvenida-box .lead,
+.bienvenida-box .text-secondary,
+html body .bienvenida-box p {
+    color: #eaf3d1 !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4) !important;
+    margin-bottom: 2rem !important;
+    font-weight: 500 !important;
+    font-size: 1.1rem !important;
+    line-height: 1.6 !important;
+}
+
+/* === BOTÓN PRINCIPAL GLASSMORPHISM === */
+.bienvenida-box .btn,
+.bienvenida-box .btn-primary {
+    background: #96ac60 !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    border: 1px solid rgba(233,243,209,0.3) !important;
+    border-radius: 16px !important;
+    color: #203500 !important;   /* 💚 igual al login */
+    font-weight: 600 !important;
+    font-size: 1.1rem !important;
+    padding: 0.875rem 2.5rem !important;
+    text-decoration: none !important;
+    text-shadow: none !important; /* para que no quede raro */
+    box-shadow: 
+        0 6px 20px rgba(150, 172, 96, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+    transition: all 0.3s ease !important;
+    position: relative !important;
+    overflow: hidden !important;
+    width: 100% !important;
+}
+
+
+/* Hover */
+.bienvenida-box .btn:hover {
+    background: #b7cd7f !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 12px 35px rgba(150, 172, 96, 0.5) !important;
+}
+
+/* === ANIMACIONES === */
+@keyframes fadeInScale {
+    0% { opacity: 0; transform: scale(0.9) translateY(30px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes titleGlow {
+    0% {
+        text-shadow: 0 3px 15px rgba(0,0,0,0.5);
+    }
+    100% {
+        text-shadow: 
+            0 3px 15px rgba(0,0,0,0.5),
+            0 0 20px rgba(217, 239, 159, 0.4);
+    }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
 }
 
 .bienvenida-box {
-  max-width: 700px;
+    animation: fadeInScale 1s ease-out, float 6s ease-in-out infinite 1s !important;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+    .bienvenida-box {
+        padding: 2rem 1.5rem !important;
+        margin: 1rem !important;
+        border-radius: 20px !important;
+    }
+
+    .bienvenida-box h1 {
+        font-size: 2.5rem !important;
+    }
+
+    .bienvenida-box .lead {
+        font-size: 1rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .layout-content-bienvenida {
+        padding: 1rem 0.5rem !important;
+    }
+
+    .bienvenida-box {
+        padding: 1.5rem 1rem !important;
+        margin: 0.5rem !important;
+        border-radius: 16px !important;
+    }
+
+    .bienvenida-box h1 {
+        font-size: 2rem !important;
+    }
 }
