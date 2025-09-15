@@ -527,3 +527,10 @@
 }
 
 /* === FIN === */
+
+
+/* === FIX FLEXBOX FOOTER EN REGISTRO === */
+body.registro-page .layout-content {
+  flex: 1 !important; /* ocupa todo el espacio libre y empuja el footer */
+}
+

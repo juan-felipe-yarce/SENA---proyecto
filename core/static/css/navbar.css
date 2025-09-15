@@ -6,11 +6,10 @@
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: none;   /* sin fondo */
-  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+  background: none !important;
+  min-height: 100vh !important;
 }
-
 
 /* === NAVBAR CAPSULA === */
 html body .school-navbar,
@@ -18,10 +17,10 @@ body .school-navbar {
   height: 64px !important;
   position: relative !important;
   background: linear-gradient(135deg, #203500 0%, #31470b 50%, #586626 100%) !important;
-  border-radius: 2rem !important;   /* forma de cápsula */
+  border-radius: 2rem !important;
   box-shadow: 0 6px 20px rgba(0,0,0,0.3) !important;
   padding: 0.5rem 1.5rem !important;
-  z-index: 100 !important;
+  z-index: 1000 !important;
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
@@ -44,12 +43,12 @@ body .school-navbar:hover {
 
 /* Brillo animado */
 .school-navbar::before {
-  content: '';
-  position: absolute;
+  content: '' !important;
+  position: absolute !important;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.07) 50%, transparent 100%);
-  transform: translateX(-100%);
-  animation: shine 3s infinite;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.07) 50%, transparent 100%) !important;
+  transform: translateX(-100%) !important;
+  animation: shine 3s infinite !important;
 }
 
 @keyframes shine {
@@ -69,18 +68,18 @@ body .school-navbar:hover {
 }
 
 .school-navbar-brand::after {
-  content: '';
-  position: absolute;
-  bottom: -3px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: linear-gradient(90deg, #96ac60, #d9ef9f);
-  transition: width 0.3s ease;
+  content: '' !important;
+  position: absolute !important;
+  bottom: -3px !important;
+  left: 0 !important;
+  width: 0 !important;
+  height: 2px !important;
+  background: linear-gradient(90deg, #96ac60, #d9ef9f) !important;
+  transition: width 0.3s ease !important;
 }
 
 .school-navbar-brand:hover::after {
-  width: 100%;
+  width: 100% !important;
 }
 
 /* === LINKS === */
@@ -96,19 +95,6 @@ body .school-navbar:hover {
   transition: all 0.3s ease !important;
   position: relative !important;
   overflow: hidden !important;
-}
-
-.school-navbar-link::before {
-  content: '';
-  position: absolute;
-  top: 0; left: -100%;
-  width: 100%; height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(183, 205, 127, 0.1), transparent);
-  transition: left 0.5s ease;
-}
-
-.school-navbar-link:hover::before {
-  left: 100%;
 }
 
 .school-navbar-link:hover {
@@ -127,8 +113,6 @@ body .school-navbar:hover {
   transition: all 0.3s ease !important;
   text-decoration: none !important;
   border: 2px solid transparent !important;
-  position: relative !important;
-  overflow: hidden !important;
   cursor: pointer !important;
 }
 
@@ -177,40 +161,60 @@ body .school-navbar:hover {
     font-size: 0.9rem !important;
   }
 }
-/* === BOTÓN USUARIO (logo + texto Bienvenido) === */
-.school-navbar-user-btn {
+
+/* === USUARIO CON BOTONES === */
+.user-welcome {
   display: flex !important;
   align-items: center !important;
-  gap: 0.6rem !important;
-  background: rgba(255, 255, 255, 0.1) !important; /* fondo suave */
-  border-radius: 1.5rem !important;
-  padding: 0.4rem 0.9rem !important;
-  border: 1.5px solid #96ac60 !important; /* verde medio */
-  transition: all 0.3s ease !important;
+  gap: 12px !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-radius: 2rem !important;
+  padding: 6px 14px !important;
+  border: 1.5px solid #96ac60 !important;
 }
 
-/* Hover del contenedor */
-.school-navbar-user-btn:hover {
-  background: #778c43 !important;
-  color: #ffffff !important;
-  transform: scale(1.05) !important;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25) !important;
-}
-
-/* Imagen de perfil (logo redondo) */
-.school-navbar-user-btn img {
+.user-avatar {
   border-radius: 50% !important;
-  border: 2px solid #d9ef9f !important;  /* borde verde claro */
+  border: 2px solid #d9ef9f !important;
   width: 40px !important;
   height: 40px !important;
   object-fit: cover !important;
-  background: #ffffff !important;
+  background: #fff !important;
 }
 
-/* Texto "Bienvenido, Juan Felipe" */
-.school-navbar-user-btn span {
-  color: #ffffff !important;    /* texto blanco */
-  font-weight: 600 !important;  /* negrita */
+.user-text {
+  color: #ffffff !important;
+  font-weight: 600 !important;
   font-size: 0.95rem !important;
   text-shadow: 1px 1px 2px rgba(0,0,0,0.25) !important;
+  white-space: nowrap !important;
+}
+
+.user-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.user-actions .action-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 50% !important;
+  background: rgba(150,172,96,0.2) !important;
+  color: #d9ef9f !important;
+  font-size: 1.2rem !important;
+  transition: all 0.3s ease !important;
+  text-decoration: none !important;
+  border: none !important;
+  cursor: pointer !important;
+}
+
+.user-actions .action-btn:hover {
+  background: #96ac60 !important;
+  color: #203500 !important;
+  transform: scale(1.1) !important;
+  box-shadow: 0 4px 12px rgba(150,172,96,0.3) !important;
 }

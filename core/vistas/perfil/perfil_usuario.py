@@ -20,7 +20,7 @@ def perfil_usuario(request):
     else:
         base_template = 'base.html'
 
-    return render(request, 'perfil_usuario.html', {
+    return render(request, 'perfil/perfil_usuario.html', {
         'usuario': usuario,
         'perfil': perfil,
         'base_template': base_template,
@@ -43,21 +43,15 @@ def editar_perfil(request):
     else:
         base_template = 'base.html'
 
-    # --- CORREGIDO: Limpieza de mensajes duplicados o rezagados ---
-    # Limpia mensajes solo si es GET y vienes de un redirect (opcional avanzado)
-    # from django.contrib.messages import get_messages
-    # list(get_messages(request))
-
     if request.method == 'POST':
         form = PerfilUsuarioForm(request.POST, request.FILES, instance=perfil, user=usuario)
         if form.is_valid():
             perfil_nuevo = form.save(commit=False)
             perfil_nuevo.usuario = usuario
 
-            # Asegura que la ciudad esté presente (por modelo o por lógica extra)
             if not perfil_nuevo.ciudad:
                 form.add_error('ciudad', "La ciudad de residencia es obligatoria.")
-                return render(request, 'editar_perfil.html', {
+                return render(request, 'perfil/editar_perfil.html', {
                     'form': form,
                     'base_template': base_template,
                 })
@@ -65,13 +59,13 @@ def editar_perfil(request):
             perfil_nuevo.save()
             form.save_m2m()
             messages.success(request, '✅ Perfil actualizado correctamente.')
-            return redirect('editar_perfil')  # Good practice: POST-Redirect-GET
+            return redirect('editar_perfil')
         else:
             messages.error(request, '❌ Corrige los errores del formulario.')
     else:
         form = PerfilUsuarioForm(instance=perfil, user=usuario)
 
-    return render(request, 'editar_perfil.html', {
+    return render(request, 'perfil/editar_perfil.html', {
         'form': form,
         'base_template': base_template,
     })

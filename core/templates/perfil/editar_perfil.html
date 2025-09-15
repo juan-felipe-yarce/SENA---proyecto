@@ -1,7 +1,5 @@
 {% extends base_template %}
-{% load widget_tweaks custom_tags %}
-{% obtener_dashboard_base as base_template %}
-{% load static %}
+{% load static widget_tweaks %}
 
 {% block panel_content %}
 <style>
@@ -43,7 +41,8 @@
     box-shadow: 0 2px 8px #eaf4fb90;
     transition: background .18s, color .18s;
   }
-  .perfil-btn-guardar:hover, .perfil-btn-guardar:focus {
+  .perfil-btn-guardar:hover,
+  .perfil-btn-guardar:focus {
     background: #cbe7fb;
     color: #035485;
     text-decoration: none;
@@ -59,7 +58,8 @@
     box-shadow: 0 2px 8px #fdeaea90;
     transition: background .18s, color .18s;
   }
-  .perfil-btn-cancelar:hover, .perfil-btn-cancelar:focus {
+  .perfil-btn-cancelar:hover,
+  .perfil-btn-cancelar:focus {
     background: #fbbfc1;
     color: #98001b;
     text-decoration: none;
@@ -80,6 +80,7 @@
 <div class="card form-card-profile mt-4">
   <div class="card-body py-4 px-4">
     <h2 class="h4 text-primary fw-bold mb-3">Editar Perfil</h2>
+
     {% if messages %}
       {% for message in messages %}
         <div class="alert {% if message.tags == 'success' %}alert-success{% else %}alert-danger{% endif %} py-2 px-3 mb-3 rounded-3">
@@ -154,7 +155,7 @@
       </div>
       {% endif %}
 
-      <!-- Otros campos del perfil -->
+      <!-- Otros campos -->
       {% for field in form %}
         {% if field.name not in 'correo foto tipo_documento numero_documento municipio_identificacion' %}
         <div class="mb-3">
@@ -172,7 +173,7 @@
         <button type="submit" class="perfil-btn-guardar">
           Guardar Cambios
         </button>
-        <a href="{% url 'panel_coordinador' %}" class="perfil-btn-cancelar">
+        <a href="{% url 'perfil_usuario' %}" class="perfil-btn-cancelar">
           Cancelar
         </a>
       </div>

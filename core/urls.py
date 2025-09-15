@@ -42,9 +42,9 @@ urlpatterns = [
     path('logout/', logout_usuario, name='logout'),
     path('registro/', registro_usuario, name='registro'),
 
-    # Página de inicio y bienvenida
-    path('bienvenida/', bienvenida, name='bienvenida'),
-    path('', inicio, name='inicio'),
+    # Página de bienvenida (pública) y página de inicio
+    path('', bienvenida, name='bienvenida'),   # 👈 ahora la raíz es bienvenida
+    path('inicio/', inicio, name='inicio'),    # 👈 inicio queda en /inicio/
 
     # Perfil del usuario autenticado
     path('perfil/', perfil_usuario, name='perfil_usuario'),

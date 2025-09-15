@@ -1,20 +1,14 @@
-/* === CSS LOGIN GLASSMORPHISM VERDOSO COMPLETO === */
+/* === CSS LOGIN GLASSMORPHISM VERDOSO COMPLETO (FIXED) === */
 
-html, body {
-    height: 100% !important;
-    margin: 0;
-    padding: 0;
-    overflow: hidden !important; /* ❌ quita scroll vertical */
-}
-
-.login-container {
-    min-height: 100vh !important;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 !important;
-    margin: 0 !important;
-    box-sizing: border-box;
+/* === FIX FLEXBOX LOGIN === */
+body.no-aside .login-container {
+    flex: 1 0 auto !important;  /* ocupa el espacio libre */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 1rem !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
 }
 
 /* === TARJETA === */
