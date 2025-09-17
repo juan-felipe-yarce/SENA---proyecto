@@ -3,9 +3,9 @@
 {% block title %}Lista de Niveles Educativos{% endblock %}
 
 {% block extra_head %}
-  <link rel="stylesheet" href="{% static 'css/nivel_list.css' %}">
   <!-- ICONOS BOOTSTRAP: Asegúrate de que esto está en tu base.html. Si no, inclúyelo aquí solo una vez. -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="{% static 'css/nivel_list.css' %}">
 {% endblock %}
 
 {% block panel_content %}
@@ -22,7 +22,8 @@
       </div>
 
       <div class="table-responsive">
-        <table class="table table-hover table-borderless align-middle mb-0">
+        <!-- 👇 Le quité "table-borderless" -->
+        <table class="table table-hover align-middle mb-0">
           <thead class="table-light">
             <tr>
               <th scope="col" class="ps-4">Nombre</th>
