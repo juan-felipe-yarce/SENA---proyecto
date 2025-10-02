@@ -134,21 +134,13 @@ class PerfilUsuarioForm(forms.ModelForm):
         required=False,
         label="Municipio de expedición"
     )
-    ciudad = forms.ModelChoiceField(
-        queryset=Ciudad.objects.all(),
-        required=True,
-        label="Ciudad de residencia",
-        error_messages={
-            'required': "La ciudad de residencia es obligatoria."
-        }
-    )
 
     class Meta:
         model = PerfilDeUsuario
         fields = [
             'foto',
             'primer_nombre', 'segundo_nombre', 'primer_apellido', 'segundo_apellido',
-            'direccion_linea1', 'direccion_linea2', 'ciudad',
+            'direccion_linea1', 'direccion_linea2',
             'especialidad', 'grupo', 'acudidos'
         ]
         widgets = {
@@ -159,7 +151,6 @@ class PerfilUsuarioForm(forms.ModelForm):
             'segundo_apellido': TextInput(),
             'direccion_linea1': TextInput(),
             'direccion_linea2': TextInput(),
-            'ciudad': Select(),
         }
 
     def __init__(self, *args, **kwargs):
@@ -173,21 +164,21 @@ class PerfilUsuarioForm(forms.ModelForm):
             self.fields['numero_documento'].initial = self.user.numero_documento
             self.fields['municipio_identificacion'].initial = self.user.municipio_identificacion
 
-        # Campos que se muestran según rol
+        # Campos visibles por rol
         campos_visibles = [
             'foto', 'primer_nombre', 'segundo_nombre', 'primer_apellido', 'segundo_apellido',
             'tipo_documento', 'numero_documento', 'municipio_identificacion',
-            'direccion_linea1', 'direccion_linea2', 'ciudad'
+            'direccion_linea1', 'direccion_linea2'
         ]
 
         if self.user and self.user.rol:
             rol = self.user.rol.nombre.strip().lower()
             if rol == 'docente':
                 campos_visibles.append('especialidad')
-                self.fields['especialidad'].required = True
+                self.fields['especialidad'].required = False
             elif rol == 'estudiante':
                 campos_visibles.append('grupo')
-                self.fields['grupo'].required = True
+                self.fields['grupo'].required = False
             elif rol in ['acudiente', 'padre de familia o acudiente']:
                 campos_visibles.append('acudidos')
                 self.fields['acudidos'].queryset = PerfilDeUsuario.objects.filter(
@@ -199,16 +190,15 @@ class PerfilUsuarioForm(forms.ModelForm):
             if field not in campos_visibles and field != 'correo':
                 del self.fields[field]
 
-    def clean_ciudad(self):
-        ciudad = self.cleaned_data.get('ciudad')
-        if not ciudad:
-            raise forms.ValidationError("La ciudad de residencia es obligatoria.")
-        return ciudad
+        # 🔹 Hacer todos los campos opcionales (menos correo)
+        for name, field in self.fields.items():
+            if name != 'correo':
+                field.required = False
 
     def save(self, commit=True):
         perfil = super().save(commit=False)
 
-        # Actualiza los datos básicos en usuario también
+        # Actualiza datos básicos en usuario
         if self.user:
             self.user.tipo_documento = self.cleaned_data.get('tipo_documento')
             self.user.numero_documento = self.cleaned_data.get('numero_documento')
@@ -221,9 +211,6 @@ class PerfilUsuarioForm(forms.ModelForm):
             self.save_m2m()
 
         return perfil
-
-
-
 
 
 class LoginForm(forms.Form):
@@ -628,3 +615,17 @@ class CustomPasswordResetForm(PasswordResetForm):
             }
         )
         return (u for u in active_users if u.has_usable_password())
+
+# ==============================
+# FORMULARIO: Selección de Asignaturas (para Estudiantes)
+# ==============================
+
+from .models import Asignatura
+
+class SeleccionAsignaturasForm(forms.Form):
+    asignaturas = forms.ModelMultipleChoiceField(
+        queryset=Asignatura.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+        required=False,
+        label="Selecciona las asignaturas que deseas cursar"
+    )

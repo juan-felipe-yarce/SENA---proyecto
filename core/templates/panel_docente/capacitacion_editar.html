@@ -1,69 +1,87 @@
 {% extends "panel_docente/dashboard_base.html" %}
 {% load static %}
+{% load widget_tweaks %}
 
 {% block title %}Editar Capacitación{% endblock %}
 
-{% block panel_content %}
-<div class="p-4 bg-white rounded-4 shadow mt-3" style="max-width: 800px; margin:auto;">
-    <h1 class="h4 fw-bold text-primary mb-3">
-        <i class="bi bi-pencil-square"></i> Editar Capacitación
-    </h1>
+{% block extra_head %}
+  <link rel="stylesheet" href="{% static 'css/panel_docente.css' %}">
+{% endblock %}
 
-    <!-- Mensajes -->
-    {% if messages %}
-      {% for message in messages %}
-        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+{% block panel_content %}
+<div class="container-fluid px-0" style="max-width: 1000px; margin: 0 auto;">
+  <div class="card glass-container">
+
+    <!-- Banner -->
+    <div class="banner-img">
+      <img src="{% static 'img/banner_docente.jpg' %}" alt="Banner Capacitación">
+    </div>
+
+    <div class="card-body">
+      <h1 class="modulo-title mb-4">
+        <i class="bi bi-pencil-square"></i> Editar Capacitación
+      </h1>
+
+      <!-- Mensajes -->
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }} alert-dismissible fade show glass-alert" role="alert">
             {{ message }}
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-      {% endfor %}
-    {% endif %}
+          </div>
+        {% endfor %}
+      {% endif %}
 
-    <form method="post" enctype="multipart/form-data" class="row g-3">
+      <form method="post" enctype="multipart/form-data" class="row g-3">
         {% csrf_token %}
         <div class="col-md-6">
-            <label for="{{ form.nombre_curso.id_for_label }}" class="form-label">{{ form.nombre_curso.label }}</label>
-            {{ form.nombre_curso }}
-            {% if form.nombre_curso.errors %}
-                <div class="text-danger small">{{ form.nombre_curso.errors }}</div>
-            {% endif %}
+          {{ form.nombre_curso.label_tag }}
+          {{ form.nombre_curso|add_class:"form-control" }}
+          {% if form.nombre_curso.errors %}
+            <div class="invalid-feedback d-block">{{ form.nombre_curso.errors }}</div>
+          {% endif %}
         </div>
         <div class="col-md-6">
-            <label for="{{ form.institucion.id_for_label }}" class="form-label">{{ form.institucion.label }}</label>
-            {{ form.institucion }}
-            {% if form.institucion.errors %}
-                <div class="text-danger small">{{ form.institucion.errors }}</div>
-            {% endif %}
+          {{ form.institucion.label_tag }}
+          {{ form.institucion|add_class:"form-control" }}
+          {% if form.institucion.errors %}
+            <div class="invalid-feedback d-block">{{ form.institucion.errors }}</div>
+          {% endif %}
         </div>
         <div class="col-md-4">
-            <label for="{{ form.duracion_horas.id_for_label }}" class="form-label">{{ form.duracion_horas.label }}</label>
-            {{ form.duracion_horas }}
-            {% if form.duracion_horas.errors %}
-                <div class="text-danger small">{{ form.duracion_horas.errors }}</div>
-            {% endif %}
+          {{ form.duracion_horas.label_tag }}
+          {{ form.duracion_horas|add_class:"form-control" }}
+          {% if form.duracion_horas.errors %}
+            <div class="invalid-feedback d-block">{{ form.duracion_horas.errors }}</div>
+          {% endif %}
         </div>
         <div class="col-md-8">
-            <label for="{{ form.documento_soporte.id_for_label }}" class="form-label">{{ form.documento_soporte.label }}</label>
-            {{ form.documento_soporte }}
-            {% if form.documento_soporte.errors %}
-                <div class="text-danger small">{{ form.documento_soporte.errors }}</div>
-            {% endif %}
-            {% if capacitacion.documento_soporte %}
-                <div class="mt-2">
-                    <small class="text-muted">Archivo actual: <a href="{{ capacitacion.documento_soporte.url }}" target="_blank">{{ capacitacion.documento_soporte.name }}</a></small>
-                </div>
-            {% endif %}
-        </div>
-        <div class="col-12">
-            <div class="d-flex gap-2">
-                <button type="submit" class="btn btn-primary">
-                    <i class="bi bi-save"></i> Guardar Cambios
-                </button>
-                <a href="{% url 'docente_capacitacion' %}" class="btn btn-secondary">
-                    <i class="bi bi-arrow-left"></i> Cancelar
+          {{ form.documento_soporte.label_tag }}
+          {{ form.documento_soporte|add_class:"form-control" }}
+          {% if form.documento_soporte.errors %}
+            <div class="invalid-feedback d-block">{{ form.documento_soporte.errors }}</div>
+          {% endif %}
+          {% if capacitacion.documento_soporte %}
+            <div class="mt-2">
+              <small class="text-white-50">
+                Archivo actual:
+                <a href="{{ capacitacion.documento_soporte.url }}" target="_blank">
+                  {{ capacitacion.documento_soporte.name }}
                 </a>
+              </small>
             </div>
+          {% endif %}
         </div>
-    </form>
+        <div class="col-12 d-flex gap-2">
+          <button type="submit" class="btn-guardar">
+            <i class="bi bi-save"></i> Guardar Cambios
+          </button>
+          <a href="{% url 'docente_capacitacion' %}" class="btn-cancelar">
+            <i class="bi bi-arrow-left"></i> Cancelar
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
 {% endblock %}

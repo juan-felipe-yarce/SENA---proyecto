@@ -1,0 +1,144 @@
+/* =========================================================
+   EDITAR PERFIL — Glassmorphism Violeta/Gris Mejorado
+   ========================================================= */
+
+.form-card-profile {
+  max-width: 720px !important;             /* ⬅️ ancho controlado */
+  margin: 2.5rem auto 4rem auto !important;/* ⬅️ centrada + separada del footer */
+  border-radius: 20px !important;
+  border: 1px solid rgba(139, 92, 246, 0.4) !important;
+  background: rgba(31, 41, 55, 0.50) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  box-shadow:
+    0 8px 32px rgba(0,0,0,0.45),
+    inset 0 1px 0 rgba(139, 92, 246, 0.2),
+    0 0 0 1px rgba(139, 92, 246, 0.15) !important;
+  animation: fadeInUp 0.8s ease-out !important;
+  overflow: hidden !important;
+  padding: 2rem !important;
+}
+
+/* Título */
+.form-title {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.4) !important;
+}
+
+/* Labels */
+.form-label {
+  font-size: 0.95rem !important;
+  font-weight: 600 !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  margin-bottom: 0.3rem !important;
+}
+
+/* Inputs */
+.form-control,
+.form-select {
+  border-radius: 0.7rem !important;
+  font-size: 0.95rem !important;
+  background: rgba(255,255,255,0.08) !important;
+  color: #fff !important;
+  border: 1px solid rgba(255,255,255,0.2) !important;
+  transition: all 0.3s ease !important;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #8b5cf6 !important;
+  box-shadow: 0 0 0 2px rgba(139,92,246,0.3) !important;
+  background: rgba(255,255,255,0.15) !important;
+  color: #fff !important;
+}
+
+/* Placeholder */
+.form-control::placeholder {
+  color: rgba(255,255,255,0.6) !important;
+}
+
+/* Errores */
+.invalid-feedback {
+  font-size: 0.9rem !important;
+  color: #ffb3b3 !important;
+}
+
+/* Avatar preview */
+.form-avatar-preview {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 1rem !important;
+  border: 2px solid rgba(255,255,255,0.3) !important;
+  background: rgba(255,255,255,0.1) !important;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3) !important;
+  display: block;
+}
+
+/* Botón Guardar = igual al de Editar Perfil */
+.perfil-btn-guardar {
+  background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%) !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 12px !important;
+  font-weight: 600 !important;
+  padding: 0.8rem 2rem !important;
+  font-size: 1rem !important;
+  text-decoration: none !important;
+  display: inline-block !important;
+  box-shadow: 
+    0 6px 20px rgba(139, 92, 246, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.perfil-btn-guardar::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: -100% !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent) !important;
+  transition: left 0.5s !important;
+}
+
+.perfil-btn-guardar:hover {
+  background: linear-gradient(135deg, #7c3aed 0%, #5850ec 100%) !important;
+  transform: translateY(-2px) !important;
+}
+
+.perfil-btn-guardar:hover::before {
+  left: 100% !important;
+}
+
+/* Botón Cancelar */
+.perfil-btn-cancelar {
+  background: rgba(239, 68, 68, 0.15) !important;
+  color: #ef4444 !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(239,68,68,0.3) !important;
+  font-weight: 600 !important;
+  padding: 0.7rem 1.5rem !important;
+  transition: all 0.3s ease !important;
+}
+
+.perfil-btn-cancelar:hover {
+  background: rgba(239, 68, 68, 0.25) !important;
+  color: #fff !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+/* ===== Forzar color del título principal ===== */
+h2.h4.text-primary.fw-bold {
+  color: #ffffff !important;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5) !important;
+}

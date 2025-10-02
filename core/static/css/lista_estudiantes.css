@@ -1,0 +1,92 @@
+/* =========================================================
+   LISTA ESTUDIANTES — Estética glass gris/violeta (título integrado)
+   ========================================================= */
+
+.card {
+  position: relative !important;
+  background: rgba(31, 41, 55, 0.5) !important; /* Fondo translúcido gris oscuro */
+  backdrop-filter: blur(15px) !important;
+  -webkit-backdrop-filter: blur(15px) !important;
+  border-radius: 20px !important;
+  border: 1px solid rgba(139, 92, 246, 0.4) !important; /* violeta */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45) !important;
+  overflow: hidden !important;
+}
+
+/* Banner */
+.banner-img {
+  height: 100px !important;
+  overflow: hidden !important;
+  border-bottom: 1px solid rgba(139, 92, 246, 0.4) !important;
+}
+.banner-img img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  opacity: 0.9 !important;
+  filter: brightness(0.9) saturate(0.95) !important;
+  transition: all 0.3s ease !important;
+}
+.banner-img img:hover {
+  opacity: 1 !important;
+  filter: brightness(1) saturate(1) !important;
+}
+
+/* Header sin barra de color */
+.card-header {
+  background: transparent !important;
+  border: none !important;
+  padding: 1.2rem 1.5rem 0.5rem 1.5rem !important;
+}
+.card-header h5 {
+  color: #fff !important;
+  font-weight: 600 !important;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.6) !important;
+  margin: 0 !important;
+}
+
+/* Cuerpo */
+.card-body {
+  background: transparent !important;
+  padding: 1.5rem !important;
+  color: #fff !important;
+}
+
+/* Listado */
+.list-group-item.glass-list-item {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  color: #fff !important;
+  border-radius: 10px !important;
+  margin-bottom: 0.75rem !important;
+  padding: 0.9rem 1.2rem !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  transition: all 0.3s ease !important;
+}
+.list-group-item.glass-list-item:hover {
+  background: rgba(255, 255, 255, 0.15) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Íconos */
+.list-group-item i {
+  color: #8b5cf6 !important; /* violeta */
+  margin-right: 0.5rem !important;
+}
+
+/* Textos secundarios */
+.text-muted {
+  color: #d1d5db !important; /* gris claro */
+  font-style: italic !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .banner-img { height: 110px !important; }
+  .card-body { padding: 1.3rem !important; }
+}
+@media (max-width: 480px) {
+  .banner-img { height: 90px !important; }
+  .card-body { padding: 1rem !important; }
+}

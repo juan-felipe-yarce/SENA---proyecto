@@ -6,24 +6,32 @@
 
 {% block extra_head %}
   <link rel="stylesheet" href="{% static 'css/grado_form.css' %}">
-  <!-- ICONOS BOOTSTRAP: Incluir solo si NO está ya en dashboard_base.html -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 {% endblock %}
 
 {% block panel_content %}
-<div class="container-fluid px-0" style="max-width: 600px;">
-  <div class="card shadow rounded-4 border-0 mt-4">
+<div class="form-card">
+  
+  <!-- Columna izquierda con imagen -->
+  <div class="form-card-left">
+    <img src="{% static 'img/forms.jpg' %}" alt="Formulario" class="form-card-img">
+    <div class="form-card-overlay">
+      <h2 class="fw-bold">Bienvenido al Sistema</h2>
+      <p class="mb-0">Aquí podrás gestionar los grados fácilmente</p>
+    </div>
+  </div>
+
+  <!-- Columna derecha con formulario -->
+  <div class="form-card-right">
     <div class="card-body">
-      <h2 class="h4 text-primary fw-bold mb-4">
-        Nuevo Grado
-      </h2>
+      <h2 class="h4 text-primary fw-bold mb-4">Nuevo Grado</h2>
       <form method="post" novalidate>
         {% csrf_token %}
 
         <!-- Nivel Educativo -->
         <div class="mb-3">
           <label for="id_nivel" class="form-label fw-semibold">Nivel Educativo:</label>
-          {{ form.nivel|add_class:"form-select" }}
+          {{ form.nivel|add_class:"form-control" }}
           {% if form.nivel.errors %}
             <div class="invalid-feedback d-block">
               {{ form.nivel.errors.0 }}
@@ -42,19 +50,16 @@
           {% endif %}
         </div>
 
-        <!-- Botones alineados a la izquierda -->
+        <!-- Botones -->
         <div class="mt-4 d-flex gap-3">
-          <button type="submit" class="btn btn-pastel-blue">
-            Guardar
-          </button>
-          <a href="{% url 'lista_grados' %}" class="btn btn-pastel-red">
-            Cancelar
-          </a>
+          <button type="submit" class="btn btn-pastel-blue">Guardar</button>
+          <a href="{% url 'lista_grados' %}" class="btn btn-pastel-red">Cancelar</a>
         </div>
 
       </form>
     </div>
   </div>
+
 </div>
 {% endblock %}
 

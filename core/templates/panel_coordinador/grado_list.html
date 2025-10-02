@@ -10,10 +10,17 @@
 
 {% block panel_content %}
 <div class="container-fluid px-0" style="max-width: 900px;">
-  <div class="card shadow rounded-4 border-0 mt-3">
-    <div class="card-body">
+  <div class="card shadow rounded-4 border-0">
+    
+    <!-- Banner superior integrado -->
+    <div class="banner-img">
+      <img src="{% static 'img/formularios.jpg' %}" alt="Banner Grados">
+    </div>
 
-      <h2 class="h4 text-primary fw-bold mb-2">Grados</h2>
+    <!-- Contenido del card -->
+    <div class="card-body custom-body">
+      <h2 class="h4 fw-bold text-primary mb-3">Grados</h2>
+
       <!-- Botón: Nuevo Grado -->
       <div class="mb-4">
         <a href="{% url 'crear_grado' %}" class="btn btn-primary btn-sm px-4 py-2 rounded-3 shadow-sm">
@@ -21,8 +28,9 @@
         </a>
       </div>
 
+      <!-- Tabla -->
       <div class="table-responsive">
-        <table class="table table-hover table-borderless align-middle mb-0">
+        <table class="table table-hover align-middle mb-0">
           <thead class="table-light">
             <tr>
               <th scope="col" class="ps-4">Nombre del Grado</th>

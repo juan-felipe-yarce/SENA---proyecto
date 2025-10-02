@@ -5,18 +5,30 @@
 
 {% block title %}Iniciar Sesión{% endblock %}
 
-
 {% block extra_head %}
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="{% static 'css/login.css' %}">
 {% endblock %}
 
 {% block content %}
 <div class="login-container">
   <div class="row w-100 justify-content-center">
-    <div class="col-12 col-sm-10 col-md-8 col-lg-5 col-xl-4">
+    <div class="col-12 col-lg-8">
       <div class="card login-card">
-        <div class="card-body p-4">
-          <h2 class="card-title text-center mb-4 text-primary">Iniciar Sesión</h2>
+        
+        <!-- LADO IZQUIERDO: Imagen con bienvenida -->
+        <div class="login-side-img">
+          <img src="{% static 'img/login.jpg' %}" alt="Login image">
+          <div class="login-overlay-text">
+            <h2 class="welcome-title">Bienvenido al Sistema Escolar</h2>
+            <p class="welcome-slogan">Encontrarás soluciones para tu gestión educativa</p>
+          </div>
+        </div>
+
+        <!-- LADO DERECHO: Formulario -->
+        <div class="card-body">
+          <h2 class="login-title text-center mb-4">Iniciar Sesión</h2>
 
           {% if messages %}
             {% for message in messages %}
@@ -27,41 +39,40 @@
             {% endfor %}
           {% endif %}
 
-          <form method="post" novalidate id="loginForm">
+          <form method="post" novalidate>
             {% csrf_token %}
             {% if form.non_field_errors %}
               <div class="alert alert-danger" role="alert">
                 {{ form.non_field_errors.0 }}
               </div>
             {% endif %}
-            <div class="mb-3">
-              <label for="{{ form.correo.id_for_label }}" class="form-label">Correo electrónico</label>
-              {{ form.correo|add_class:"form-control" }}
-              {% if form.correo.errors %}
-                <div class="text-danger small">{{ form.correo.errors.0 }}</div>
-              {% endif %}
+
+            <!-- Correo -->
+            <div class="mb-3 input-group">
+              <span class="input-icon"><i class="bi bi-envelope"></i></span>
+              {{ form.correo|add_class:"form-control" |attr:"placeholder:Correo electrónico" }}
             </div>
 
-            <div class="mb-3">
-              <label for="{{ form.password.id_for_label }}" class="form-label">Contraseña</label>
-              {{ form.password|add_class:"form-control" }}
-              {% if form.password.errors %}
-                <div class="text-danger small">{{ form.password.errors.0 }}</div>
-              {% endif %}
+            <!-- Contraseña -->
+            <div class="mb-3 input-group">
+              <span class="input-icon"><i class="bi bi-lock"></i></span>
+              {{ form.password|add_class:"form-control" |attr:"placeholder:Contraseña" }}
             </div>
 
+            <!-- Botón -->
             <div class="d-grid">
               <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
             </div>
           </form>
 
+          <!-- Links -->
           <div class="text-center mt-4">
             <p class="small mb-1">
               ¿No tienes cuenta?
-              <a href="{% url 'registro' %}" class="link-primary">Regístrate aquí</a>
+              <a href="{% url 'registro' %}">Regístrate aquí</a>
             </p>
             <p class="small mb-0">
-              <a href="{% url 'password_reset' %}" class="link-secondary">¿Olvidó su contraseña?</a>
+              <a href="{% url 'password_reset' %}">¿Olvidó su contraseña?</a>
             </p>
           </div>
         </div>

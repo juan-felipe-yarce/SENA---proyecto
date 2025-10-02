@@ -1,67 +1,174 @@
 {% extends "panel_docente/dashboard_base.html" %}
 {% load static %}
-{% block content %}
+{% load widget_tweaks %}
 
-<h2>Capacitaciones del Docente</h2>
+{% block title %}Capacitaciones del Docente{% endblock %}
 
-<!-- Mensajes de éxito/error -->
-{% if messages %}
-  {% for message in messages %}
-    <div class="alert alert-{{ message.tags }} mt-2">{{ message }}</div>
-  {% endfor %}
-{% endif %}
+{% block extra_head %}
+  <!-- Estilos unificados -->
+  <link rel="stylesheet" href="{% static 'css/panel_docente.css' %}">
+  <!-- Choices.js -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
+{% endblock %}
 
-<!-- Formulario mejorado -->
-<form method="post" enctype="multipart/form-data" class="row g-3 mb-4">
-    {% csrf_token %}
-    <div class="col-md-6">
-        {{ form.nombre_curso.label_tag }} {{ form.nombre_curso }}
-    </div>
-    <div class="col-md-6">
-        {{ form.institucion.label_tag }} {{ form.institucion }}
-    </div>
-    <div class="col-md-4">
-        {{ form.duracion_horas.label_tag }} {{ form.duracion_horas }}
-    </div>
-    <div class="col-md-8">
-        {{ form.documento_soporte.label_tag }} {{ form.documento_soporte }}
-    </div>
-    <div class="col-12">
-        <button type="submit" class="btn btn-primary">Agregar capacitación</button>
-    </div>
-</form>
+{% block panel_content %}
+<div class="container-fluid px-0" style="max-width: 1000px; margin: 0 auto;">
+  <div class="card glass-container">
 
-<!-- Tabla de capacitaciones -->
-<h3>Capacitaciones registradas</h3>
-<table class="table table-striped mt-2">
-    <thead>
-        <tr>
-            <th>Curso</th>
-            <th>Institución</th>
-            <th>Duración (horas)</th>
-            <th>Documento</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for cap in capacitaciones %}
-        <tr>
-            <td>{{ cap.nombre_curso }}</td>
-            <td>{{ cap.institucion }}</td>
-            <td>{{ cap.duracion_horas }}</td>
-            <td>
-                {% if cap.documento_soporte %}
-                    <a href="{{ cap.documento_soporte.url }}" target="_blank" class="btn btn-sm btn-outline-info">Ver</a>
-                {% else %}
-                    <span class="text-muted">No adjunto</span>
-                {% endif %}
-            </td>
-        </tr>
-        {% empty %}
-        <tr>
-            <td colspan="4" class="text-center">No hay capacitaciones registradas.</td>
-        </tr>
+    <!-- Banner -->
+    <div class="banner-img">
+      <img src="{% static 'img/banner_docente.jpg' %}" alt="Banner Capacitaciones">
+    </div>
+
+    <div class="card-body">
+      <!-- Header -->
+      <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap">
+        <h1 class="educacion-title mb-3 mb-md-0">
+          <i class="bi bi-award"></i> Capacitaciones del Docente
+        </h1>
+        <button type="button" class="btn-agregar" data-bs-toggle="modal" data-bs-target="#modalCapacitacion">
+          <i class="bi bi-plus-circle me-1"></i> Agregar Capacitación
+        </button>
+      </div>
+
+      <!-- Mensajes -->
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }} alert-dismissible fade show glass-alert" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+          </div>
         {% endfor %}
-    </tbody>
-</table>
+      {% endif %}
 
+      <!-- Lista de capacitaciones -->
+      {% if capacitaciones %}
+        <div class="row g-4">
+          {% for cap in capacitaciones %}
+            <div class="col-12 d-flex">
+              <div class="card glass-card h-100 w-100">
+                <div class="card-header glass-card-header">
+                  <h5 class="mb-0">
+                    <i class="bi bi-award me-1"></i> {{ cap.nombre_curso }}
+                  </h5>
+                </div>
+                <div class="card-body">
+                  <p><strong>Institución:</strong> {{ cap.institucion }}</p>
+                  <p><strong>Duración:</strong> {{ cap.duracion_horas }} horas</p>
+                  <p>
+                    {% if cap.documento_soporte %}
+                      <a href="{{ cap.documento_soporte.url }}" target="_blank" class="btn-editar btn-sm">
+                        <i class="bi bi-file-earmark-text"></i> Ver documento
+                      </a>
+                    {% else %}
+                      <span class="text-white-50">No adjunto</span>
+                    {% endif %}
+                  </p>
+                </div>
+                <div class="card-footer bg-transparent border-0">
+                  <div class="btn-group">
+                    <a href="{% url 'editar_capacitacion' cap.id %}" class="btn-editar">
+                      <i class="bi bi-pencil"></i> Editar
+                    </a>
+                    <button type="button" class="btn-eliminar" onclick="eliminarCapacitacion('{{ cap.id }}')">
+                      <i class="bi bi-trash"></i> Eliminar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="text-center py-5">
+          <i class="bi bi-award display-1 text-muted"></i>
+          <h4 class="text-white-50 mt-3">No hay capacitaciones registradas</h4>
+          <p class="text-white-50">Comienza agregando tu primera capacitación.</p>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<!-- Modal para agregar capacitación -->
+<div class="modal fade" id="modalCapacitacion" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content glass-modal">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          <i class="bi bi-plus-circle me-1"></i> Agregar Capacitación
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="modal-body row g-3">
+          <div class="col-md-6">
+            {{ form.nombre_curso.label_tag }}
+            {{ form.nombre_curso|add_class:"form-control" }}
+          </div>
+          <div class="col-md-6">
+            {{ form.institucion.label_tag }}
+            {{ form.institucion|add_class:"form-control" }}
+          </div>
+          <div class="col-md-4">
+            {{ form.duracion_horas.label_tag }}
+            {{ form.duracion_horas|add_class:"form-control" }}
+          </div>
+          <div class="col-md-8">
+            {{ form.documento_soporte.label_tag }}
+            {{ form.documento_soporte|add_class:"form-control" }}
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-cancelar" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn-guardar">
+            <i class="bi bi-check-circle"></i> Guardar Capacitación
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<!-- Choices.js -->
+<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('select').forEach(select => {
+    new Choices(select, {
+      searchEnabled: true,
+      itemSelectText: '',
+      shouldSort: false
+    });
+  });
+});
+
+function getCSRFToken() {
+  const input = document.querySelector('input[name=csrfmiddlewaretoken]');
+  if (input) return input.value;
+  const match = document.cookie.match(/csrftoken=([^;]+)/);
+  return match ? match[1] : '';
+}
+function eliminarCapacitacion(id) {
+  if (!id) return alert('ID inválido');
+  if (!confirm('¿Seguro que quieres eliminar esta capacitación?')) return;
+
+  fetch(`/docente/capacitacion/eliminar/${encodeURIComponent(id)}/`, {
+    method: 'POST',
+    headers: { 'X-CSRFToken': getCSRFToken() }
+  })
+  .then(r => r.json())
+  .then(data => {
+    if (data.success) location.reload();
+    else alert('Error: ' + (data.message || 'No se pudo eliminar'));
+  })
+  .catch(err => {
+    console.error('Error:', err);
+    alert('Error al eliminar la capacitación');
+  });
+}
+</script>
 {% endblock %}

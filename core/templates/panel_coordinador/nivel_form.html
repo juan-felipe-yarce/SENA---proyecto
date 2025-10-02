@@ -9,8 +9,16 @@
 {% endblock %}
 
 {% block panel_content %}
-<div class="container-fluid px-0" style="max-width: 600px;">
-  <div class="card shadow rounded-4 border-0 mt-4">
+<div class="form-card">
+  <div class="form-card-left">
+    <img src="{% static 'img/forms.jpg' %}" alt="Formulario" class="form-card-img">
+    <div class="form-card-overlay">
+      <h2 class="fw-bold">Bienvenido al Sistema</h2>
+      <p class="mb-0">Aquí podrás gestionar los niveles educativos fácilmente</p>
+    </div>
+  </div>
+
+  <div class="form-card-right">
     <div class="card-body">
       <h2 class="h4 text-primary fw-bold mb-4">
         Nuevo Nivel Educativo
@@ -38,12 +46,8 @@
 
         <!-- Botones -->
         <div class="mt-4 d-flex gap-3">
-          <button type="submit" class="btn btn-pastel-blue">
-            Guardar
-          </button>
-          <a href="{% url 'lista_niveles' %}" class="btn btn-pastel-red">
-            Cancelar
-          </a>
+          <button type="submit" class="btn btn-pastel-blue">Guardar</button>
+          <a href="{% url 'lista_niveles' %}" class="btn btn-pastel-red">Cancelar</a>
         </div>
       </form>
     </div>

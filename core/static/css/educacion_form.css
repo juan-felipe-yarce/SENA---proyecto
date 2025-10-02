@@ -1,0 +1,78 @@
+/* === EDUCACION FORM — Glass Gris/Violeta === */
+.card.shadow {
+  border-radius: 20px !important;
+  background: rgba(31, 41, 55, 0.50) !important;
+  backdrop-filter: blur(15px) !important;
+  -webkit-backdrop-filter: blur(15px) !important;
+  border: 1px solid rgba(139,92,246,0.30) !important;
+  color: #fff !important;
+}
+
+.card-header {
+  background: rgba(139, 92, 246, 0.20) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.15) !important;
+  color: #fff !important;
+}
+
+.form-label {
+  color: #e5e7eb !important; /* gris claro */
+  font-weight: 600 !important;
+}
+
+.form-control, .form-select {
+  border-radius: 12px !important;
+  background: rgba(255,255,255,0.08) !important;
+  color: #fff !important;
+  border: 1px solid rgba(255,255,255,0.25) !important;
+  box-shadow: none !important;
+}
+.form-control:focus, .form-select:focus {
+  border-color: #8b5cf6 !important;
+  box-shadow: 0 0 0 2px rgba(139,92,246,0.30) !important;
+  background: rgba(255,255,255,0.15) !important;
+  color: #fff !important;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
+  border: none !important;
+  border-radius: 12px !important;
+  font-weight: 700 !important;
+}
+.btn-primary:hover {
+  background: linear-gradient(135deg, #5850ec, #7c3aed) !important;
+  box-shadow: 0 8px 25px rgba(139,92,246,0.4) !important;
+}
+
+.btn-secondary {
+  background: rgba(255,255,255,0.12) !important;
+  color: #fff !important;
+  border: 1px solid rgba(255,255,255,0.25) !important;
+  border-radius: 12px !important;
+}
+.btn-secondary:hover {
+  background: rgba(255,255,255,0.20) !important;
+}
+/* === FIX Chrome desplegables (select options) === */
+
+/* Para el <select> cerrado */
+.form-select,
+select {
+  background: rgba(31, 41, 55, 0.7) !important;
+  color: #fff !important;
+  border: 1px solid rgba(139,92,246,0.3) !important;
+  border-radius: 10px !important;
+}
+
+/* Para las opciones del menú desplegable */
+select option {
+  background: rgba(31, 41, 55, 0.95) !important;
+  color: #fff !important;
+}
+
+/* Hover o selección en el menú */
+select option:checked,
+select option:hover {
+  background: rgba(139, 92, 246, 0.5) !important;
+  color: #fff !important;
+}

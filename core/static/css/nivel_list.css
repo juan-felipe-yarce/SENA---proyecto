@@ -1,44 +1,112 @@
 /* =========================================================
-   NIVEL LIST — Glassmorphism Verde con fix para .table-borderless
+   NIVEL LIST â€” Glassmorphism Gris/Violeta (integrado tipo login)
    ========================================================= */
 
-   /* Quitar fondo blanco de Bootstrap en .card */
+/* === CARD CONTENEDOR con glass (igual al login-card) === */
 .card {
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important; /* si quieres quitar sombra doble */
-}
-
-/* ===== Card Body ===== */
-.card .card-body,
-.card-body {
   position: relative !important;
-  background: rgba(40, 62, 6, 0.25) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+
+  /* Glass en el CONTENEDOR (no en el body) */
+  background: rgba(31, 41, 55, 0.50) !important;
   backdrop-filter: blur(15px) !important;
   -webkit-backdrop-filter: blur(15px) !important;
   border-radius: 20px !important;
-  border: 1px solid rgba(150, 172, 96, 0.3) !important;
-  box-shadow: 
-    0 8px 32px 0 rgba(40, 62, 6, 0.37),
-    inset 0 1px 0 rgba(150, 172, 96, 0.15),
-    0 0 0 1px rgba(150, 172, 96, 0.2) !important;
+  border: 1px solid rgba(139, 92, 246, 0.40) !important;
+  box-shadow:
+    0 8px 32px rgba(0,0,0,0.45),
+    inset 0 1px 0 rgba(139,92,246,0.15),
+    0 0 0 1px rgba(139,92,246,0.20) !important;
+}
+
+/* Efecto de brillo decorativo (similar al login) */
+.card::before {
+  content: "";
+  position: absolute; inset: 0 0 auto 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #8b5cf6, transparent);
+  opacity: 0.8;
+  z-index: 1;
+}
+.card::after {
+  content: "";
+  position: absolute; top: 20px; left: 0;
+  width: 2px; height: 60%;
+  background: linear-gradient(180deg, #8b5cf6, transparent);
+  z-index: 1;
+}
+
+/* === BANNER SUPERIOR con fade-in === */
+.banner-img {
+  position: relative !important;
+  height: 100px !important;
+  flex: 0 0 100px !important;
+  overflow: hidden !important;
+
+  /* Glass base */
+  background: rgba(31,41,55,0.7) !important;
+  backdrop-filter: blur(15px) !important;
+  -webkit-backdrop-filter: blur(15px) !important;
+  border-bottom: 1px solid rgba(139, 92, 246, 0.4) !important;
+
+  /* Solo opacidad */
+  animation: fadeInBanner 0.6s ease-out forwards;
+}
+
+/* Imagen con efecto glass */
+.banner-img img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+  border-radius: inherit !important;
+
+  /* Efecto glass */
+  opacity: 0.85 !important; 
+  filter: brightness(0.85) saturate(0.9) !important;
+  backdrop-filter: blur(4px) !important;
+  -webkit-backdrop-filter: blur(4px) !important;
+
+  transition: opacity 0.3s ease, filter 0.3s ease !important;
+
+  /* AnimaciÃ³n fade */
+  animation: fadeInBanner 0.6s ease-out forwards;
+}
+.banner-img img:hover {
+  opacity: 1 !important;
+  filter: brightness(1) saturate(1) !important;
+}
+
+/* AnimaciÃ³n solo opacidad */
+@keyframes fadeInBanner {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* === CUERPO del card (transparente, sin bordes, pegado al banner) === */
+.card .card-body,
+.card-body {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+
   padding: 2rem !important;
-  margin: 1rem !important;
+  margin: 0 !important;
+
   animation: fadeInUp 0.6s ease-out !important;
   transition: transform 0.3s ease, box-shadow 0.3s ease !important;
 }
 
-/* Hover card */
+/* Hover leve en el contenido */
 .card .card-body:hover,
 .card-body:hover {
   transform: translateY(-2px) !important;
-  box-shadow: 
-    0 12px 40px 0 rgba(31, 38, 135, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2),
-    0 0 0 1px rgba(255, 255, 255, 0.15) !important;
 }
 
-/* ===== Títulos ===== */
+/* ===== TÃ­tulos ===== */
 .card-body h2,
 .card-body .h4 {
   color: #ffffff !important;
@@ -55,13 +123,13 @@
   box-shadow: none !important;
 }
 
-/* Encabezado */
+/* Encabezado de tabla */
 .card-body .table-light,
 .card-body .table thead th {
   background: transparent !important;
   color: #ffffff !important;
   border: none !important;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.3) !important;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.28) !important;
   font-weight: 700 !important;
   padding: 1rem !important;
   text-shadow: 0 1px 5px rgba(0, 0, 0, 0.3) !important;
@@ -71,13 +139,12 @@
 .card-body .table tbody tr {
   background: transparent !important;
   border: none !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18) !important;
   transition: background 0.3s ease !important;
 }
-
 .card-body .table tbody tr:hover {
-  background: rgba(255, 255, 255, 0.1) !important;
-  backdrop-filter: blur(5px) !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(4px) !important;
 }
 
 /* Celdas */
@@ -91,65 +158,64 @@
 }
 
 /* Texto corregido */
-.card-body .table .text-dark {
-  color: #ffffff !important;
-  font-weight: 600 !important;
-}
-.card-body .table .text-muted {
-  color: rgba(255, 255, 255, 0.8) !important;
-  font-weight: 500 !important;
-}
+.card-body .table .text-dark { color: #ffffff !important; font-weight: 600 !important; }
+.card-body .table .text-muted { color: rgba(229, 231, 235, 0.85) !important; font-weight: 500 !important; }
 
-/* ===== Botón Primary ===== */
+/* ===== BotÃ³n Primary ===== */
 .card-body .btn-primary {
-  background: rgba(13, 110, 253, 0.85) !important;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
   border: 1px solid rgba(255, 255, 255, 0.2) !important;
   color: #ffffff !important;
-  box-shadow: none !important;
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.35) !important;
   transition: all 0.3s ease !important;
 }
 .card-body .btn-primary:hover {
-  background: rgba(13, 110, 253, 1) !important;
+  background: linear-gradient(135deg, #5850ec, #7c3aed) !important;
   transform: translateY(-2px) !important;
-  box-shadow: 0 8px 25px rgba(13, 110, 253, 0.4) !important;
+  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.40) !important;
 }
 
 /* ===== Botones Pastel ===== */
-.card-body .btn-pastel-blue {
-  background: #eaf4fb !important;
-  color: #0574c7 !important;
-  border: 1px solid #b6e0fe !important;
-  transition: all 0.3s ease !important;
-  border-radius: 0.5rem !important;
-  font-weight: 500 !important;
-  padding: 0.35rem 0.9rem !important;
-  font-size: 1rem !important;
+.btn.btn-pastel-blue {
+  background: rgba(99, 102, 241, 0.15);
+  color: #6366f1;
+  border-radius: 0.6rem;
+  border: 1px solid rgba(99, 102, 241, 0.4);
+  font-weight: 600;
+  padding: 0.4rem 1rem;
+  font-size: 0.95rem;
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
 }
-.card-body .btn-pastel-blue:hover {
-  background: #cbe7fb !important;
-  color: #035485 !important;
-  transform: translateY(-1px) !important;
-  text-decoration: none !important;
+.btn.btn-pastel-blue:hover,
+.btn.btn-pastel-blue:focus {
+  background: rgba(99, 102, 241, 0.25);
+  color: #4f46e5;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.35);
+  text-decoration: none;
+}
+.btn.btn-pastel-red {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+  border-radius: 0.6rem;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  font-weight: 600;
+  padding: 0.4rem 1rem;
+  font-size: 0.95rem;
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+}
+.btn.btn-pastel-red:hover,
+.btn.btn-pastel-red:focus {
+  background: rgba(239, 68, 68, 0.25);
+  color: #dc2626;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(239, 68, 68, 0.35);
+  text-decoration: none;
 }
 
-.card-body .btn-pastel-red {
-  background: #fdeaea !important;
-  color: #d71b3b !important;
-  border: 1px solid #ffd6da !important;
-  transition: all 0.3s ease !important;
-  border-radius: 0.5rem !important;
-  font-weight: 500 !important;
-  padding: 0.35rem 0.9rem !important;
-  font-size: 1rem !important;
-}
-.card-body .btn-pastel-red:hover {
-  background: #fbbfc1 !important;
-  color: #98001b !important;
-  transform: translateY(-1px) !important;
-  text-decoration: none !important;
-}
-
-/* Acciones en una sola línea */
+/* Acciones en una sola lÃ­nea */
 td.text-end.pe-4,
 .acciones-col {
   white-space: nowrap !important;
@@ -158,37 +224,22 @@ td.text-end.pe-4,
 
 /* ===== Responsive ===== */
 @media (max-width: 768px) {
-  .card .card-body,
-  .card-body {
-    margin: 0.5rem !important;
-    padding: 1.5rem !important;
-    border-radius: 15px !important;
-  }
+  .banner-img { flex-basis: 90px !important; height: 90px !important; }
+  .card .card-body, .card-body { padding: 1.5rem !important; }
 }
 @media (max-width: 480px) {
-  .card .card-body,
-  .card-body {
-    margin: 0.25rem !important;
-    padding: 1rem !important;
-    border-radius: 12px !important;
-  }
+  .banner-img { flex-basis: 80px !important; height: 80px !important; }
+  .card .card-body, .card-body { padding: 1rem !important; }
 }
 
-/* ===== Animación ===== */
+/* ===== AnimaciÃ³n general (para el contenido) ===== */
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-.card-body {
-  animation: fadeInUp 0.6s ease-out !important;
-}
 
-/* ===== FIX Bootstrap .table-borderless ===== */
-.card-body .table-borderless>:not(caption)>* {
-  background-color: transparent !important;
-  box-shadow: none !important;
-}
-.card-body .table-borderless>:not(caption)>*>* {
-  background-color: transparent !important;
-  box-shadow: none !important;
+/* === Ajuste para separar el card del footer === */
+.container-fluid .card {
+  margin-top: 1rem !important;       /* sube un poco */
+  margin-bottom: 3rem !important;    /* espacio con el footer */
 }

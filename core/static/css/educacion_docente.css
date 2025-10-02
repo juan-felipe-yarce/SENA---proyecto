@@ -1,14 +1,247 @@
-/* educacion_docente.css */
-.educacion-docente-box {
-    background: #fafdff;
-    border-radius: 1.5rem;
-    box-shadow: 0 4px 18px rgba(0,80,200,0.07);
-    padding: 2rem;
-    margin: 2rem auto;
-    max-width: 700px;
+/* =========================================================
+   EDUCACIÓN DOCENTE — Glassmorphism Gris/Violeta
+   ========================================================= */
+
+/* ===== Contenedor principal ===== */
+.glass-container {
+  border-radius: 20px !important;
+  background: rgba(31, 41, 55, 0.50) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(139, 92, 246, 0.40) !important;
+  box-shadow:
+    0 8px 32px rgba(0,0,0,0.45),
+    inset 0 1px 0 rgba(139,92,246,0.15),
+    0 0 0 1px rgba(139,92,246,0.20) !important;
+  padding: 0 2.5rem 2.5rem 2.5rem !important;
+  width: 100% !important;
+  max-width: 1000px !important;
+  margin: 0 auto 3rem auto !important;
+  overflow: hidden !important;
 }
-.educacion-docente-box h1 {
-    color: #1565c0;
-    font-weight: 700;
-    font-size: 1.7rem;
+
+/* ===== Banner integrado ===== */
+.banner-img {
+  position: relative !important;
+  height: 100px !important;
+  border-top-left-radius: 20px !important;
+  border-top-right-radius: 20px !important;
+  overflow: hidden !important;
+  margin: 0 -2.5rem 1.5rem -2.5rem !important;
+}
+.banner-img img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+  opacity: 0.9 !important;
+  filter: brightness(0.85) saturate(0.95) !important;
+  transition: opacity 0.3s ease, filter 0.3s ease !important;
+}
+.banner-img img:hover {
+  opacity: 1 !important;
+  filter: brightness(1) saturate(1) !important;
+}
+
+/* ===== Título principal ===== */
+.educacion-title {
+  color: #ffffff !important;
+  font-size: 1.7rem !important;
+  font-weight: 700 !important;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5) !important;
+}
+
+/* ===== Tarjetas ===== */
+.glass-card {
+  border-radius: 18px !important;
+  background: rgba(31, 41, 55, 0.45) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(139, 92, 246, 0.40) !important;
+  box-shadow:
+    0 6px 20px rgba(0,0,0,0.5),
+    inset 0 1px 0 rgba(139,92,246,0.15) !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+.glass-card:hover {
+  transform: translateY(-3px) !important;
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.6),
+    inset 0 1px 0 rgba(139,92,246,0.25) !important;
+}
+.glass-card-header {
+  background: rgba(139, 92, 246, 0.15) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.15) !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.3) !important;
+}
+
+/* ===== Botón Agregar ===== */
+.btn-agregar {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 12px !important;
+  font-weight: 600 !important;
+  padding: 0.6rem 1.3rem !important;
+  transition: all 0.3s ease !important;
+}
+.btn-agregar:hover {
+  background: linear-gradient(135deg, #5850ec, #7c3aed) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4) !important;
+}
+
+/* ===== Botones compactos ===== */
+.glass-card .btn-group {
+  justify-content: flex-end !important;
+  width: auto !important;
+  gap: 0.6rem !important;
+}
+.btn-editar {
+  background: rgba(255,255,255,0.1) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(139,92,246,0.3) !important;
+  border-radius: 10px !important;
+  padding: 0.45rem 1rem !important;
+  font-weight: 600 !important;
+  transition: all 0.3s ease !important;
+}
+.btn-editar:hover {
+  background: rgba(255,255,255,0.2) !important;
+  box-shadow: 0 4px 15px rgba(139,92,246,0.3) !important;
+}
+.btn-eliminar {
+  background: rgba(239, 68, 68, 0.15) !important;
+  color: #ffb3b3 !important;
+  border: 1px solid rgba(239,68,68,0.3) !important;
+  border-radius: 10px !important;
+  padding: 0.45rem 1rem !important;
+  font-weight: 600 !important;
+  transition: all 0.3s ease !important;
+}
+.btn-eliminar:hover {
+  background: rgba(239, 68, 68, 0.3) !important;
+  color: #fff !important;
+  box-shadow: 0 4px 15px rgba(239,68,68,0.35) !important;
+}
+
+/* ===== Modal ===== */
+.glass-modal {
+  background: rgba(31, 41, 55, 0.85) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-radius: 16px !important;
+  color: #fff !important;
+}
+.glass-modal .modal-header {
+  border-bottom: 1px solid rgba(255,255,255,0.15) !important;
+}
+.glass-modal .modal-footer {
+  border-top: 1px solid rgba(255,255,255,0.15) !important;
+}
+
+/* ===== Inputs ===== */
+.form-control {
+  border-radius: 0.7rem !important;
+  background: rgba(255,255,255,0.08) !important;
+  color: #fff !important;
+  border: 1px solid rgba(255,255,255,0.2) !important;
+  transition: all 0.3s ease !important;
+}
+.form-control:focus {
+  border-color: #8b5cf6 !important;
+  box-shadow: 0 0 0 2px rgba(139,92,246,0.3) !important;
+  background: rgba(255,255,255,0.15) !important;
+  transform: translateY(-2px) !important;
+}
+.form-control::placeholder {
+  color: rgba(255,255,255,0.6) !important;
+}
+
+/* =========================================================
+   Choices.js personalizado (para selects)
+   ========================================================= */
+.choices {
+  margin-bottom: 0 !important;
+}
+
+.choices__inner {
+  background: rgba(31, 41, 55, 0.6) !important;
+  color: #fff !important;
+  border-radius: 0.7rem !important;
+  border: 1px solid rgba(255,255,255,0.3) !important;
+  padding: 0.45rem 0.75rem !important;
+  min-height: 42px !important;
+  box-shadow: none !important;
+}
+
+.choices__list--single .choices__item {
+  color: #fff !important;
+  font-weight: 500 !important;
+}
+
+.choices__list--dropdown {
+  background: rgba(31, 41, 55, 0.95) !important;
+  border-radius: 0.7rem !important;
+  border: 1px solid rgba(139,92,246,0.4) !important;
+  margin-top: 4px !important;
+}
+
+.choices__list--dropdown .choices__item {
+  color: #fff !important;
+  padding: 0.6rem 0.8rem !important;
+  transition: background 0.2s ease !important;
+}
+.choices__list--dropdown .choices__item:hover,
+.choices__list--dropdown .choices__item.is-highlighted {
+  background: rgba(139,92,246,0.4) !important;
+  color: #fff !important;
+}
+
+/* ===== Botones modal ===== */
+.btn-guardar {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 10px !important;
+  padding: 0.5rem 1.2rem !important;
+  font-weight: 600 !important;
+}
+.btn-guardar:hover {
+  background: linear-gradient(135deg, #5850ec, #7c3aed) !important;
+}
+.btn-cancelar {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: #fff !important;
+  border-radius: 10px !important;
+  padding: 0.5rem 1.2rem !important;
+  border: 1px solid rgba(255,255,255,0.2) !important;
+}
+.btn-cancelar:hover {
+  background: rgba(255,255,255,0.2) !important;
+}
+
+/* =========================================================
+   FORMULARIO (educacion_form.html)
+   ========================================================= */
+.card.shadow {
+  border-radius: 20px !important;
+  background: rgba(31, 41, 55, 0.5) !important;
+  backdrop-filter: blur(15px) !important;
+  -webkit-backdrop-filter: blur(15px) !important;
+  border: 1px solid rgba(139,92,246,0.3) !important;
+  color: #fff !important;
+  width: 100% !important;
+  max-width: 1000px !important;
+  margin: 0 auto 3rem auto !important;
+}
+.card.shadow .card-header {
+  background: rgba(139, 92, 246, 0.2) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.15) !important;
+  color: #fff !important;
+  font-weight: 600 !important;
 }

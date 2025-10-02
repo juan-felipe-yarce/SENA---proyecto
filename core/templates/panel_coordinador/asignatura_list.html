@@ -10,17 +10,26 @@
 
 {% block panel_content %}
 <div class="container-fluid px-0" style="max-width: 1100px;">
-  <div class="card shadow rounded-4 border-0 mt-3">
-    <div class="card-body">
-      <h2 class="h4 text-primary fw-bold mb-2">Asignaturas Académicas</h2>
+  <div class="card shadow rounded-4 border-0">
+    
+    <!-- Banner superior -->
+    <div class="banner-img">
+      <img src="{% static 'img/formularios.jpg' %}" alt="Banner Asignaturas">
+    </div>
+
+    <div class="card-body custom-body">
+      <h2 class="h4 fw-bold text-primary mb-3">Asignaturas Académicas</h2>
+      
       <!-- Botón: Nueva Asignatura -->
       <div class="mb-4">
         <a href="{% url 'crear_asignatura' %}" class="btn btn-primary btn-sm px-4 py-2 rounded-3 shadow-sm">
           <i class="bi bi-plus-circle me-2"></i>+ Nueva Asignatura
         </a>
       </div>
+
+      <!-- Tabla -->
       <div class="table-responsive">
-        <table class="table table-hover table-borderless align-middle mb-0">
+        <table class="table table-hover align-middle mb-0">
           <thead class="table-light">
             <tr>
               <th scope="col" class="ps-4">Nombre</th>

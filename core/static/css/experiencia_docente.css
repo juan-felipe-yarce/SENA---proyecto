@@ -1,14 +1,146 @@
-/* experiencia_docente.css */
-.experiencia-docente-box {
-    background: #fafdff;
-    border-radius: 1.5rem;
-    box-shadow: 0 4px 18px rgba(0,80,200,0.07);
-    padding: 2rem;
-    margin: 2rem auto;
-    max-width: 700px;
+/* =========================================================
+   EXPERIENCIA DOCENTE — Glassmorphism Gris/Violeta
+   ========================================================= */
+
+/* ===== Contenedor principal ===== */
+.glass-container {
+  border-radius: 20px !important;
+  background: rgba(31, 41, 55, 0.50) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(139, 92, 246, 0.40) !important;
+  box-shadow:
+    0 8px 32px rgba(0,0,0,0.45),
+    inset 0 1px 0 rgba(139,92,246,0.15),
+    0 0 0 1px rgba(139,92,246,0.20) !important;
+  padding: 0 2.5rem 2.5rem 2.5rem !important;
+  width: 100% !important;
+  max-width: 1000px !important;
+  margin: 0 auto 3rem auto !important;
+  overflow: hidden !important;
 }
-.experiencia-docente-box h1 {
-    color: #1565c0;
-    font-weight: 700;
-    font-size: 1.7rem;
+
+/* ===== Banner (100px) ===== */
+.banner-img {
+  position: relative !important;
+  height: 100px !important;
+  border-top-left-radius: 20px !important;
+  border-top-right-radius: 20px !important;
+  overflow: hidden !important;
+  margin: 0 -2.5rem 1.5rem -2.5rem !important;
+}
+.banner-img img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+  opacity: 0.9 !important;
+  filter: brightness(0.85) saturate(0.95) !important;
+  transition: opacity 0.3s ease, filter 0.3s ease !important;
+}
+.banner-img img:hover {
+  opacity: 1 !important;
+  filter: brightness(1) saturate(1) !important;
+}
+
+/* ===== Título ===== */
+.educacion-title {
+  color: #ffffff !important;
+  font-size: 1.7rem !important;
+  font-weight: 700 !important;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5) !important;
+}
+
+/* ===== Inputs ===== */
+.form-control,
+.form-select,
+textarea.form-control {
+  border-radius: 0.7rem !important;
+  background: rgba(255,255,255,0.08) !important;
+  color: #fff !important;
+  border: 1px solid rgba(255,255,255,0.2) !important;
+  transition: all 0.3s ease !important;
+}
+.form-control:focus,
+.form-select:focus,
+textarea.form-control:focus {
+  border-color: #8b5cf6 !important;
+  box-shadow: 0 0 0 2px rgba(139,92,246,0.3) !important;
+  background: rgba(255,255,255,0.15) !important;
+  transform: translateY(-2px) !important;
+}
+.form-control::placeholder,
+textarea.form-control::placeholder {
+  color: rgba(255,255,255,0.6) !important;
+}
+
+/* ===== Botones ===== */
+.btn-guardar {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 10px !important;
+  padding: 0.6rem 1.3rem !important;
+  font-weight: 600 !important;
+  transition: all 0.3s ease !important;
+}
+.btn-guardar:hover {
+  background: linear-gradient(135deg, #5850ec, #7c3aed) !important;
+  box-shadow: 0 6px 20px rgba(139,92,246,0.35) !important;
+}
+
+/* Botón estilo secundario reutilizable (si lo usas) */
+.btn-editar {
+  background: rgba(255,255,255,0.1) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(139,92,246,0.3) !important;
+  border-radius: 10px !important;
+  padding: 0.45rem 1rem !important;
+  font-weight: 600 !important;
+  transition: all 0.3s ease !important;
+}
+.btn-editar:hover {
+  background: rgba(255,255,255,0.2) !important;
+  box-shadow: 0 4px 15px rgba(139,92,246,0.3) !important;
+}
+
+/* =========================================================
+   TABLA — Override fuerte a Bootstrap
+   ========================================================= */
+.table {
+  /* neutraliza variables de Bootstrap */
+  --bs-table-bg: transparent !important;
+  --bs-table-color: #fff !important;
+  --bs-table-striped-bg: rgba(139, 92, 246, 0.08) !important;
+  --bs-table-hover-bg: rgba(139, 92, 246, 0.15) !important;
+
+  color: #fff !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  margin-top: 1rem !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+}
+
+/* Cabecera */
+.table thead th {
+  background: rgba(139,92,246,0.25) !important;
+  color: #fff !important;
+  border-bottom-color: rgba(255,255,255,0.15) !important;
+}
+
+/* Celdas (gana especificidad sobre Bootstrap) */
+.table>:not(caption)>*>* {
+  background-color: transparent !important;
+  color: #fff !important;
+  border-color: rgba(255,255,255,0.12) !important;
+}
+
+/* Fondo por fila */
+.table tbody tr > * {
+  background: rgba(31,41,55,0.60) !important;
+  transition: background 0.3s ease !important;
+}
+.table tbody tr:hover > * {
+  background: rgba(139,92,246,0.20) !important;
 }

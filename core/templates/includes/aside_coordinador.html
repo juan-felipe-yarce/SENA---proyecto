@@ -1,35 +1,73 @@
 {% load static %}
-<div class="d-flex flex-column align-items-stretch p-3 aside-coordinador">
-  <div class="mb-3 ps-2">
-    <span class="fs-6 fw-semibold text-primary">Coordinador</span>
+<aside class="sidebar" id="sidebar">
+  <!-- Header con logo/título y botón de toggle -->
+  <div class="sidebar-header">
+    <div class="logo">
+      <i class="bi bi-mortarboard"></i>
+      <span class="logo-text">Coordinador</span>
+    </div>
+    <button class="toggle-btn" onclick="toggleSidebar()">
+      <i class="bi bi-chevron-left" id="toggleIcon"></i>
+    </button>
   </div>
 
-  <a href="{% url 'lista_niveles' %}" class="aside-link">
-    <i class="bi bi-diagram-3 fs-5 text-primary"></i> Niveles Educativos
-  </a>
-  <a href="{% url 'lista_grados' %}" class="aside-link">
-    <i class="bi bi-book fs-5 text-primary"></i> Grados
-  </a>
-  <a href="{% url 'lista_areas' %}" class="aside-link">
-    <i class="bi bi-layers fs-5 text-primary"></i> Áreas
-  </a>
-  <a href="{% url 'lista_asignaturas' %}" class="aside-link">
-    <i class="bi bi-journal-code fs-5 text-primary"></i> Asignaturas
-  </a>
-  <a href="{% url 'lista_aulas' %}" class="aside-link">
-    <i class="bi bi-door-open fs-5 text-primary"></i> Aulas
-  </a>
-  <a href="{% url 'lista_grupos' %}" class="aside-link">
-    <i class="bi bi-people fs-5 text-primary"></i> Grupos
-  </a>
-  <a href="{% url 'lista_asignaciones' %}" class="aside-link">
-    <i class="bi bi-person-workspace fs-5 text-primary"></i> Asignación de Docentes
-  </a>
-  <a href="{% url 'usuarios_pendientes' %}" class="aside-link">
-    <i class="bi bi-person-lines-fill fs-5 text-primary"></i> Validar Usuarios
-  </a>
-  <a href="{% url 'logout' %}" class="btn btn-outline-danger btn-sm text-start mt-4 d-flex align-items-center gap-2 shadow-none rounded-3 aside-logout" style="font-size: 0.96rem;">
-    <i class="bi bi-box-arrow-right fs-5"></i> Cerrar Sesión
-  </a>
-</div>
-<link rel="stylesheet" href="{% static 'css/aside_coordinador.css' %}">
+  <!-- Menú -->
+  <nav class="menu">
+    <div class="menu-item">
+      <a href="{% url 'lista_niveles' %}" class="menu-link {% if request.resolver_match.url_name == 'lista_niveles' %}active{% endif %}">
+        <i class="bi bi-diagram-3 menu-icon"></i>
+        <span class="menu-text">Niveles Educativos</span>
+      </a>
+    </div>
+    <div class="menu-item">
+      <a href="{% url 'lista_grados' %}" class="menu-link {% if request.resolver_match.url_name == 'lista_grados' %}active{% endif %}">
+        <i class="bi bi-book menu-icon"></i>
+        <span class="menu-text">Grados</span>
+      </a>
+    </div>
+    <div class="menu-item">
+      <a href="{% url 'lista_areas' %}" class="menu-link {% if request.resolver_match.url_name == 'lista_areas' %}active{% endif %}">
+        <i class="bi bi-layers menu-icon"></i>
+        <span class="menu-text">Áreas</span>
+      </a>
+    </div>
+    <div class="menu-item">
+      <a href="{% url 'lista_asignaturas' %}" class="menu-link {% if request.resolver_match.url_name == 'lista_asignaturas' %}active{% endif %}">
+        <i class="bi bi-journal-code menu-icon"></i>
+        <span class="menu-text">Asignaturas</span>
+      </a>
+    </div>
+    <div class="menu-item">
+      <a href="{% url 'lista_aulas' %}" class="menu-link {% if request.resolver_match.url_name == 'lista_aulas' %}active{% endif %}">
+        <i class="bi bi-door-open menu-icon"></i>
+        <span class="menu-text">Aulas</span>
+      </a>
+    </div>
+    <div class="menu-item">
+      <a href="{% url 'lista_grupos' %}" class="menu-link {% if request.resolver_match.url_name == 'lista_grupos' %}active{% endif %}">
+        <i class="bi bi-people menu-icon"></i>
+        <span class="menu-text">Grupos</span>
+      </a>
+    </div>
+    <div class="menu-item">
+      <a href="{% url 'lista_asignaciones' %}" class="menu-link {% if request.resolver_match.url_name == 'lista_asignaciones' %}active{% endif %}">
+        <i class="bi bi-person-workspace menu-icon"></i>
+        <span class="menu-text">Asignación de Docentes</span>
+      </a>
+    </div>
+    <div class="menu-item">
+      <a href="{% url 'usuarios_pendientes' %}" class="menu-link {% if request.resolver_match.url_name == 'usuarios_pendientes' %}active{% endif %}">
+        <i class="bi bi-person-lines-fill menu-icon"></i>
+        <span class="menu-text">Validar Usuarios</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Logout -->
+  <div class="logout">
+    <a href="{% url 'logout' %}" class="logout-link">
+      <i class="bi bi-box-arrow-right menu-icon"></i>
+      <span class="menu-text">Cerrar Sesión</span>
+    </a>
+  </div>
+</aside>

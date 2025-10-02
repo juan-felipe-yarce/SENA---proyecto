@@ -1,0 +1,154 @@
+/* =========================================================
+   MIS ASIGNATURAS — Glassmorphism Gris/Violeta con Banner
+   ========================================================= */
+
+/* Contenedor principal */
+.mis-asignaturas {
+  border-radius: 20px !important;
+  border: 1px solid rgba(139, 92, 246, 0.4) !important;
+  background: rgba(31, 41, 55, 0.5) !important;
+  backdrop-filter: blur(15px) !important;
+  -webkit-backdrop-filter: blur(15px) !important;
+  box-shadow:
+    0 8px 32px rgba(0,0,0,0.6) !important,
+    inset 0 1px 0 rgba(255,255,255,0.1) !important,
+    0 0 0 1px rgba(139,92,246,0.3) !important;
+  overflow: hidden !important;
+  margin-bottom: 3rem !important;
+}
+
+/* Banner superior */
+.mis-asignaturas .panel-banner {
+  position: relative !important;
+  height: 120px !important;
+  overflow: hidden !important;
+  border-bottom: 1px solid rgba(139, 92, 246, 0.4) !important;
+  background: rgba(31,41,55,0.6) !important;
+  backdrop-filter: blur(12px) !important;
+}
+.mis-asignaturas .panel-banner img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  opacity: 0.85 !important;
+  filter: brightness(0.9) saturate(0.95) !important;
+  transition: opacity 0.3s ease, filter 0.3s ease !important;
+}
+.mis-asignaturas .panel-banner img:hover {
+  opacity: 1 !important;
+  filter: brightness(1) saturate(1.1) !important;
+}
+
+/* Contenido */
+.mis-asignaturas .panel-content {
+  padding: 2rem !important;
+  color: #fff !important;
+  animation: fadeInUp 0.6s ease-out !important;
+}
+.mis-asignaturas h1, 
+.mis-asignaturas h2 {
+  font-weight: 700 !important;
+  color: #fff !important;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5) !important;
+}
+
+/* Formularios */
+.mis-asignaturas label {
+  color: #ddd !important;
+  font-weight: 600 !important;
+}
+.mis-asignaturas .form-check {
+  margin-bottom: 0.5rem !important;
+  padding: 0.5rem !important;
+  border-radius: 8px !important;
+  background: rgba(255,255,255,0.05) !important;
+  backdrop-filter: blur(6px) !important;
+}
+.mis-asignaturas .form-check-input {
+  margin-right: 0.5rem !important;
+}
+
+/* Botón Guardar */
+.mis-asignaturas .btn-success {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
+  border: 1px solid rgba(255,255,255,0.2) !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+  border-radius: 12px !important;
+  padding: 0.6rem 1.2rem !important;
+  box-shadow: 0 4px 15px rgba(139,92,246,0.35) !important;
+  transition: all 0.3s ease !important;
+}
+.mis-asignaturas .btn-success:hover {
+  background: linear-gradient(135deg, #5850ec, #7c3aed) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 25px rgba(139,92,246,0.45) !important;
+}
+
+/* Listado de asignaturas actuales */
+.mis-asignaturas .list-group-item {
+  background: rgba(255,255,255,0.08) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 10px !important;
+  margin-bottom: 0.5rem !important;
+  display: flex !important;
+  align-items: center !important;
+  backdrop-filter: blur(8px) !important;
+}
+.mis-asignaturas .list-group-item i {
+  color: #22c55e !important; /* verde para check */
+  margin-right: 0.5rem !important;
+}
+
+/* Animación */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================
+   Estilos para los checkboxes de asignaturas
+   (sin tocar forms.py ni templates)
+   ============================================ */
+
+/* Cada opción (label que contiene checkbox + texto) */
+#id_asignaturas label {
+  display: flex !important;
+  align-items: center !important;
+  background: rgba(255,255,255,0.05) !important;
+  border: 1px solid rgba(139,92,246,0.3) !important;
+  border-radius: 12px !important;
+  padding: 0.7rem 1rem !important;
+  margin-bottom: 0.6rem !important;
+  cursor: pointer !important;
+  color: #fff !important;
+  font-weight: 500 !important;
+  transition: all 0.25s ease !important;
+}
+
+#id_asignaturas label:hover {
+  background: rgba(139,92,246,0.15) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.35) !important;
+}
+
+/* Checkbox en sí */
+#id_asignaturas input[type="checkbox"] {
+  margin-right: 0.8rem !important;
+  accent-color: #8b5cf6 !important; /* Color violeta */
+  width: 1.2rem !important;
+  height: 1.2rem !important;
+  cursor: pointer !important;
+  border-radius: 6px !important;
+  border: 1px solid rgba(255,255,255,0.3) !important;
+  background: rgba(255,255,255,0.1) !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Efecto cuando está marcado */
+#id_asignaturas input[type="checkbox"]:checked {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
+  border-color: rgba(139, 92, 246, 0.6) !important;
+  box-shadow: 0 0 8px rgba(139, 92, 246, 0.6) !important;
+}

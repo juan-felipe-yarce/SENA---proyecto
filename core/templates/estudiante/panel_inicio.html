@@ -1,63 +1,81 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block title %}Panel Estudiante{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/panel_estudiante.css' %}">
+{% endblock %}
+
 {% block content %}
 <div class="container py-4">
-    <h2 class="mb-4">Bienvenido, {{ nombre_completo }}</h2>
-    <div class="row">
-        <div class="col-lg-4">
-            <div class="card shadow-sm">
-                <div class="card-header bg-primary text-white">
-                    <h5 class="card-title mb-0">
-                        <i class="bi bi-person"></i>
-                        Datos Básicos
-                    </h5>
+    <div class="panel-estudiante">
+        
+        <!-- Banner opcional -->
+        <div class="panel-banner">
+            <img src="{% static 'img/banner_estudiante.jpg' %}" alt="Banner Estudiante">
+        </div>
+
+        <div class="panel-content">
+            <h2 class="mb-4">Bienvenido, {{ nombre_completo }}</h2>
+            <div class="row">
+                <!-- Columna izquierda -->
+                <div class="col-lg-4">
+                    <!-- Datos básicos -->
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <i class="bi bi-person"></i> Datos Básicos
+                            </h5>
+                            <p class="mb-1"><strong>Correo:</strong> {{ usuario.correo }}</p>
+                            <p class="mb-1"><strong>Documento:</strong> {{ usuario.numero_documento|default:"No registrado" }}</p>
+                        </div>
+                    </div>
+
+                    <!-- Grupo y Grado -->
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <i class="bi bi-people"></i> Grupo y Grado
+                            </h5>
+                            {% if grupo %}
+                                <p class="mb-1"><strong>Grupo:</strong> {{ grupo.nombre }}</p>
+                                <p class="mb-1"><strong>Grado:</strong> {{ grupo.grado.nombre }}</p>
+                                <p class="mb-1"><strong>Nivel:</strong> {{ grupo.grado.nivel.nombre }}</p>
+                            {% else %}
+                                <p class="text-muted">No tienes grupo asignado actualmente.</p>
+                            {% endif %}
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <p class="mb-1"><strong>Correo:</strong> {{ usuario.correo }}</p>
-                    <p class="mb-1"><strong>Documento:</strong> {{ usuario.numero_documento|default:"No registrado" }}</p>
-                </div>
-            </div>
-            <div class="card shadow-sm mt-4">
-                <div class="card-header bg-success text-white">
-                    <h5 class="card-title mb-0">
-                        <i class="bi bi-people"></i>
-                        Grupo y Grado
-                    </h5>
-                </div>
-                <div class="card-body">
-                    {% if grupo %}
-                        <p class="mb-1"><strong>Grupo:</strong> {{ grupo.nombre }}</p>
-                        <p class="mb-1"><strong>Grado:</strong> {{ grupo.grado.nombre }}</p>
-                        <p class="mb-1"><strong>Nivel:</strong> {{ grupo.grado.nivel.nombre }}</p>
-                    {% else %}
-                        <p class="text-muted">No tienes grupo asignado actualmente.</p>
-                    {% endif %}
+
+                <!-- Columna derecha -->
+                <div class="col-lg-8">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <i class="bi bi-journal-bookmark"></i> Asignaturas Inscritas
+                            </h5>
+                            {% if asignaturas %}
+                                <ul class="list-group">
+                                    {% for asignatura in asignaturas %}
+                                        <li class="list-group-item">
+                                            {{ asignatura.nombre }}
+                                            <span class="badge">{{ asignatura.area.nombre }}</span>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            {% else %}
+                                <p class="text-muted">No tienes asignaturas inscritas actualmente.</p>
+                                <a href="{% url 'mis_asignaturas' %}" class="btn btn-primary mt-2">
+                                    <i class="bi bi-plus-circle"></i> Inscribir asignaturas
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-lg-8">
-            <div class="card shadow-sm">
-                <div class="card-header bg-info text-white">
-                    <h5 class="card-title mb-0">
-                        <i class="bi bi-journal-bookmark"></i>
-                        Asignaturas Inscritas
-                    </h5>
-                </div>
-                <div class="card-body">
-                    {% if asignaturas %}
-                        <ul class="list-group">
-                            {% for asignatura in asignaturas %}
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    {{ asignatura.nombre }}
-                                    <span class="badge bg-secondary">{{ asignatura.area.nombre }}</span>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    {% else %}
-                        <p class="text-muted">No tienes asignaturas inscritas actualmente.</p>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-    </div>
+    </div> <!-- /.panel-estudiante -->
 </div>
 {% endblock %}

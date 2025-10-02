@@ -1,39 +1,165 @@
-.btn-pastel-blue {
-  background: #eaf4fb !important;
-  color: #0574c7 !important;
-  border-radius: 0.5rem !important;
-  border: 1px solid #b6e0fe !important;
-  transition: background 0.2s, color 0.2s;
-  font-weight: 500 !important;
-  padding: 0.35rem 0.9rem !important;
-  font-size: 1rem !important;
+/* =========================================================
+   ASIGNATURA LIST — Glassmorphism Gris/Violeta (sin blancos)
+   ========================================================= */
+
+/* === CARD PRINCIPAL === */
+.card {
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+
+  background: rgba(31, 41, 55, 0.50) !important;
+  backdrop-filter: blur(15px) !important;
+  -webkit-backdrop-filter: blur(15px) !important;
+  border-radius: 20px !important;
+  border: 1px solid rgba(139, 92, 246, 0.40) !important;
+  box-shadow:
+    0 8px 32px rgba(0,0,0,0.45),
+    inset 0 1px 0 rgba(139,92,246,0.15),
+    0 0 0 1px rgba(139,92,246,0.20) !important;
 }
-.btn-pastel-blue:hover, .btn-pastel-blue:focus {
-  background: #cbe7fb !important;
-  color: #035485 !important;
-  text-decoration: none !important;
+
+/* Brillos decorativos */
+.card::before {
+  content: "";
+  position: absolute; inset: 0 0 auto 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #8b5cf6, transparent);
+  opacity: 0.8;
 }
-.btn-pastel-red {
-  background: #fdeaea !important;
-  color: #d71b3b !important;
-  border-radius: 0.5rem !important;
-  border: 1px solid #ffd6da !important;
-  transition: background 0.2s, color 0.2s;
-  font-weight: 500 !important;
-  padding: 0.35rem 0.9rem !important;
-  font-size: 1rem !important;
+.card::after {
+  content: "";
+  position: absolute; top: 20px; left: 0;
+  width: 2px; height: 60%;
+  background: linear-gradient(180deg, #8b5cf6, transparent);
 }
-.btn-pastel-red:hover, .btn-pastel-red:focus {
-  background: #fbbfc1 !important;
-  color: #98001b !important;
-  text-decoration: none !important;
+
+/* === BANNER SUPERIOR === */
+.banner-img {
+  position: relative !important;
+  height: 100px !important;
+  flex: 0 0 100px !important;
+  overflow: hidden !important;
+  background: rgba(31,41,55,0.7) !important;
+  backdrop-filter: blur(15px) !important;
+  border-bottom: 1px solid rgba(139, 92, 246, 0.4) !important;
+  animation: fadeInBanner 0.6s ease-out forwards;
 }
-.btn-pastel-blue, .btn-pastel-red {
-  margin-bottom: 0 !important;
+.banner-img img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  opacity: 0.85 !important; 
+  filter: brightness(0.85) saturate(0.9) !important;
+  transition: opacity 0.3s ease, filter 0.3s ease !important;
 }
-/* Para que los botones nunca se bajen a la siguiente línea */
-td.text-end.pe-4,
-.acciones-col {
-  white-space: nowrap;
-  min-width: 210px;
+.banner-img img:hover { opacity: 1 !important; filter: brightness(1) saturate(1) !important; }
+@keyframes fadeInBanner { from {opacity:0;} to {opacity:1;} }
+
+/* === CARD BODY === */
+.card .card-body,
+.card-body {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 2rem !important;
+  animation: fadeInUp 0.6s ease-out !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
 }
+.card-body:hover { transform: translateY(-2px) !important; }
+@keyframes fadeInUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+
+/* === TITULOS === */
+.card-body h2,
+.card-body .h4 {
+  color: #ffffff !important;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5) !important;
+  font-weight: 700 !important;
+}
+
+/* === TABLA (sin blancos) === */
+.table-responsive,
+.card-body .table,
+.card-body .table * {
+  background: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+.card-body .table-light,
+.card-body .table thead th {
+  color: #ffffff !important;
+  border: none !important;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.28) !important;
+  font-weight: 700 !important;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.3) !important;
+}
+.card-body .table tbody tr {
+  border-bottom: 1px solid rgba(255,255,255,0.18) !important;
+  transition: background 0.3s ease !important;
+}
+.card-body .table-hover tbody tr:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(4px) !important;
+}
+.card-body .table td {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.3) !important;
+}
+
+/* Corrige utilidades Bootstrap */
+.card-body .table .text-dark { color: #ffffff !important; }
+.card-body .table .bg-white,
+.card-body .table .table-bordered,
+.card-body .table .table-striped > tbody > tr:nth-of-type(odd) > * {
+  background: transparent !important;
+}
+
+/* === BOTONES === */
+.card-body .btn-primary {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
+  border: 1px solid rgba(255,255,255,0.2) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.35) !important;
+  transition: all 0.3s ease !important;
+}
+.card-body .btn-primary:hover {
+  background: linear-gradient(135deg, #5850ec, #7c3aed) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.40) !important;
+}
+/* Pastel azul */
+.btn.btn-pastel-blue {
+  background: rgba(99,102,241,0.15) !important;
+  color: #6366f1 !important;
+  border: 1px solid rgba(99,102,241,0.4) !important;
+  border-radius: 0.6rem !important;
+  font-weight: 600 !important;
+  padding: 0.4rem 1rem !important;
+  backdrop-filter: blur(8px) !important;
+  transition: all 0.3s ease !important;
+}
+.btn.btn-pastel-blue:hover { background: rgba(99,102,241,0.25) !important; color:#4f46e5 !important; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(99,102,241,0.35); }
+/* Pastel rojo */
+.btn.btn-pastel-red {
+  background: rgba(239,68,68,0.15) !important;
+  color: #ef4444 !important;
+  border: 1px solid rgba(239,68,68,0.4) !important;
+  border-radius: 0.6rem !important;
+  font-weight: 600 !important;
+  padding: 0.4rem 1rem !important;
+  backdrop-filter: blur(8px) !important;
+  transition: all 0.3s ease !important;
+}
+.btn.btn-pastel-red:hover { background: rgba(239,68,68,0.25) !important; color:#dc2626 !important; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(239,68,68,0.35); }
+
+/* === COLUMNAS DE ACCIONES === */
+.acciones-col { white-space: nowrap !important; min-width: 210px !important; }
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) { .banner-img { height: 90px !important; } .card .card-body{ padding:1.5rem !important; } }
+@media (max-width: 480px) { .banner-img { height: 80px !important; } .card .card-body{ padding:1rem !important; } }
+
+/* Separación con footer */
+.container-fluid .card { margin-top: 1rem !important; margin-bottom: 3rem !important; }

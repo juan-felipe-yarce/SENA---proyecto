@@ -9,11 +9,28 @@ from core.vistas.autenticacion.autenticacion import (
 from core.vistas.docente.panel import panel_docente_view
 from core.vistas.navegacion.inicio import bienvenida, inicio
 from core.vistas.perfil.perfil_usuario import perfil_usuario, editar_perfil
-from core.vistas.estudiante.panel import panel_estudiante_inicio
-from core.vistas.acudiente.panel import panel_acudiente
-from core.vistas.docente.capacitacion import docente_capacitacion_view
+from core.vistas.estudiante.panel import (
+    panel_estudiante_inicio,
+    estudiante_asignaturas,   # 👈 import nuevo
+)
+from core.vistas.acudiente.panel import (
+    panel_acudiente,
+    asignar_estudiante,
+    ver_estudiantes
+)
+from core.vistas.acudiente.perfil import (
+    perfil_acudiente,
+    editar_perfil_acudiente,
+)
+from core.vistas.docente.capacitacion import (
+    docente_capacitacion_view,
+    editar_capacitacion,
+    eliminar_capacitacion,
+)
 from core.vistas.docente.docente_hoja_vida import docente_datos_basicos_view
-from core.vistas.docente.educacion import docente_educacion_view, editar_educacion, eliminar_educacion
+from core.vistas.docente.educacion import (
+    docente_educacion_view, editar_educacion, eliminar_educacion
+)
 from core.vistas.docente.idiomas import docente_idiomas_view
 from core.vistas.docente.experiencia import docente_experiencia_view
 from core.vistas.coordinador.panel import (
@@ -43,18 +60,25 @@ urlpatterns = [
     path('registro/', registro_usuario, name='registro'),
 
     # Página de bienvenida (pública) y página de inicio
-    path('', bienvenida, name='bienvenida'),   # 👈 ahora la raíz es bienvenida
-    path('inicio/', inicio, name='inicio'),    # 👈 inicio queda en /inicio/
+    path('', bienvenida, name='bienvenida'),
+    path('inicio/', inicio, name='inicio'),
 
-    # Perfil del usuario autenticado
+    # Perfil del usuario autenticado (genérico)
     path('perfil/', perfil_usuario, name='perfil_usuario'),
     path('perfil/editar/', editar_perfil, name='editar_perfil'),
 
     # Paneles por rol
     path('panel-docente/', panel_docente_view, name='panel_docente'),
+
     path('panel-estudiante/', panel_estudiante_inicio, name='panel_estudiante'),
+    path('panel-estudiante/asignaturas/', estudiante_asignaturas, name='mis_asignaturas'),# 👈 nueva ruta
+
     path('panel-coordinador/', panel_coordinador, name='panel_coordinador'),
     path('panel-acudiente/', panel_acudiente, name='panel_acudiente'),
+    path('panel-acudiente/asignar/', asignar_estudiante, name='asignar_estudiante'),
+    path('panel-acudiente/estudiantes/', ver_estudiantes, name='ver_estudiantes'),
+    path('panel-acudiente/perfil/', perfil_acudiente, name='perfil_acudiente'),
+    path('panel-acudiente/perfil/editar/', editar_perfil_acudiente, name='editar_perfil_acudiente'),
 
     # Coordinador - Gestión académica
     path('coordinador/niveles/', lista_niveles, name='lista_niveles'),
@@ -107,11 +131,21 @@ urlpatterns = [
 
     # Docentes - Hoja de Vida
     path('docente/hoja-vida/datos-basicos/', docente_datos_basicos_view, name='docente_datos_basicos'),
+
+    # Educación
     path('docente/hoja-vida/educacion/', docente_educacion_view, name='docente_educacion'),
     path('docente/hoja-vida/educacion/editar/<int:educacion_id>/', editar_educacion, name='editar_educacion'),
     path('docente/hoja-vida/educacion/eliminar/<int:educacion_id>/', eliminar_educacion, name='eliminar_educacion'),
+
+    # Capacitaciones
     path('docente/hoja-vida/capacitacion/', docente_capacitacion_view, name='docente_capacitacion'),
+    path('docente/hoja-vida/capacitacion/editar/<int:capacitacion_id>/', editar_capacitacion, name='editar_capacitacion'),
+    path('docente/hoja-vida/capacitacion/eliminar/<int:capacitacion_id>/', eliminar_capacitacion, name='eliminar_capacitacion'),
+
+    # Idiomas
     path('docente/hoja-vida/idiomas/', docente_idiomas_view, name='docente_idiomas'),
+
+    # Experiencia
     path('docente/hoja-vida/experiencia/', docente_experiencia_view, name='docente_experiencia'),
 
     # AJAX

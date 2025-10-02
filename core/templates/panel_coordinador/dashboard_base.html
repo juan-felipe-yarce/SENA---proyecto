@@ -1,11 +1,17 @@
 {% extends "base.html" %}
 {% load static %}
+
 {% block aside %}
   {% include "includes/aside_coordinador.html" %}
 {% endblock %}
+
 {% block content %}
   <main class="dashboard-panel-content">
     {% block panel_content %}{% endblock %}
   </main>
   <link rel="stylesheet" href="{% static 'css/dashboard_base.css' %}">
+{% endblock %}
+
+{% block extra_js %}
+  <script src="{% static 'js/aside_coordinador.js' %}"></script>
 {% endblock %}

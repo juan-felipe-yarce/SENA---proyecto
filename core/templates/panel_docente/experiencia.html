@@ -1,70 +1,105 @@
 {% extends "panel_docente/dashboard_base.html" %}
 {% load static %}
+{% load widget_tweaks %}
+
 {% block title %}Experiencia del Docente{% endblock %}
 
+{% block extra_head %}
+  <!-- Estilos específicos de Experiencia -->
+  <link rel="stylesheet" href="{% static 'css/experiencia_docente.css' %}">
+{% endblock %}
+
 {% block panel_content %}
-<div class="p-4 bg-white rounded-4 shadow mt-3" style="max-width: 800px; margin:auto;">
-    <h1 class="h4 fw-bold text-primary mb-3">
-        <i class="bi bi-briefcase"></i> Experiencia Laboral
-    </h1>
+<div class="container-fluid px-0" style="max-width: 1000px; margin: 0 auto;">
+  <div class="card glass-container">
 
-    <!-- Mensajes -->
-    {% if messages %}
-      {% for message in messages %}
-        <div class="alert alert-{{ message.tags }} mt-2">{{ message }}</div>
-      {% endfor %}
-    {% endif %}
+    <!-- Banner (100px de alto) -->
+    <div class="banner-img">
+      <img src="{% static 'img/banner_docente.jpg' %}" alt="Banner Experiencia">
+    </div>
 
-    <!-- Formulario -->
-    <form method="post" class="row g-3 mb-4">
+    <div class="card-body">
+      <!-- Título -->
+      <h1 class="educacion-title mb-4">
+        <i class="bi bi-briefcase me-2"></i> Experiencia Laboral
+      </h1>
+
+      <!-- Mensajes -->
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }} alert-dismissible fade show glass-alert" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+          </div>
+        {% endfor %}
+      {% endif %}
+
+      <!-- Formulario -->
+      <form method="post" class="row g-3 mb-4">
         {% csrf_token %}
         <div class="col-md-6">
-            {{ form.institucion.label_tag }} {{ form.institucion }}
+          {{ form.institucion.label_tag }}
+          {{ form.institucion|add_class:"form-control" }}
         </div>
         <div class="col-md-6">
-            {{ form.cargo.label_tag }} {{ form.cargo }}
+          {{ form.cargo.label_tag }}
+          {{ form.cargo|add_class:"form-control" }}
         </div>
         <div class="col-md-4">
-            {{ form.fecha_inicio.label_tag }} {{ form.fecha_inicio }}
+          {{ form.fecha_inicio.label_tag }}
+          {{ form.fecha_inicio|add_class:"form-control" }}
         </div>
         <div class="col-md-4">
-            {{ form.fecha_fin.label_tag }} {{ form.fecha_fin }}
+          {{ form.fecha_fin.label_tag }}
+          {{ form.fecha_fin|add_class:"form-control" }}
         </div>
         <div class="col-md-12">
-            {{ form.descripcion.label_tag }} {{ form.descripcion }}
+          {{ form.descripcion.label_tag }}
+          {{ form.descripcion|add_class:"form-control" }}
         </div>
-        <div class="col-12">
-            <button type="submit" class="btn btn-primary">Agregar experiencia</button>
-        </div>
-    </form>
 
-    <!-- Tabla de experiencias -->
-    <h3>Experiencias registradas</h3>
-    <table class="table table-striped mt-2">
-        <thead>
-            <tr>
+        <div class="col-12 text-end mt-2">
+          <button type="submit" class="btn-guardar">
+            <i class="bi bi-plus-circle me-1"></i> Agregar Experiencia
+          </button>
+        </div>
+      </form>
+
+      <!-- Tabla de experiencias -->
+      <h3 class="educacion-title h5 mt-4">Experiencias Registradas</h3>
+      {% if experiencias %}
+        <div class="table-responsive mt-3">
+          <table class="table align-middle rounded-3 overflow-hidden">
+            <thead>
+              <tr>
                 <th>Institución</th>
                 <th>Cargo</th>
                 <th>Desde</th>
                 <th>Hasta</th>
                 <th>Descripción</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for exp in experiencias %}
-            <tr>
+              </tr>
+            </thead>
+            <tbody>
+              {% for exp in experiencias %}
+              <tr>
                 <td>{{ exp.institucion }}</td>
                 <td>{{ exp.cargo }}</td>
                 <td>{{ exp.fecha_inicio }}</td>
                 <td>{{ exp.fecha_fin|default:"Actual" }}</td>
                 <td>{{ exp.descripcion }}</td>
-            </tr>
-            {% empty %}
-            <tr>
-                <td colspan="5" class="text-center">No hay experiencias registradas.</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      {% else %}
+        <div class="text-center py-5">
+          <i class="bi bi-briefcase display-1 text-muted"></i>
+          <h4 class="text-white-50 mt-3">No hay experiencias registradas</h4>
+          <p class="text-white-50">Agrega tu experiencia laboral para completar tu hoja de vida.</p>
+        </div>
+      {% endif %}
+    </div>
+  </div>
 </div>
 {% endblock %}

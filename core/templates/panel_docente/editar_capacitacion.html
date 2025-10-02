@@ -1,0 +1,100 @@
+{% extends "panel_docente/dashboard_base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}Editar Capacitación{% endblock %}
+
+{% block extra_head %}
+  <!-- Estilos unificados -->
+  <link rel="stylesheet" href="{% static 'css/panel_docente.css' %}">
+  <!-- Choices.js -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
+{% endblock %}
+
+{% block panel_content %}
+<div class="container-fluid px-0" style="max-width: 900px; margin: 0 auto;">
+  <div class="card glass-container">
+
+    <!-- Banner -->
+    <div class="banner-img">
+      <img src="{% static 'img/banner_docente.jpg' %}" alt="Banner Capacitación">
+    </div>
+
+    <div class="card-body">
+      <!-- Título -->
+      <h1 class="educacion-title mb-4">
+        <i class="bi bi-pencil-square me-2"></i> Editar Capacitación
+      </h1>
+
+      <!-- Mensajes -->
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }} alert-dismissible fade show glass-alert" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+          </div>
+        {% endfor %}
+      {% endif %}
+
+      <!-- Formulario -->
+      <form method="post" enctype="multipart/form-data" class="row g-3">
+        {% csrf_token %}
+
+        <div class="col-md-6">
+          {{ form.nombre_curso.label_tag }}
+          {{ form.nombre_curso|add_class:"form-control" }}
+        </div>
+
+        <div class="col-md-6">
+          {{ form.institucion.label_tag }}
+          {{ form.institucion|add_class:"form-control" }}
+        </div>
+
+        <div class="col-md-4">
+          {{ form.duracion_horas.label_tag }}
+          {{ form.duracion_horas|add_class:"form-control" }}
+        </div>
+
+        <div class="col-md-8">
+          {{ form.documento_soporte.label_tag }}
+          {{ form.documento_soporte|add_class:"form-control" }}
+          {% if capacitacion.documento_soporte %}
+            <small class="text-white-50 d-block mt-1">
+              Archivo actual:
+              <a href="{{ capacitacion.documento_soporte.url }}" target="_blank" class="text-decoration-underline">
+                {{ capacitacion.documento_soporte.name }}
+              </a>
+            </small>
+          {% endif %}
+        </div>
+
+        <!-- Botones -->
+        <div class="col-12 d-flex gap-2 mt-3">
+          <button type="submit" class="btn-guardar">
+            <i class="bi bi-save me-1"></i> Guardar cambios
+          </button>
+          <a href="{% url 'docente_capacitacion' %}" class="btn-cancelar">
+            <i class="bi bi-arrow-left me-1"></i> Cancelar
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<!-- Choices.js -->
+<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('select').forEach(select => {
+    new Choices(select, {
+      searchEnabled: true,
+      itemSelectText: '',
+      shouldSort: false
+    });
+  });
+});
+</script>
+{% endblock %}

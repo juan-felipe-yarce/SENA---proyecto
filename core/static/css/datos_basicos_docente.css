@@ -1,55 +1,165 @@
-.datos-basicos-container {
-  max-width: 820px;
-  margin: 0 auto;
-  padding: 0 8px;
-}
+/* =========================================================
+   DATOS BÁSICOS DOCENTE — Glassmorphism Gris/Violeta
+   ========================================================= */
+
+/* === CARD principal con glass === */
 .datos-basicos-card {
-  background: #fff;
-  border-radius: 18px;
-  box-shadow: 0 2px 16px 0 rgba(38,60,81,.08);
-  padding: 36px 34px 28px 34px;
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+
+  /* Glass gris/violeta */
+  background: rgba(31, 41, 55, 0.50) !important;
+  backdrop-filter: blur(15px) !important;
+  -webkit-backdrop-filter: blur(15px) !important;
+  border-radius: 20px !important;
+  border: 1px solid rgba(139, 92, 246, 0.40) !important;
+  box-shadow:
+    0 8px 32px rgba(0,0,0,0.45),
+    inset 0 1px 0 rgba(139,92,246,0.15),
+    0 0 0 1px rgba(139,92,246,0.20) !important;
+
+  animation: fadeInUp 0.8s ease-out !important;
 }
+
+/* === Banner superior === */
+.banner-img {
+  position: relative !important;
+  height: 100px !important;
+  flex: 0 0 100px !important;
+  overflow: hidden !important;
+
+  background: rgba(31,41,55,0.7) !important;
+  backdrop-filter: blur(15px) !important;
+  -webkit-backdrop-filter: blur(15px) !important;
+  border-bottom: 1px solid rgba(139, 92, 246, 0.4) !important;
+
+  animation: fadeInBanner 0.6s ease-out forwards;
+}
+
+.banner-img img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+
+  opacity: 0.85 !important;
+  filter: brightness(0.85) saturate(0.9) !important;
+  transition: opacity 0.3s ease, filter 0.3s ease !important;
+}
+
+.banner-img img:hover {
+  opacity: 1 !important;
+  filter: brightness(1) saturate(1) !important;
+}
+
+/* Animaciones */
+@keyframes fadeInBanner {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* === Cuerpo del card === */
+.datos-basicos-card .card-body {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 2rem !important;
+}
+
+/* === Títulos === */
 .datos-basicos-title {
-  font-size: 1.45rem;
-  color: #175cd3;
-  font-weight: 600;
-  margin-bottom: 1.2rem;
-  margin-top: 0.5rem;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  font-size: 1.6rem !important;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5) !important;
 }
 .datos-basicos-section {
-  font-size: 1.01rem;
-  font-weight: 600;
-  color: #1274e7;
-  margin-bottom: 0.5rem;
-  margin-top: 2rem;
-  display: flex;
-  align-items: center;
-  gap: 6px;
+  color: #ffffff !important;
+  font-size: 1.2rem !important;
+  font-weight: 600 !important;
+  margin: 1.2rem 0 0.8rem !important;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.4) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.2) !important;
+  padding-bottom: 0.4rem !important;
 }
-.datos-basicos-messages .alert {
-  font-size: 0.97rem;
-  padding: 0.4rem 1rem;
+
+/* Labels */
+.form-label, label {
+  font-size: 0.95rem !important;
+  font-weight: 600 !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  margin-bottom: 0.3rem !important;
 }
-.btn-primary {
-  background: #1274e7;
-  border: none;
-  color: #fff;
-  font-weight: 500;
-  border-radius: 0.45rem;
-  padding: 0.38rem 1.6rem;
-  transition: background 0.2s;
+
+/* Inputs generales */
+.form-control,
+.form-select {
+  border-radius: 0.7rem !important;
+  font-size: 0.95rem !important;
+  background: rgba(255,255,255,0.08) !important;
+  color: #fff !important;
+  border: 1px solid rgba(255,255,255,0.2) !important;
+  transition: all 0.3s ease !important;
 }
-.btn-primary:hover, .btn-primary:focus {
-  background: #0c56a5;
-  color: #fff;
+.form-control:focus,
+.form-select:focus {
+  border-color: #8b5cf6 !important;
+  box-shadow: 0 0 0 2px rgba(139,92,246,0.3) !important;
+  background: rgba(255,255,255,0.15) !important;
+  color: #fff !important;
 }
-.form-label {
-  font-weight: 500;
-  color: #364764;
+.form-control::placeholder {
+  color: rgba(255,255,255,0.6) !important;
 }
-.bg-light {
-  background: #f2f6fb !important;
+
+/* === Select con efecto (conservado) === */
+.form-select {
+  background: rgba(31, 41, 55, 0.6) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  border-radius: 0.7rem !important;
+  padding: 0.5rem 1rem !important;
+  appearance: none !important; /* sin flecha nativa */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23ffffff' viewBox='0 0 16 16'%3E%3Cpath d='M1.5 5.5l6 6 6-6'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 1rem center !important;
+  background-size: 1rem !important;
+}
+.form-select option {
+  background: rgba(31, 41, 55, 0.95) !important;
+  color: #ffffff !important;
+}
+.form-select:focus {
+  transform: translateY(-2px) !important; /* efecto "botón que sube" */
+  border-color: #8b5cf6 !important;
+  box-shadow: 0 6px 16px rgba(139, 92, 246, 0.3) !important;
+}
+
+/* Botón Guardar */
+.perfil-btn-guardar {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 12px !important;
+  font-weight: 600 !important;
+  padding: 0.7rem 1.5rem !important;
+  transition: all 0.3s ease !important;
+}
+.perfil-btn-guardar:hover {
+  background: linear-gradient(135deg, #5850ec, #7c3aed) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4) !important;
+}
+
+/* Separación respecto al footer */
+.container-fluid .card {
+  margin-top: 1rem !important;
+  margin-bottom: 3rem !important;
 }

@@ -1,30 +1,174 @@
-.btn-pastel-blue {
-  background: #eaf4fb !important;
-  color: #0574c7 !important;
-  border-radius: 0.5rem !important;
-  border: 1px solid #b6e0fe !important;
-  font-weight: 500 !important;
-  padding: 0.35rem 0.9rem !important;
-  font-size: 1rem !important;
-  transition: background 0.2s, color 0.2s;
+/* =========================================================
+   FORMULARIO ASIGNACIÓN DOCENTE — Glassmorphism con imagen lateral
+   ========================================================= */
+
+/* ===== FORM CARD (contenedor principal) ===== */
+.form-card {
+  display: flex;
+  max-width: 900px;
+  margin: 2rem auto;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  background: rgba(40, 32, 72, 0.25);
+  backdrop-filter: blur(12px);
 }
-.btn-pastel-blue:hover, .btn-pastel-blue:focus {
-  background: #cbe7fb !important;
-  color: #035485 !important;
-  text-decoration: none !important;
+
+/* ===== Columna izquierda con imagen ===== */
+.form-card-left {
+  position: relative;
+  flex: 1;
+  min-width: 300px;
+  overflow: hidden;
 }
-.btn-pastel-red {
-  background: #fdeaea !important;
-  color: #d71b3b !important;
-  border-radius: 0.5rem !important;
-  border: 1px solid #ffd6da !important;
-  font-weight: 500 !important;
-  padding: 0.35rem 0.9rem !important;
-  font-size: 1rem !important;
-  transition: background 0.2s, color 0.2s;
+
+.form-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.6);
 }
-.btn-pastel-red:hover, .btn-pastel-red:focus {
-  background: #fbbfc1 !important;
-  color: #98001b !important;
-  text-decoration: none !important;
+
+.form-card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.65));
+}
+
+/* ===== Columna derecha con formulario ===== */
+.form-card-right {
+  flex: 1;
+  padding: 2rem;
+  background: rgba(40, 32, 72, 0.25);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+}
+
+/* ===== Card Body ===== */
+.form-card-right .card-body {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+/* ===== Títulos ===== */
+.card-body h2 {
+  color: #fff !important;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5) !important;
+  font-weight: 700 !important;
+}
+
+/* ===== Labels ===== */
+.form-label {
+  color: #f3f4f6 !important;
+  font-weight: 600 !important;
+}
+
+/* ===== Inputs y Selects ===== */
+.form-control {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  color: #fff !important;
+  border-radius: 12px !important;
+  padding: 0.6rem 1rem !important;
+  transition: all 0.3s ease !important;
+}
+
+.form-control:focus {
+  border-color: #6366f1 !important;
+  background: rgba(99, 102, 241, 0.15) !important;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25) !important;
+  color: #fff !important;
+}
+
+/* ===== Select personalizado ===== */
+.form-control select,
+select.form-control {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  color: #fff !important;
+  border-radius: 12px !important;
+  padding: 0.6rem 1rem !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg width='16' height='16' fill='white' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 1rem center !important;
+  background-size: 1rem !important;
+  cursor: pointer !important;
+}
+
+select.form-control option {
+  background: rgba(40, 32, 72, 0.95) !important;
+  color: #fff !important;
+  padding: 0.6rem 1rem !important;
+}
+
+/* ===== Botones estilo translúcido ===== */
+.btn.btn-pastel-blue {
+  background: rgba(99, 102, 241, 0.15) !important;
+  color: #6366f1 !important;
+  border-radius: 0.6rem !important;
+  border: 1px solid rgba(99, 102, 241, 0.4) !important;
+  font-weight: 600 !important;
+  padding: 0.5rem 1.2rem !important;
+  font-size: 0.95rem !important;
+  transition: all 0.3s ease !important;
+  backdrop-filter: blur(8px) !important;
+}
+.btn.btn-pastel-blue:hover {
+  background: rgba(99, 102, 241, 0.35) !important;
+  color: #fff !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3) !important;
+}
+
+.btn.btn-pastel-red {
+  background: rgba(239, 68, 68, 0.15) !important;
+  color: #ef4444 !important;
+  border-radius: 0.6rem !important;
+  border: 1px solid rgba(239, 68, 68, 0.4) !important;
+  font-weight: 600 !important;
+  padding: 0.5rem 1.2rem !important;
+  font-size: 0.95rem !important;
+  transition: all 0.3s ease !important;
+  backdrop-filter: blur(8px) !important;
+}
+.btn.btn-pastel-red:hover {
+  background: rgba(239, 68, 68, 0.35) !important;
+  color: #fff !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3) !important;
+}
+
+/* ===== Animación ===== */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.form-card {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .form-card {
+    flex-direction: column;
+  }
+  .form-card-left {
+    min-height: 180px;
+  }
+  .form-card-overlay {
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
 }

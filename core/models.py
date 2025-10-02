@@ -20,6 +20,7 @@ class Rol(models.Model):
     def __str__(self):
         return self.nombre
 
+
 class TipoDocumento(models.Model):
     nombre = models.CharField(max_length=60)
 
@@ -29,13 +30,15 @@ class TipoDocumento(models.Model):
 
     def __str__(self):
         return self.nombre
-    
+
+
 class Pais(models.Model):
     nombre = models.CharField(max_length=100, unique=True)
     codigo_iso = models.CharField(max_length=3, unique=True)
 
     def __str__(self):
         return self.nombre
+
 
 class Departamento(models.Model):
     pais = models.ForeignKey(Pais, on_delete=models.PROTECT)
@@ -60,6 +63,7 @@ class Ciudad(models.Model):
     def __str__(self):
         return f"{self.nombre} ({self.departamento.nombre})"
 
+
 # ────────────────────────────────
 # CLASE BASE PERSONA
 # ────────────────────────────────
@@ -75,6 +79,7 @@ class Persona(models.Model):
 
     class Meta:
         abstract = True
+
 
 # ────────────────────────────────
 # USUARIO PERSONALIZADO
@@ -94,6 +99,7 @@ class UsuarioManager(BaseUserManager):
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
         return self.create_user(correo, password, **extra_fields)
+
 
 class Usuario(AbstractBaseUser, PermissionsMixin):
     correo = models.EmailField(unique=True)
@@ -127,7 +133,7 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     user_permissions = models.ManyToManyField(Permission, blank=True, related_name='usuario_set')
 
     USERNAME_FIELD = 'correo'
-    EMAIL_FIELD = 'correo'   
+    EMAIL_FIELD = 'correo'
     REQUIRED_FIELDS = []
 
     objects = UsuarioManager()
@@ -139,10 +145,6 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.correo
 
-    def get_full_name(self):
-        nombres = [self.primer_nombre, self.segundo_nombre, self.primer_apellido, self.segundo_apellido]
-        return " ".join([n for n in nombres if n])
-
 
 # ────────────────────────────────
 # PERFIL DE USUARIO
@@ -150,7 +152,6 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
 
 class PerfilDeUsuario(Persona):
     usuario = models.OneToOneField(Usuario, on_delete=models.CASCADE, related_name="perfil")
-    
 
     especialidad = models.CharField(max_length=100, blank=True, null=True)
     grupo = models.ForeignKey('Grupo', on_delete=models.SET_NULL, null=True, blank=True)
@@ -162,11 +163,22 @@ class PerfilDeUsuario(Persona):
         through_fields=('acudiente', 'estudiante'),
         blank=True
     )
-    foto = models.ImageField(upload_to='avatares/', blank=True, null=True)  # 👈 Nuevo campo
+    foto = models.ImageField(upload_to='avatares/', blank=True, null=True)
+
+    asignaturas = models.ManyToManyField(
+        'Asignatura',
+        through='AsignaturaEstudiante',
+        related_name='perfiles_estudiantes',
+        blank=True
+    )
+
 
     class Meta:
         verbose_name = "Perfil de Usuario"
         verbose_name_plural = "Perfiles de Usuario"
+
+    def __str__(self):
+        return f"{self.primer_nombre or ''} {self.segundo_nombre or ''} {self.primer_apellido or ''} {self.segundo_apellido or ''} - {self.usuario.correo}".strip()
 
 
 class RelacionAcudienteEstudiante(models.Model):
@@ -175,6 +187,7 @@ class RelacionAcudienteEstudiante(models.Model):
 
     class Meta:
         unique_together = ('acudiente', 'estudiante')
+
 
 # ────────────────────────────────
 # ESTRUCTURA ACADÉMICA
@@ -198,6 +211,7 @@ class NivelEducativo(models.Model):
     def __str__(self):
         return f"{self.nombre} ({self.get_categoria_display()})"
 
+
 class Grado(models.Model):
     nivel = models.ForeignKey(NivelEducativo, on_delete=models.CASCADE, related_name="grados")
     nombre = models.CharField(max_length=10)
@@ -208,12 +222,14 @@ class Grado(models.Model):
     def __str__(self):
         return f"{self.nivel.nombre} - {self.nombre}"
 
+
 class Area(models.Model):
     nombre = models.CharField(max_length=100)
     obligatoria = models.BooleanField(default=True)
 
     def __str__(self):
         return self.nombre
+
 
 class Asignatura(models.Model):
     nombre = models.CharField(max_length=100)
@@ -226,6 +242,7 @@ class Asignatura(models.Model):
     def __str__(self):
         return self.nombre
 
+
 class Tema(models.Model):
     asignatura = models.ForeignKey(Asignatura, on_delete=models.CASCADE, related_name="temas")
     nombre = models.CharField(max_length=100, unique=True)
@@ -233,12 +250,14 @@ class Tema(models.Model):
     def __str__(self):
         return f"{self.nombre} ({self.asignatura.nombre})"
 
+
 class Logro(models.Model):
     asignatura = models.ForeignKey(Asignatura, on_delete=models.CASCADE, related_name="logros")
     descripcion = models.TextField(unique=True)
 
     def __str__(self):
         return f"Logro: {self.descripcion[:30]}..."
+
 
 class Aula(models.Model):
     ESTADOS = [
@@ -253,6 +272,7 @@ class Aula(models.Model):
     def __str__(self):
         return self.nombre
 
+
 class Grupo(models.Model):
     grado = models.ForeignKey(Grado, on_delete=models.CASCADE, related_name="grupos")
     nombre = models.CharField(max_length=10)
@@ -260,6 +280,7 @@ class Grupo(models.Model):
 
     def __str__(self):
         return f"{self.nombre} ({self.grado})"
+
 
 class AsignacionDocente(models.Model):
     docente = models.ForeignKey(
@@ -272,6 +293,30 @@ class AsignacionDocente(models.Model):
 
     class Meta:
         unique_together = ('docente', 'grupo', 'asignatura')
+        
+class AsignaturaEstudiante(models.Model):
+    estudiante = models.ForeignKey(
+        'PerfilDeUsuario',
+        on_delete=models.CASCADE,
+        related_name='asignaturas_inscritas'
+    )
+    asignatura = models.ForeignKey(
+        'Asignatura',
+        on_delete=models.CASCADE,
+        related_name='inscripciones'
+    )
+    fecha_asignacion = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('estudiante', 'asignatura')
+        verbose_name = "Asignatura de Estudiante"
+        verbose_name_plural = "Asignaturas de Estudiantes"
+
+    def __str__(self):
+        nombre_estudiante = f"{self.estudiante.primer_nombre or ''} {self.estudiante.primer_apellido or ''}".strip() or self.estudiante.usuario.correo
+        return f"{nombre_estudiante} → {self.asignatura.nombre}"
+
+
 
 class Actividad(models.Model):
     asignacion = models.ForeignKey(AsignacionDocente, on_delete=models.CASCADE)
@@ -279,6 +324,7 @@ class Actividad(models.Model):
     descripcion = models.TextField()
     es_calificable = models.BooleanField(default=True)
     fecha_publicacion = models.DateField(auto_now_add=True)
+
 
 class Calificacion(models.Model):
     actividad = models.ForeignKey(Actividad, on_delete=models.CASCADE)
@@ -289,12 +335,11 @@ class Calificacion(models.Model):
     )
     nota = models.DecimalField(max_digits=3, decimal_places=1)
     fecha_registro = models.DateField(auto_now_add=True)
-    
+
+
 # ────────────────────────────────
 # HOJA DE VIDA DOCENTE
 # ────────────────────────────────
-
-# core/models.py
 
 class Genero(models.Model):
     nombre = models.CharField(max_length=20)
@@ -302,18 +347,21 @@ class Genero(models.Model):
     def __str__(self):
         return self.nombre
 
+
 class EstadoCivil(models.Model):
     nombre = models.CharField(max_length=30)
 
     def __str__(self):
         return self.nombre
 
+
 class Estrato(models.Model):
     nombre = models.CharField(max_length=20)
 
     def __str__(self):
         return self.nombre
-    
+
+
 class HojaDeVidaDocente(models.Model):
     usuario = models.OneToOneField(
         settings.AUTH_USER_MODEL,
@@ -340,11 +388,12 @@ class HojaDeVidaDocente(models.Model):
         perfil = getattr(self.usuario, 'perfildeusuario', None)
         if perfil:
             return f"Hoja de Vida - {perfil.primer_nombre} {perfil.primer_apellido}"
-        return f"Hoja de Vida - {self.usuario.correo}"  # O cualquier campo que sí exista
+        return f"Hoja de Vida - {self.usuario.correo}"
+
 
 class EducacionDocente(models.Model):
     hoja_de_vida = models.ForeignKey(HojaDeVidaDocente, on_delete=models.CASCADE)
-    nivel = models.ForeignKey(NivelEducativo, on_delete=models.CASCADE)  # Cambia esto explicacion
+    nivel = models.ForeignKey(NivelEducativo, on_delete=models.CASCADE)
     institucion = models.CharField(max_length=100)
     titulo_obtenido = models.CharField(max_length=100)
     fecha_inicio = models.DateField()
@@ -387,4 +436,3 @@ class ExperienciaDocente(models.Model):
 
     def __str__(self):
         return f"{self.cargo} en {self.institucion}"
-

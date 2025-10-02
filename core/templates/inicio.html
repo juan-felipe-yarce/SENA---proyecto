@@ -1,19 +1,219 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block body_class %}no-aside{% endblock %}
 
-{% block title %}Bienvenido{% endblock %}
+{% block title %}Inicio | Sistema Escolar{% endblock %}
 
 {% block extra_head %}
   <link rel="stylesheet" href="{% static 'css/inicio.css' %}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 {% endblock %}
 
+{% block body_class %}inicio-page{% endblock %}
+
 {% block content %}
-  <div class="w-100 layout-content-bienvenida">
-    <div class="text-center mx-auto bienvenida-box">
-      <h1 class="display-4 fw-bold text-primary mb-4">Bienvenido al Sistema Escolar</h1>
-      <p class="lead text-secondary mb-4">Por favor, inicia sesión para acceder al sistema.</p>
-      <a href="{% url 'login' %}" class="btn btn-primary btn-lg px-5">Iniciar sesión</a>
+<div class="inicio-wrapper">
+  <div class="inicio-container">
+    
+    <!-- ===== ENCABEZADO PRINCIPAL ===== -->
+    <div class="hero-section">
+      <div class="hero-content">
+        <h1 class="hero-title">Bienvenidos a la Escuela Rural San José</h1>
+        <p class="hero-subtitle">Educando con valores para un futuro mejor 🌱</p>
+        <div class="hero-badge">
+          <i class="bi bi-award"></i>
+          <span>Innovación Educativa 2025</span>
+        </div>
+      </div>
+      <div class="hero-decoration">
+        <div class="floating-element element-1"></div>
+        <div class="floating-element element-2"></div>
+        <div class="floating-element element-3"></div>
+      </div>
     </div>
+
+    <!-- ===== DESCRIPCIÓN TÉCNICA ===== -->
+    <div class="section-box description-section">
+      <div class="section-header">
+        <i class="bi bi-gear-wide-connected"></i>
+        <h2>¿Qué es este Sistema?</h2>
+      </div>
+      <div class="description-content">
+        <div class="tech-highlight">
+          <span class="tech-badge">Django</span>
+          <span class="tech-badge">PostgreSQL</span>
+          <span class="tech-badge">Bootstrap</span>
+        </div>
+        <p class="main-description">
+          Este sistema escolar es una <strong>plataforma web de gestión académica</strong> 
+          desarrollada con tecnologías modernas, diseñada para optimizar la administración 
+          de instituciones educativas rurales y urbanas.
+        </p>
+        <div class="features-grid">
+          <div class="feature-item">
+            <i class="bi bi-shield-check"></i>
+            <span>Usuarios con roles diferenciados</span>
+          </div>
+          <div class="feature-item">
+            <i class="bi bi-database"></i>
+            <span>Gestión centralizada de datos</span>
+          </div>
+          <div class="feature-item">
+            <i class="bi bi-laptop"></i>
+            <span>Interfaz responsive</span>
+          </div>
+          <div class="feature-item">
+            <i class="bi bi-lock"></i>
+            <span>Seguridad avanzada</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== MISIÓN Y VISIÓN ===== -->
+    <div class="mission-vision-section">
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="section-box mission-box text-center">
+            <div class="section-icon">
+              <i class="bi bi-bullseye"></i> 
+            </div>
+            <h3>Misión</h3>
+            <p>
+              Proveer a las instituciones educativas una herramienta tecnológica que 
+              centralice y automatice la gestión académica, mejorando la eficiencia 
+              administrativa y la comunicación entre la comunidad escolar.
+            </p>
+            <div class="box-glow mission-glow"></div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="section-box vision-box text-center">
+            <div class="section-icon">
+              <i class="bi bi-eye"></i>
+            </div>
+            <h3>Visión</h3>
+            <p>
+              Ser un sistema escolar de referencia en la gestión académica digital, 
+              integrando innovación tecnológica, accesibilidad y seguridad para 
+              apoyar el desarrollo educativo en diversos contextos.
+            </p>
+            <div class="box-glow vision-glow"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== MÓDULOS PRINCIPALES ===== -->
+    <div class="modules-section">
+      <div class="section-header">
+        <i class="bi bi-grid-3x3-gap"></i>
+        <h2>Módulos Principales</h2>
+        <p class="section-subtitle">Herramientas completas para la gestión educativa</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6">
+          <div class="module-card users-module">
+            <div class="module-icon">
+              <i class="bi bi-people-fill"></i>
+            </div>
+            <h5>Gestión de Usuarios</h5>
+            <p>Administración completa de Coordinadores, Docentes, Estudiantes y Acudientes con roles y permisos diferenciados.</p>
+            <div class="module-features">
+              <span class="feature-tag">Roles</span>
+              <span class="feature-tag">Permisos</span>
+              <span class="feature-tag">Perfiles</span>
+            </div>
+            <div class="module-glow"></div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="module-card academic-module">
+            <div class="module-icon">
+              <i class="bi bi-journal-bookmark-fill"></i>
+            </div>
+            <h5>Académico</h5>
+            <p>Gestión integral de asignaturas, áreas, grupos, aulas, matrículas, horarios y seguimiento académico completo.</p>
+            <div class="module-features">
+              <span class="feature-tag">Asignaturas</span>
+              <span class="feature-tag">Horarios</span>
+              <span class="feature-tag">Notas</span>
+            </div>
+            <div class="module-glow"></div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="module-card reports-module">
+            <div class="module-icon">
+              <i class="bi bi-bar-chart-fill"></i>
+            </div>
+            <h5>Reportes y Analytics</h5>
+            <p>Generación de informes detallados de rendimiento académico, estadísticas en tiempo real y reportes administrativos.</p>
+            <div class="module-features">
+              <span class="feature-tag">Informes</span>
+              <span class="feature-tag">Analytics</span>
+              <span class="feature-tag">Estadísticas</span>
+            </div>
+            <div class="module-glow"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== INFORMACIÓN DE CONTACTO ===== -->
+    <div class="contact-section">
+      <div class="section-header">
+        <i class="bi bi-telephone-plus"></i>
+        <h2>Contáctanos</h2>
+        <p class="section-subtitle">Estamos aquí para ayudarte</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <div class="contact-icon">
+            <i class="bi bi-geo-alt-fill"></i>
+          </div>
+          <h6>Ubicación</h6>
+          <p>Vereda El Carmen<br>Municipio San José</p>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon">
+            <i class="bi bi-telephone-fill"></i>
+          </div>
+          <h6>Teléfono</h6>
+          <p>+57 310 000 0000</p>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon">
+            <i class="bi bi-envelope-fill"></i>
+          </div>
+          <h6>Email</h6>
+          <p>contacto@escuelarural.edu.co</p>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon">
+            <i class="bi bi-clock-fill"></i>
+          </div>
+          <h6>Horario</h6>
+          <p>Lunes a Viernes<br>7:00am - 3:00pm</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== BOTÓN DE ACCESO ===== -->
+    <div class="access-section text-center">
+      <div class="access-content">
+        <div class="section-header">
+          <i class="bi bi-lightning-charge"></i>
+          <h2>¿Listo para comenzar?</h2>
+        </div>
+        <p>Accede al sistema y descubre todas las herramientas disponibles</p>
+        <a href="{% url 'login' %}" class="access-btn">
+          <i class="bi bi-box-arrow-in-right"></i>
+          <span>Acceder al Sistema</span>
+          <div class="btn-glow"></div>
+        </a>
+      </div>
+    </div>
+
   </div>
+</div>
 {% endblock %}

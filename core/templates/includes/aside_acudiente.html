@@ -1,0 +1,51 @@
+{% load static %}
+<aside class="sidebar" id="sidebar">
+  <!-- Header con logo/título y botón de toggle -->
+  <div class="sidebar-header">
+    <div class="logo">
+      <i class="bi bi-person-hearts"></i>
+      <span class="logo-text">Acudiente</span>
+    </div>
+    <button class="toggle-btn" onclick="toggleSidebar()">
+      <i class="bi bi-chevron-left" id="toggleIcon"></i>
+    </button>
+  </div>
+
+  <!-- Menú -->
+  <nav class="menu">
+    <div class="menu-item">
+      <a href="{% url 'panel_acudiente' %}" 
+         class="menu-link {% if request.resolver_match.url_name == 'panel_acudiente' %}active{% endif %}">
+        <i class="bi bi-house-door menu-icon"></i>
+        <span class="menu-text">Inicio</span>
+      </a>
+    </div>
+
+    <div class="menu-item">
+      <a href="{% url 'asignar_estudiante' %}" 
+         class="menu-link {% if request.resolver_match.url_name == 'asignar_estudiante' %}active{% endif %}">
+        <i class="bi bi-person-plus menu-icon"></i>
+        <span class="menu-text">Asignar Estudiante</span>
+      </a>
+    </div>
+
+    <div class="menu-item">
+      <a href="{% url 'ver_estudiantes' %}" 
+         class="menu-link {% if request.resolver_match.url_name == 'ver_estudiantes' %}active{% endif %}">
+        <i class="bi bi-people menu-icon"></i>
+        <span class="menu-text">Estudiantes a Cargo</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Logout -->
+  <div class="logout">
+    <a href="{% url 'logout' %}" class="logout-link">
+      <i class="bi bi-box-arrow-right menu-icon"></i>
+      <span class="menu-text">Cerrar Sesión</span>
+    </a>
+  </div>
+</aside>
+
+<!-- Script JS exclusivo para Acudiente -->
+<script src="{% static 'js/aside_acudiente.js' %}"></script>

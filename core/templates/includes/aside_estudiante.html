@@ -1,0 +1,51 @@
+{% load static %}
+<aside class="sidebar" id="sidebar">
+  <!-- Header con logo/título y botón de toggle -->
+  <div class="sidebar-header">
+    <div class="logo">
+      <i class="bi bi-mortarboard-fill"></i>
+      <span class="logo-text">Estudiante</span>
+    </div>
+    <button class="toggle-btn" onclick="toggleSidebar()">
+      <i class="bi bi-chevron-left" id="toggleIcon"></i>
+    </button>
+  </div>
+
+  <!-- Menú -->
+  <nav class="menu">
+    <div class="menu-item">
+      <a href="{% url 'panel_estudiante' %}" 
+         class="menu-link {% if request.resolver_match.url_name == 'panel_estudiante' %}active{% endif %}">
+        <i class="bi bi-house-door menu-icon"></i>
+        <span class="menu-text">Inicio</span>
+      </a>
+    </div>
+
+    <div class="menu-item">
+      <a href="{% url 'mis_asignaturas' %}" 
+         class="menu-link {% if request.resolver_match.url_name == 'mis_asignaturas' %}active{% endif %}">
+        <i class="bi bi-journal-text menu-icon"></i>
+        <span class="menu-text">Mis Asignaturas</span>
+      </a>
+    </div>
+
+    <div class="menu-item">
+      <a href="{% url 'perfil_usuario' %}" 
+         class="menu-link {% if request.resolver_match.url_name == 'perfil_usuario' %}active{% endif %}">
+        <i class="bi bi-person-circle menu-icon"></i>
+        <span class="menu-text">Mi Perfil</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Logout -->
+  <div class="logout">
+    <a href="{% url 'logout' %}" class="logout-link">
+      <i class="bi bi-box-arrow-right menu-icon"></i>
+      <span class="menu-text">Cerrar Sesión</span>
+    </a>
+  </div>
+</aside>
+
+<!-- Script JS exclusivo para Estudiante -->
+<script src="{% static 'js/aside_estudiante.js' %}"></script>

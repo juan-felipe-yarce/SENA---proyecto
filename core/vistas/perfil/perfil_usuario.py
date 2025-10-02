@@ -1,8 +1,10 @@
+# core/vistas/perfil/perfil_usuario.py
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from core.forms import PerfilUsuarioForm
 from core.models import PerfilDeUsuario
+
 
 @login_required
 def perfil_usuario(request):
@@ -17,6 +19,10 @@ def perfil_usuario(request):
         base_template = 'panel_coordinador/dashboard_base.html'
     elif usuario.rol and usuario.rol.nombre == 'Docente':
         base_template = 'panel_docente/dashboard_base.html'
+    elif usuario.rol and usuario.rol.nombre == 'Estudiante':
+        base_template = 'estudiante/dashboard_base.html'   # ✅ corregido
+    elif usuario.rol and usuario.rol.nombre in ['Acudiente', 'Padre de Familia o Acudiente']:
+        base_template = 'acudiente/dashboard_base.html'    # ✅ corregido
     else:
         base_template = 'base.html'
 
@@ -35,11 +41,15 @@ def editar_perfil(request):
     except PerfilDeUsuario.DoesNotExist:
         perfil = None
 
-    # Detecta el rol para el template base
+    # Detecta el rol para asignar el dashboard base
     if usuario.rol and usuario.rol.nombre == 'Coordinador Académico':
         base_template = 'panel_coordinador/dashboard_base.html'
     elif usuario.rol and usuario.rol.nombre == 'Docente':
         base_template = 'panel_docente/dashboard_base.html'
+    elif usuario.rol and usuario.rol.nombre == 'Estudiante':
+        base_template = 'estudiante/dashboard_base.html'   # ✅ corregido
+    elif usuario.rol and usuario.rol.nombre in ['Acudiente', 'Padre de Familia o Acudiente']:
+        base_template = 'acudiente/dashboard_base.html'    # ✅ corregido
     else:
         base_template = 'base.html'
 
@@ -59,7 +69,7 @@ def editar_perfil(request):
             perfil_nuevo.save()
             form.save_m2m()
             messages.success(request, '✅ Perfil actualizado correctamente.')
-            return redirect('editar_perfil')
+            return redirect('perfil_usuario')
         else:
             messages.error(request, '❌ Corrige los errores del formulario.')
     else:

@@ -6,20 +6,19 @@
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
-  background: none !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
   min-height: 100vh !important;
 }
 
+
 /* === NAVBAR CAPSULA === */
-html body .school-navbar,
-body .school-navbar {
+.school-navbar {
   height: 64px !important;
   position: relative !important;
-  background: linear-gradient(135deg, #203500 0%, #31470b 50%, #586626 100%) !important;
+  background: linear-gradient(135deg, #2c2c2c 0%, #404040 50%, #2c2c2c 100%) !important;
   border-radius: 2rem !important;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.3) !important;
-  padding: 0.5rem 1.5rem !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+  padding: 1rem 2rem !important;
   z-index: 1000 !important;
   display: flex !important;
   align-items: center !important;
@@ -33,38 +32,22 @@ body .school-navbar {
               transform 0.25s ease !important;
 }
 
-/* Efecto hover (zoom cápsula) */
-html body .school-navbar:hover,
-body .school-navbar:hover {
-  background-position: right center !important;
-  box-shadow: 0 0 25px rgba(152, 224, 103, 0.6) !important;
-  transform: scale(1.02) !important;
-}
-
-/* Brillo animado */
 .school-navbar::before {
   content: '' !important;
   position: absolute !important;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.07) 50%, transparent 100%) !important;
-  transform: translateX(-100%) !important;
-  animation: shine 3s infinite !important;
-}
-
-@keyframes shine {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
+  top: 0; left: 0; right: 0;
+  height: 2px !important;
+  background: linear-gradient(90deg, #6366f1 0%, #8b5cf6 25%, #ec4899 50%, #ef4444 75%, #f59e0b 100%) !important;
 }
 
 /* === MARCA === */
 .school-navbar-brand {
   font-size: 1.5rem !important;
   font-weight: 700 !important;
-  color: #d9ef9f !important;
+  color: #ffffff !important;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.3) !important;
-  display: flex !important;
-  align-items: center !important;
   position: relative !important;
+  animation: float 3s ease-in-out infinite !important;
 }
 
 .school-navbar-brand::after {
@@ -74,7 +57,7 @@ body .school-navbar:hover {
   left: 0 !important;
   width: 0 !important;
   height: 2px !important;
-  background: linear-gradient(90deg, #96ac60, #d9ef9f) !important;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6) !important;
   transition: width 0.3s ease !important;
 }
 
@@ -87,7 +70,7 @@ body .school-navbar:hover {
   display: flex !important;
   align-items: center !important;
   gap: 0.4rem !important;
-  color: #b7cd7f !important;
+  color: #d1d5db !important;
   text-decoration: none !important;
   font-weight: 500 !important;
   padding: 0.4rem 1rem !important;
@@ -97,11 +80,25 @@ body .school-navbar:hover {
   overflow: hidden !important;
 }
 
+.school-navbar-link::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%) !important;
+  border-radius: 25px !important;
+  opacity: 0 !important;
+  transition: opacity 0.3s ease !important;
+}
+
+.school-navbar-link:hover::before {
+  opacity: 1 !important;
+}
+
 .school-navbar-link:hover {
-  color: #d9ef9f !important;
-  background: rgba(150,172,96,0.2) !important;
-  transform: translateY(-2px) !important;
-  box-shadow: 0 4px 12px rgba(150,172,96,0.3) !important;
+  color: #ffffff !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.2) !important;
 }
 
 /* === BOTONES LOGIN / REGISTRO === */
@@ -110,38 +107,96 @@ body .school-navbar:hover {
   padding: 0.65rem 1.4rem !important;
   border-radius: 25px !important;
   font-weight: 600 !important;
-  transition: all 0.3s ease !important;
   text-decoration: none !important;
   border: 2px solid transparent !important;
   cursor: pointer !important;
+  transition: all 0.3s ease !important;
 }
 
-/* Login */
 .school-navbar-login-btn {
-  color: #31470b !important;
-  background: linear-gradient(135deg, #96ac60 0%, #b7cd7f 100%) !important;
-  border-color: #96ac60 !important;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%) !important;
+  color: #fff !important;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3) !important;
 }
 
 .school-navbar-login-btn:hover {
-  color: #203500 !important;
-  background: linear-gradient(135deg, #b7cd7f 0%, #d9ef9f 100%) !important;
   transform: translateY(-2px) !important;
-  box-shadow: 0 8px 25px rgba(150,172,96,0.4) !important;
+  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4) !important;
+  background: linear-gradient(135deg, #5856eb 0%, #7c3aed 100%) !important;
 }
 
-/* Register */
 .school-navbar-register-btn {
-  color: #96ac60 !important;
-  background: transparent !important;
-  border-color: #96ac60 !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: #e5e7eb !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(10px) !important;
 }
 
 .school-navbar-register-btn:hover {
-  color: #203500 !important;
-  background: #96ac60 !important;
+  background: rgba(255, 255, 255, 0.2) !important;
+  color: #fff !important;
   transform: translateY(-2px) !important;
-  box-shadow: 0 8px 25px rgba(150,172,96,0.3) !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2) !important;
+  border-color: rgba(139, 92, 246, 0.5) !important;
+}
+
+/* === USUARIO CON BOTONES === */
+.user-welcome {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-radius: 2rem !important;
+  padding: 6px 14px !important;
+  border: 1.5px solid rgba(139, 92, 246, 0.5) !important;
+}
+
+.user-avatar {
+  border-radius: 50% !important;
+  border: 2px solid #8b5cf6 !important;
+  width: 40px !important;
+  height: 40px !important;
+  object-fit: cover !important;
+  background: #fff !important;
+}
+
+.user-text {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  font-size: 0.95rem !important;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.25) !important;
+  white-space: nowrap !important;
+}
+
+/* ✅ FIX: alinear botones en fila dentro del navbar */
+.user-actions {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.user-actions .action-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 50% !important;
+  background: rgba(99, 102, 241, 0.2) !important;
+  color: #fff !important;
+  font-size: 1.2rem !important;
+  transition: all 0.3s ease !important;
+  text-decoration: none !important;
+  border: none !important;
+  cursor: pointer !important;
+}
+
+.user-actions .action-btn:hover {
+  background: #6366f1 !important;
+  color: #fff !important;
+  transform: scale(1.1) !important;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3) !important;
 }
 
 /* === RESPONSIVE === */
@@ -162,59 +217,8 @@ body .school-navbar:hover {
   }
 }
 
-/* === USUARIO CON BOTONES === */
-.user-welcome {
-  display: flex !important;
-  align-items: center !important;
-  gap: 12px !important;
-  background: rgba(255, 255, 255, 0.1) !important;
-  border-radius: 2rem !important;
-  padding: 6px 14px !important;
-  border: 1.5px solid #96ac60 !important;
-}
-
-.user-avatar {
-  border-radius: 50% !important;
-  border: 2px solid #d9ef9f !important;
-  width: 40px !important;
-  height: 40px !important;
-  object-fit: cover !important;
-  background: #fff !important;
-}
-
-.user-text {
-  color: #ffffff !important;
-  font-weight: 600 !important;
-  font-size: 0.95rem !important;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.25) !important;
-  white-space: nowrap !important;
-}
-
-.user-actions {
-  display: flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-}
-
-.user-actions .action-btn {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  width: 32px !important;
-  height: 32px !important;
-  border-radius: 50% !important;
-  background: rgba(150,172,96,0.2) !important;
-  color: #d9ef9f !important;
-  font-size: 1.2rem !important;
-  transition: all 0.3s ease !important;
-  text-decoration: none !important;
-  border: none !important;
-  cursor: pointer !important;
-}
-
-.user-actions .action-btn:hover {
-  background: #96ac60 !important;
-  color: #203500 !important;
-  transform: scale(1.1) !important;
-  box-shadow: 0 4px 12px rgba(150,172,96,0.3) !important;
+/* === ANIMACIONES === */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-2px); }
 }

@@ -1,0 +1,51 @@
+/* === ASIDE ACUDIENTE === */
+/* Basado en Coordinador, pero con gama azul-verde */
+
+.sidebar {
+  background: rgba(15, 40, 55, 0.95) !important;
+  backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(148, 163, 184, 0.2) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3) !important;
+  width: 280px !important;
+  height: calc(100vh - 90px) !important;
+  top: 85px !important;
+  left: 20px !important;
+  position: fixed !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+  z-index: 1000 !important;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.sidebar.collapsed {
+  width: 80px !important;
+}
+
+/* Logo */
+.logo i {
+  background: linear-gradient(135deg, #0d6efd, #20c997) !important; /* azul → verde */
+}
+.toggle-btn {
+  background: linear-gradient(135deg, #0d6efd, #20c997) !important;
+}
+
+/* Menú */
+.menu-link::before {
+  background: linear-gradient(180deg, #0d6efd, #20c997) !important;
+}
+.menu-link.active {
+  background: linear-gradient(135deg, rgba(13, 110, 253, 0.2), rgba(32, 201, 151, 0.2)) !important;
+  color: white !important;
+  box-shadow: 0 4px 12px rgba(32, 201, 151, 0.2) !important;
+}
+
+/* Logout */
+.logout-link {
+  color: #ef4444 !important;
+  border: 1px solid rgba(239, 68, 68, 0.2) !important;
+}
+.logout-link:hover {
+  background: rgba(239, 68, 68, 0.1) !important;
+}

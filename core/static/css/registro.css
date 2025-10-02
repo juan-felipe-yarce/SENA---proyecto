@@ -27,15 +27,15 @@
 /* === TARJETA PRINCIPAL === */
 .registro-card {
     position: relative !important;
-    background: rgba(40, 62, 6, 0.3) !important; /* 💚 translúcido verdoso */
+    background: rgba(31,41,55, 0.3) !important; /* 💚 translúcido verdoso */
     backdrop-filter: blur(15px) !important;
     -webkit-backdrop-filter: blur(15px) !important;
     border-radius: 20px !important;
-    border: 1px solid rgba(150, 172, 96, 0.4) !important;
+    border: 1px solid rgba(139,92,246, 0.4) !important;
     box-shadow: 
         0 8px 32px rgba(0,0,0,0.45) ,
-        inset 0 1px 0 rgba(150,172,96,0.15) ,
-        0 0 0 1px rgba(150,172,96,0.2) !important;
+        inset 0 1px 0 rgba(139,92,246,0.15) ,
+        0 0 0 1px rgba(139,92,246,0.2) !important;
     transition: transform 0.3s ease, box-shadow 0.3s ease !important;
     animation: fadeInUp 0.8s ease-out !important;
     margin: 0 auto !important;
@@ -45,8 +45,8 @@
     transform: translateY(-5px) scale(1.01) !important;
     box-shadow: 
         0 12px 40px rgba(0,0,0,0.6) ,
-        inset 0 1px 0 rgba(150,172,96,0.25) ,
-        0 0 0 1px rgba(150,172,96,0.25) !important;
+        inset 0 1px 0 rgba(139,92,246,0.25) ,
+        0 0 0 1px rgba(139,92,246,0.25) !important;
 }
 
 
@@ -102,11 +102,11 @@
 
 /* === BOTONES === */
 .registro-btn-secondary {
-    background: rgba(40, 62, 6, 0.25) !important;
+    background: rgba(31,41,55, 0.25) !important;
     backdrop-filter: blur(10px) !important;
     -webkit-backdrop-filter: blur(10px) !important;
-    border: 1px solid rgba(150, 172, 96, 0.3) !important;
-    color: #d9ef9f !important;
+    border: 1px solid rgba(139,92,246, 0.3) !important;
+    color: #6366f1 !important;
     border-radius: 8px !important;
     padding: 0.5rem 1rem !important;
     text-decoration: none !important;
@@ -117,15 +117,15 @@
 }
 
 .registro-btn-secondary:hover {
-    background: rgba(40, 62, 6, 0.35) !important;
-    border: 1px solid rgba(150, 172, 96, 0.5) !important;
+    background: rgba(31,41,55, 0.35) !important;
+    border: 1px solid rgba(139,92,246, 0.5) !important;
     color: #ffffff !important;
     transform: translateY(-1px) !important;
     text-decoration: none !important;
 }
 
 .registro-btn-primary {
-    background: rgba(150, 172, 96, 0.9) !important;
+    background: rgba(139,92,246, 0.9) !important;
     backdrop-filter: blur(10px) !important;
     -webkit-backdrop-filter: blur(10px) !important;
     border: 1px solid rgba(233, 243, 209, 0.3) !important;
@@ -135,24 +135,24 @@
     letter-spacing: 0.02em !important;
     padding: 0.75rem 2rem !important;
     transition: all 0.3s ease !important;
-    box-shadow: 0 4px 15px rgba(150, 172, 96, 0.35) !important;
+    box-shadow: 0 4px 15px rgba(139,92,246, 0.35) !important;
     width: 100% !important;
     cursor: pointer !important;
     font-size: 1rem !important;
 }
 
 .registro-btn-primary:hover {
-    background: #96ac60 !important;
+    background: #8b5cf6 !important;
     transform: translateY(-2px) !important;
-    box-shadow: 0 8px 25px rgba(150, 172, 96, 0.45) !important;
+    box-shadow: 0 8px 25px rgba(139,92,246, 0.45) !important;
     border: 1px solid rgba(233, 243, 209, 0.4) !important;
 }
 
 .registro-btn-primary:focus {
     outline: none !important;
     box-shadow: 
-        0 8px 25px rgba(150, 172, 96, 0.4) ,
-        0 0 0 3px rgba(150, 172, 96, 0.3) !important;
+        0 8px 25px rgba(139,92,246, 0.4) ,
+        0 0 0 3px rgba(139,92,246, 0.3) !important;
 }
 /* === CAMPOS DEL FORMULARIO === */
 .registro-field {
@@ -171,18 +171,18 @@
 /* === INPUTS Y SELECTS === */
 .registro-input,
 .registro-select {
-    background: rgba(40, 62, 6, 0.25) !important;
+    background: rgba(31,41,55, 0.25) !important;
     backdrop-filter: blur(10px) !important;
     -webkit-backdrop-filter: blur(10px) !important;
-    border: 1px solid rgba(150, 172, 96, 0.3) !important;
+    border: 1px solid rgba(139,92,246, 0.3) !important;
     border-radius: 12px !important;
     color: #eaf3d1 !important;
     font-weight: 500 !important;
     padding: 0.75rem 1rem !important;
     transition: all 0.3s ease !important;
     box-shadow: 
-        0 4px 15px rgba(40,62,6,0.25),
-        inset 0 1px 0 rgba(150,172,96,0.15) !important;
+        0 4px 15px rgba(31,41,55,0.25),
+        inset 0 1px 0 rgba(139,92,246,0.15) !important;
     animation: inputFadeIn 0.5s ease-out !important;
     width: 100% !important;
     font-size: 1rem !important;
@@ -194,12 +194,12 @@
 
 .registro-input:focus,
 .registro-select:focus {
-    background: rgba(40,62,6,0.35) !important;
-    border: 1px solid rgba(150,172,96,0.5) !important;
+    background: rgba(31,41,55,0.35) !important;
+    border: 1px solid rgba(139,92,246,0.5) !important;
     box-shadow: 
-        0 6px 20px rgba(40,62,6,0.35) ,
-        inset 0 1px 0 rgba(150,172,96,0.2) ,
-        0 0 0 3px rgba(150,172,96,0.25) !important;
+        0 6px 20px rgba(31,41,55,0.35) ,
+        inset 0 1px 0 rgba(139,92,246,0.2) ,
+        0 0 0 3px rgba(139,92,246,0.25) !important;
     color: #ffffff !important;
     outline: none !important;
 }

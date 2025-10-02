@@ -3,18 +3,24 @@
 {% block title %}Lista de Niveles Educativos{% endblock %}
 
 {% block extra_head %}
-  <!-- ICONOS BOOTSTRAP: Asegúrate de que esto está en tu base.html. Si no, inclúyelo aquí solo una vez. -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="{% static 'css/nivel_list.css' %}">
 {% endblock %}
 
 {% block panel_content %}
 <div class="container-fluid px-0" style="max-width: 900px;">
-  <div class="card shadow rounded-4 border-0 mt-3">
-    <div class="card-body">
+  <!-- Quitar mt-3 que metÃ­a margen arriba -->
+  <div class="card shadow rounded-4 border-0">
 
+    <!-- Banner superior integrado -->
+    <div class="banner-img">
+      <img src="{% static 'img/formularios.jpg' %}" alt="Banner Formularios">
+    </div>
+
+    <!-- Contenido del card -->
+    <div class="card-body custom-body">
       <h2 class="h4 text-primary fw-bold mb-2">Niveles Educativos</h2>
-      <!-- Botón: Nuevo Nivel -->
+
       <div class="mb-4">
         <a href="{% url 'crear_nivel' %}" class="btn btn-primary btn-sm px-4 py-2 rounded-3 shadow-sm">
           <i class="bi bi-plus-circle me-2"></i>+ Nuevo Nivel
@@ -22,7 +28,6 @@
       </div>
 
       <div class="table-responsive">
-        <!-- 👇 Le quité "table-borderless" -->
         <table class="table table-hover align-middle mb-0">
           <thead class="table-light">
             <tr>
@@ -39,7 +44,7 @@
                   <i class="bi bi-pencil-square me-1"></i>Editar
                 </a>
                 <a href="{% url 'eliminar_nivel' nivel.id %}" class="btn btn-pastel-red d-inline-flex align-items-center"
-                   onclick="return confirm('¿Estás seguro de eliminar este nivel?');">
+                   onclick="return confirm('Â¿EstÃ¡s seguro de eliminar este nivel?');">
                   <i class="bi bi-trash me-1"></i>Eliminar
                 </a>
               </td>
@@ -48,7 +53,7 @@
             <tr>
               <td colspan="2" class="text-center text-muted py-5">
                 <div>
-                  <span style="font-size:2rem;">📂</span>
+                  <span style="font-size:2rem;">ðŸ“‚</span>
                   <div class="mt-2 fw-medium">No hay niveles registrados.</div>
                 </div>
               </td>

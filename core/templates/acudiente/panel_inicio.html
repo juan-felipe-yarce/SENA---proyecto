@@ -1,50 +1,118 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block extra_head %}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="{% static 'css/panel_inicio.css' %}">
+{% endblock %}
+
 {% block content %}
-<div class="container py-4">
-    <h2 class="mb-4">Bienvenido, {{ nombre_completo }}</h2>
-    <div class="row">
-        <div class="col-lg-4">
-            <div class="card shadow-sm">
-                <div class="card-header bg-primary text-white">
-                    <h5 class="card-title mb-0">
-                        <i class="bi bi-person"></i>
-                        Datos del Acudiente
-                    </h5>
-                </div>
-                <div class="card-body">
-                    <p class="mb-1"><strong>Correo:</strong> {{ usuario.correo }}</p>
-                    <p class="mb-1"><strong>Documento:</strong> {{ usuario.numero_documento|default:"No registrado" }}</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-8">
-            <div class="card shadow-sm">
-                <div class="card-header bg-info text-white">
-                    <h5 class="card-title mb-0">
-                        <i class="bi bi-people"></i>
-                        Estudiantes a Cargo
-                    </h5>
-                </div>
-                <div class="card-body">
-                    {% if acudidos %}
-                        <ul class="list-group">
-                            {% for estudiante in acudidos %}
-                                <li class="list-group-item">
-                                    <strong>{{ estudiante.primer_nombre }} {{ estudiante.segundo_nombre }} {{ estudiante.primer_apellido }} {{ estudiante.segundo_apellido }}</strong><br>
-                                    {% if estudiante.grupo %}
-                                        Grupo: {{ estudiante.grupo.nombre }} | Grado: {{ estudiante.grupo.grado.nombre }} | Nivel: {{ estudiante.grupo.grado.nivel.nombre }}
-                                    {% else %}
-                                        <span class="text-muted">Sin grupo asignado</span>
-                                    {% endif %}
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    {% else %}
-                        <p class="text-muted">No tienes estudiantes a cargo actualmente.</p>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
+<div class="container-fluid px-0" style="max-width: 1000px;">
+  <div class="card shadow rounded-4 border-0">
+
+    <!-- Banner superior integrado al card -->
+    <div class="banner-img">
+      <img src="{% static 'img/banner_acudiente.jpg' %}" alt="Banner Acudiente">
     </div>
+
+    <!-- Contenido -->
+    <div class="card-body custom-body">
+      <div class="d-flex align-items-center justify-content-between mb-3">
+        <h2 class="h4 text-primary fw-bold mb-0">
+          {% if perfil %}
+            Hola, {{ perfil.primer_nombre }} {{ perfil.primer_apellido }}
+          {% else %}
+            Hola, {{ usuario.correo }}
+          {% endif %}
+        </h2>
+
+        <div class="d-flex gap-2">
+          <a href="{% url 'perfil_usuario' %}" class="btn btn-pastel-blue btn-sm d-inline-flex align-items-center">
+            <i class="bi bi-person-circle me-1"></i> Ver perfil
+          </a>
+          <a href="{% url 'editar_perfil' %}" class="btn btn-primary btn-sm px-3 d-inline-flex align-items-center">
+            <i class="bi bi-pencil-square me-1"></i> Editar perfil
+          </a>
+        </div>
+      </div>
+
+      <div class="row g-3 g-md-4">
+        <!-- Datos del Acudiente -->
+        <div class="col-lg-4">
+          <div class="info-card rounded-4">
+            <h5 class="section-title">
+              <i class="bi bi-person me-2"></i> Datos del acudiente
+            </h5>
+
+            <ul class="info-list">
+              <li><span class="label">Correo:</span> <span class="value">{{ usuario.correo }}</span></li>
+
+              {% if perfil %}
+                <li><span class="label">Nombres:</span>
+                    <span class="value">{{ perfil.primer_nombre }} {{ perfil.segundo_nombre|default:"" }}</span></li>
+                <li><span class="label">Apellidos:</span>
+                    <span class="value">{{ perfil.primer_apellido }} {{ perfil.segundo_apellido|default:"" }}</span></li>
+                <li><span class="label">Dirección:</span>
+                    <span class="value">{{ perfil.direccion_linea1|default:"No registrada" }}</span></li>
+                <li><span class="label">Municipio exp.:</span>
+                    <span class="value">{{ usuario.municipio_identificacion.nombre|default:"No registrado" }}</span></li>
+              {% else %}
+                <li class="text-muted">Aún no has completado tu perfil.</li>
+              {% endif %}
+
+              <li><span class="label">Documento:</span>
+                  <span class="value">{{ usuario.numero_documento|default:"No registrado" }}</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Estudiantes a cargo -->
+        <div class="col-lg-8">
+          <div class="info-card rounded-4">
+            <div class="d-flex align-items-center justify-content-between mb-2">
+              <h5 class="section-title mb-0">
+                <i class="bi bi-people me-2"></i> Estudiantes a cargo
+              </h5>
+              <a href="{% url 'asignar_estudiante' %}" class="btn btn-pastel-blue btn-sm d-inline-flex align-items-center">
+                <i class="bi bi-person-plus me-1"></i> Asignar estudiante
+              </a>
+            </div>
+
+            {% if acudidos %}
+              <ul class="list-group list-group-flush glass-list">
+                {% for estudiante in acudidos %}
+                  <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div>
+                      <div class="fw-semibold">
+                        {{ estudiante.primer_nombre }}
+                        {{ estudiante.segundo_nombre|default:"" }}
+                        {{ estudiante.primer_apellido }}
+                        {{ estudiante.segundo_apellido|default:"" }}
+                      </div>
+                      <div class="text-muted small">
+                        {% if estudiante.grupo %}
+                          Grupo: {{ estudiante.grupo.nombre }} ·
+                          Grado: {{ estudiante.grupo.grado.nombre }} ·
+                          Nivel: {{ estudiante.grupo.grado.nivel.nombre }}
+                        {% else %}
+                          Sin grupo asignado
+                        {% endif %}
+                      </div>
+                    </div>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% else %}
+              <div class="empty-state text-center py-4">
+                <div style="font-size:2rem;">👨‍👩‍👧</div>
+                <div class="mt-2 text-muted">No tienes estudiantes a cargo actualmente.</div>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </div>
-{% endblock %} 
+{% endblock %}

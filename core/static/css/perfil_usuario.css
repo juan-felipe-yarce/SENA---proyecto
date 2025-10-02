@@ -1,0 +1,343 @@
+/* =========================================================
+   PERFIL USUARIO — Glassmorphism Gris/Violeta
+   Sobreescribiendo Bootstrap con !important
+   ========================================================= */
+
+/* ===== Fondo animado ===== */
+body {
+  min-height: 100vh !important;
+  position: relative !important;
+  overflow-x: hidden !important;
+}
+
+body::before {
+  content: '' !important;
+  position: fixed !important;
+  top: -50% !important;
+  left: -50% !important;
+  width: 200% !important;
+  height: 200% !important;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(107, 114, 128, 0.1) 0%, transparent 50%) !important;
+  animation: floatBackground 20s ease-in-out infinite !important;
+  pointer-events: none !important;
+  z-index: -1 !important;
+}
+
+@keyframes floatBackground {
+  0%, 100% { transform: translateX(0) translateY(0) rotate(0deg) !important; }
+  33% { transform: translateX(-30px) translateY(-30px) rotate(1deg) !important; }
+  66% { transform: translateX(30px) translateY(-20px) rotate(-1deg) !important; }
+}
+
+/* ===== Card Principal ===== */
+.card {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.card .card-body,
+.profile-container,
+.perfil-card-body {
+  position: relative !important;
+  background: rgba(31, 41, 55, 0.45) !important;
+  backdrop-filter: blur(25px) !important;
+  -webkit-backdrop-filter: blur(25px) !important;
+  border-radius: 24px !important;
+  border: 1px solid rgba(139, 92, 246, 0.4) !important;
+  box-shadow: 
+    0 12px 40px rgba(31, 41, 55, 0.5),
+    inset 0 1px 0 rgba(139, 92, 246, 0.2),
+    0 0 0 1px rgba(139, 92, 246, 0.1) !important;
+  padding: 2rem !important;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  animation: slideInLeft 0.6s ease-out !important;
+  animation-fill-mode: both !important;
+  overflow: hidden !important;
+  max-width: 1100px !important;
+  margin: 2rem auto 4rem auto !important;
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0 !important; transform: translateX(-30px) !important; }
+  to   { opacity: 1 !important; transform: translateX(0) !important; }
+}
+
+/* ===== Header ===== */
+.profile-title {
+  font-size: 1.6rem !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5) !important;
+}
+
+.profile-subtitle {
+  color: rgba(255, 255, 255, 0.85) !important;
+  font-size: 1rem !important;
+  margin-bottom: 1rem !important;
+}
+
+.profile-meta .meta-item {
+  display: inline-block !important;
+  margin-right: 1rem !important;
+  font-size: 0.9rem !important;
+  color: #ffffff !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* ===== Avatar ===== */
+.profile-avatar,
+.perfil-avatar {
+  width: 120px !important;
+  height: 120px !important;
+  object-fit: cover !important;
+  border-radius: 24px !important;
+  border: 3px solid rgba(255, 255, 255, 0.4) !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.1) !important;
+  margin: 0 auto 0.8rem auto !important;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  display: block !important;
+}
+
+.profile-avatar:hover,
+.perfil-avatar:hover {
+  transform: scale(1.05) rotate(2deg) !important;
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.4),
+    0 0 30px rgba(139, 92, 246, 0.4) !important;
+}
+
+.avatar-placeholder {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  font-size: 2rem !important;
+  color: #ffffff !important;
+  width: 120px;
+  height: 120px;
+  border-radius: 24px !important;
+  background: rgba(255, 255, 255, 0.15) !important;
+}
+
+/* ===== Role badge ===== */
+.role-badge {
+  background: rgba(255, 255, 255, 0.15) !important;
+  backdrop-filter: blur(10px) !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4) !important;
+  padding: 0.4rem 1.2rem !important;
+  border-radius: 20px !important;
+  font-size: 0.9rem !important;
+  margin-top: 0.5rem !important;
+  display: inline-block !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  transition: all 0.3s ease !important;
+}
+
+.role-badge:hover {
+  background: rgba(255, 255, 255, 0.25) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* ===== Info Cards ===== */
+.info-card {
+  background: rgba(55, 65, 81, 0.35) !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(139, 92, 246, 0.3) !important;
+  box-shadow: 
+    0 4px 16px rgba(31, 41, 55, 0.45),
+    inset 0 1px 0 rgba(139, 92, 246, 0.15) !important;
+  padding: 1.2rem 1.5rem !important;
+  margin-bottom: 1.2rem !important;
+}
+
+.card-header h3 {
+  color: #ffffff !important;
+  font-size: 1.05rem !important;
+  font-weight: 600 !important;
+  margin-bottom: 0.5rem !important;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4) !important;
+}
+
+.card-section-title {
+  color: #ffffff !important;
+  font-size: 1.2rem !important;
+  font-weight: 600 !important;
+  margin-bottom: 1rem !important;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* ===== Info Group ===== */
+.info-group {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  padding: 1rem !important;
+  margin-bottom: 1rem !important;
+  transition: all 0.3s ease !important;
+}
+
+.info-group label {
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+  color: rgba(255, 255, 255, 0.85) !important;
+  margin-bottom: 0.3rem !important;
+}
+
+.info-group span {
+  font-size: 0.95rem !important;
+  font-weight: 500 !important;
+  color: #000000 !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
+}
+
+.info-group:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  transform: translateX(5px) !important;
+  border-color: rgba(139, 92, 246, 0.3) !important;
+}
+
+/* ===== Botón Editar Perfil ===== */
+.btn-edit {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%) !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 12px !important;
+  font-weight: 600 !important;
+  padding: 0.8rem 2rem !important;
+  font-size: 1rem !important;
+  text-decoration: none !important;
+  display: inline-block !important;
+  box-shadow: 
+    0 6px 20px rgba(139, 92, 246, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.btn-edit::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: -100% !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent) !important;
+  transition: left 0.5s !important;
+}
+
+.btn-edit:hover {
+  background: linear-gradient(135deg, #5850ec 0%, #7c3aed 100%) !important;
+  transform: translateY(-2px) !important;
+}
+
+.btn-edit:hover::before {
+  left: 100% !important;
+}
+
+/* =========================================================
+   FIX CAMPOS FORMULARIO Y SELECTS — SOLO PERFIL
+   ========================================================= */
+.form-card-profile {
+  color-scheme: dark !important;
+}
+
+.form-card-profile select,
+.form-card-profile .form-select,
+.form-card-profile .form-control,
+.form-card-profile textarea {
+  background: rgba(31, 41, 55, 0.55) !important;
+  border: 1px solid rgba(139, 92, 246, 0.4) !important;
+  border-radius: 12px !important;
+  color: #ffffff !important;
+  font-weight: 500 !important;
+  padding: 0.7rem 1rem !important;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.4) !important;
+  transition: all 0.3s ease !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+}
+
+.form-card-profile select:focus,
+.form-card-profile .form-select:focus,
+.form-card-profile .form-control:focus,
+.form-card-profile textarea:focus {
+  background: rgba(31, 41, 55, 0.7) !important;
+  border-color: rgba(167, 139, 250, 0.85) !important;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.25) !important;
+  color: #ffffff !important;
+  outline: none !important;
+}
+
+.form-card-profile select option,
+.form-card-profile .form-select option,
+.form-card-profile select optgroup {
+  background: rgba(31, 41, 55, 0.95) !important;
+  color: #ffffff !important;
+  font-weight: 500 !important;
+}
+
+.form-card-profile .form-control::placeholder,
+.form-card-profile textarea::placeholder {
+  color: rgba(255,255,255,0.6) !important;
+  font-weight: 400 !important;
+}
+
+.form-card-profile .form-control.is-invalid,
+.form-card-profile .form-select.is-invalid {
+  border-color: #f87171 !important;
+  background: rgba(55, 28, 28, 0.7) !important;
+  color: #ffffff !important;
+}
+
+.form-card-profile .form-control.is-valid,
+.form-card-profile .form-select.is-valid {
+  border-color: #4ade80 !important;
+  background: rgba(22, 47, 28, 0.6) !important;
+  color: #ffffff !important;
+}
+
+.form-card-profile input:-webkit-autofill,
+.form-card-profile textarea:-webkit-autofill,
+.form-card-profile select:-webkit-autofill {
+  -webkit-text-fill-color: #ffffff !important;
+  transition: background-color 9999s ease-in-out 0s !important;
+  box-shadow: 0 0 0px 1000px rgba(31, 41, 55, 0.55) inset !important;
+  border: 1px solid rgba(139, 92, 246, 0.4) !important;
+}
+
+.form-card-profile .bg-white.form-select,
+.form-card-profile .bg-white.form-control {
+  background: rgba(31, 41, 55, 0.55) !important;
+  color: #ffffff !important;
+}
+
+.form-card-profile .form-label {
+  color: rgba(255,255,255,0.9) !important;
+}
+/* FIX FINAL: Selects con estilo Glassmorphism */
+.form-card-profile select.form-select,
+.form-card-profile .form-select {
+  background: rgba(31, 41, 55, 0.55) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(139, 92, 246, 0.4) !important;
+  border-radius: 12px !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  background-image: none !important; /* quita icono blanco de bootstrap */
+}
+
+/* Opciones del dropdown */
+.form-card-profile .form-select option {
+  background: rgba(31, 41, 55, 0.95) !important;
+  color: #ffffff !important;
+}
+

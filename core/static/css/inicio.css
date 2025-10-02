@@ -1,194 +1,401 @@
-/* === GLASSMORPHISM PÁGINA DE INICIO === */
+/* ====== FIX DE LAYOUT SOLO PARA LA PÁGINA DE INICIO ====== */
+body.inicio-page {
+  display: block !important;            
+  overflow-x: hidden !important;
+}
+
+body.inicio-page .layout-aside { 
+  display: none !important; 
+}
+
+body.inicio-page .layout-content,
+body.inicio-page main.layout-content.fondo {
+  position: static !important;
+  margin: 0 !important;
+  margin-left: 0 !important;            
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  transform: none !important;
+  display: block !important;
+  left: 0 !important; right: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* ====== PALETA GENERAL ====== */
 body {
-    margin: 0 !important;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
-    color: #333333 !important;
-    background: url("../img/Fondo.jpg") no-repeat center center fixed !important;
-    background-size: cover !important;
+  margin: 0 !important;
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+  color: #ffffff !important; /* texto general blanco */
+  background: url("../img/Fondo.jpg") no-repeat center center fixed !important;
+  background-size: cover !important;
 }
 
-/* Layout principal */
-.layout-content-bienvenida {
-    min-height: calc(100vh - 128px) !important; /* resta navbar (64px) + footer (64px) */
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    padding: 2rem 1rem !important;
-    position: relative !important;
-    box-sizing: border-box !important;
+h1, h2, h3, h5, h6 {
+  color: #ffffff !important; /* títulos por defecto en blanco */
 }
 
-/* === CAJA PRINCIPAL GLASSMORPHISM === */
-.bienvenida-box {
-    position: relative !important;
-    background: rgba(40, 62, 6, 0.3) !important; /* 💚 tono más claro, igual que login */
-    backdrop-filter: blur(20px) !important;
-    -webkit-backdrop-filter: blur(20px) !important;
-    border-radius: 24px !important;
-    border: 1px solid rgba(150, 172, 96, 0.4) !important;
-    box-shadow: 
-        0 12px 40px 0 rgba(32, 53, 0, 0.45),
-        inset 0 1px 0 rgba(150, 172, 96, 0.15),
-        0 0 0 1px rgba(150, 172, 96, 0.05) !important;
-    padding: 3rem 2.5rem !important;
-    max-width: 500px !important;
-    width: 100% !important;
-    transition: all 0.4s ease !important;
-    animation: fadeInScale 1s ease-out !important;
+.section-subtitle,
+.hero-subtitle,
+p {
+  color: #cccccc !important; /* gris claro */
 }
 
-/* Hover effect para la caja */
-.bienvenida-box:hover {
-    transform: translateY(-2px) scale(1.01) !important; /* más sutil */
-    box-shadow: 
-        0 16px 45px 0 rgba(32, 53, 0, 0.5),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2),
-        0 0 0 1px rgba(255, 255, 255, 0.1) !important;
-    transition: transform 0.5s ease, box-shadow 0.5s ease !important; /* animación más fluida */
+/* ====== WRAPPER Y CONTENEDOR ====== */
+.inicio-wrapper {
+  min-height: calc(100vh - 120px) !important; 
+  display: grid !important;
+  place-items: center !important;             
+  padding: 2rem 1rem !important;
+  position: relative !important;
 }
 
-/* Efectos de brillo en la caja */
-.bienvenida-box::before {
-    content: '' !important;
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    height: 3px !important;
-    background: linear-gradient(90deg, transparent, rgba(217, 239, 159, 0.7), transparent) !important;
-    border-radius: 24px 24px 0 0 !important;
-    opacity: 0.9 !important;
-    z-index: 1 !important;
+.inicio-container {
+  width: min(1200px, 100%) !important;
+  margin: 0 auto !important;
+  border-radius: 24px !important;
+  position: relative !important;
+  overflow: hidden !important;
+
+  background: rgba(30, 30, 30, 0.6) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255,255,255,0.1) !important;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5) !important;
 }
 
-.bienvenida-box::after {
-    content: '' !important;
-    position: absolute !important;
-    top: 30px !important;
-    left: 0 !important;
-    width: 3px !important;
-    height: 70% !important;
-    background: linear-gradient(180deg, rgba(217, 239, 159, 0.3), transparent) !important;
-    border-radius: 0 0 0 24px !important;
-    z-index: 1 !important;
+/* ====== HERO CON IMAGEN DE FONDO ====== */
+.hero-section {
+  position: relative !important;
+  padding: 4rem 2rem !important;
+  text-align: center !important;
+  border-radius: 24px 24px 0 0 !important;
+  overflow: hidden !important;
+  background: none !important;
 }
 
-/* Contenido con z-index mayor */
-.bienvenida-box > * {
-    position: relative !important;
-    z-index: 2 !important;
+.hero-section::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.45)),
+    url("../img/fondo_inicio.jpg") center / cover no-repeat;
+  z-index: 0 !important;
 }
 
-/* === TÍTULO PRINCIPAL === */
-.bienvenida-box .display-4,
-.bienvenida-box h1,
-html body .bienvenida-box .text-primary,
-html body .bienvenida-box h1.text-primary {
-    color: #d9ef9f !important; /* verde claro */
-    text-shadow: 0 3px 10px rgba(0, 0, 0, 0.6) !important;
-    margin-bottom: 1.5rem !important;
-    font-weight: 700 !important;
-    animation: titleGlow 2s ease-in-out infinite alternate !important;
+.hero-content { position: relative !important; z-index: 1 !important; }
+
+.hero-title {
+  font-family: 'Poppins', sans-serif !important;
+  font-size: 3.5rem !important;
+  font-weight: 800 !important;
+  margin-bottom: 1rem !important;
+  color: #ffd166 !important; /* amarillo */
 }
 
-/* === TEXTO SECUNDARIO === */
-.bienvenida-box .lead,
-.bienvenida-box .text-secondary,
-html body .bienvenida-box p {
-    color: #eaf3d1 !important;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4) !important;
-    margin-bottom: 2rem !important;
-    font-weight: 500 !important;
-    font-size: 1.1rem !important;
-    line-height: 1.6 !important;
+.hero-subtitle {
+  font-size: 1.3rem !important;
+  margin-bottom: 2rem !important; 
+  line-height: 1.6 !important;
+  max-width: 600px !important; 
+  margin-left: auto !important; 
+  margin-right: auto !important;
 }
 
-/* === BOTÓN PRINCIPAL GLASSMORPHISM === */
-.bienvenida-box .btn,
-.bienvenida-box .btn-primary {
-    background: #96ac60 !important;
-    backdrop-filter: blur(15px) !important;
-    -webkit-backdrop-filter: blur(15px) !important;
-    border: 1px solid rgba(233,243,209,0.3) !important;
-    border-radius: 16px !important;
-    color: #203500 !important;   /* 💚 igual al login */
-    font-weight: 600 !important;
-    font-size: 1.1rem !important;
-    padding: 0.875rem 2.5rem !important;
-    text-decoration: none !important;
-    text-shadow: none !important; /* para que no quede raro */
-    box-shadow: 
-        0 6px 20px rgba(150, 172, 96, 0.4),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
-    transition: all 0.3s ease !important;
-    position: relative !important;
-    overflow: hidden !important;
-    width: 100% !important;
+.hero-badge {
+  display: inline-flex !important; 
+  align-items: center !important; 
+  gap: 8px !important;
+  background: rgba(255,255,255,0.08) !important; 
+  padding: 0.75rem 1.5rem !important;
+  border-radius: 50px !important; 
+  border: 1px solid rgba(255,255,255,0.2) !important;
+  color: #ffd166 !important; /* amarillo */
+  font-weight: 600 !important; 
+  font-size: 0.9rem !important;
 }
 
+/* ====== SECCIONES GENERALES ====== */
+.section-box {
+  background: rgba(255,255,255,0.04) !important;
+  border-radius: 20px !important;
+  padding: 2.5rem 2rem !important;
+  margin: 2rem !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 8px 32px rgba(0,0,0,0.3) !important;
+  border: 1px solid rgba(255,255,255,0.05) !important;
+  transition: transform .3s ease !important;
+}
+.section-box:hover { transform: translateY(-4px) !important; }
 
-/* Hover */
-.bienvenida-box .btn:hover {
-    background: #b7cd7f !important;
-    transform: translateY(-3px) !important;
-    box-shadow: 0 12px 35px rgba(150, 172, 96, 0.5) !important;
+.section-header { text-align: center !important; margin-bottom: 2rem !important; }
+.section-header i { font-size: 2.5rem !important; margin-bottom: 1rem !important; display: block !important; }
+
+.section-header h2 {
+  font-size: 2.2rem !important; font-weight: 700 !important;
+  background: linear-gradient(90deg, #ff4ecd, #00cfff);
+  background-clip: text; -webkit-background-clip: text !important;
+  color: transparent !important; -webkit-text-fill-color: transparent !important;
 }
 
-/* === ANIMACIONES === */
-@keyframes fadeInScale {
-    0% { opacity: 0; transform: scale(0.9) translateY(30px); }
-    100% { opacity: 1; transform: scale(1) translateY(0); }
+/* ====== TECNOLOGÍAS (badges) ===== */
+.tech-highlight {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 1rem !important;
+  margin: 1.5rem 0 !important;
+  flex-wrap: wrap !important;
 }
 
-@keyframes titleGlow {
-    0% {
-        text-shadow: 0 3px 15px rgba(0,0,0,0.5);
-    }
-    100% {
-        text-shadow: 
-            0 3px 15px rgba(0,0,0,0.5),
-            0 0 20px rgba(217, 239, 159, 0.4);
-    }
+.tech-highlight .tech-badge {
+  background: rgba(255,255,255,0.1) !important;
+  color: #9be564 !important;
+  padding: 0.5rem 1rem !important;
+  border-radius: 25px !important;
+  font-weight: 600 !important;
+  font-size: 0.95rem !important;
+  border: 1px solid rgba(255,255,255,0.2) !important;
+  transition: background .3s ease !important;
 }
 
-@keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
+.tech-highlight .tech-badge:hover {
+  background: rgba(255,255,255,0.2) !important;
 }
 
-.bienvenida-box {
-    animation: fadeInScale 1s ease-out, float 6s ease-in-out infinite 1s !important;
+/* ====== FEATURES (lista con íconos) ===== */
+.features-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important; 
+  gap: 1rem 2rem !important;
+  margin-top: 1.5rem !important;
 }
 
-/* === RESPONSIVE === */
+.feature-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  font-size: 0.95rem !important;
+  color: #f0f0f0 !important;
+}
+
+.feature-item i {
+  color: #00cfff !important; /* azul celeste */
+  font-size: 1rem !important;
+}
+
 @media (max-width: 768px) {
-    .bienvenida-box {
-        padding: 2rem 1.5rem !important;
-        margin: 1rem !important;
-        border-radius: 20px !important;
-    }
-
-    .bienvenida-box h1 {
-        font-size: 2.5rem !important;
-    }
-
-    .bienvenida-box .lead {
-        font-size: 1rem !important;
-    }
+  .features-grid {
+    grid-template-columns: 1fr !important;
+  }
 }
 
-@media (max-width: 480px) {
-    .layout-content-bienvenida {
-        padding: 1rem 0.5rem !important;
-    }
+/* ====== MISIÓN ====== */
+.mission-box {
+  background: rgba(255, 215, 0, 0.1) !important;
+  border-radius: 20px !important;
+  padding: 2rem !important;
+  text-align: center !important;
+  border: 1px solid rgba(255, 215, 0, 0.3) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  box-shadow: 0 8px 25px rgba(255, 215, 0, 0.15) !important;
+  transition: all 0.3s ease !important;
+}
+.mission-box h3 { color: #ffd166 !important; } /* amarillo */
 
-    .bienvenida-box {
-        padding: 1.5rem 1rem !important;
-        margin: 0.5rem !important;
-        border-radius: 16px !important;
-    }
+/* ====== VISIÓN ====== */
+.vision-box {
+  background: rgba(255, 78, 205, 0.1) !important;
+  border-radius: 20px !important;
+  padding: 2rem !important;
+  text-align: center !important;
+  border: 1px solid rgba(255, 78, 205, 0.3) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  box-shadow: 0 8px 25px rgba(255, 78, 205, 0.15) !important;
+  transition: all 0.3s ease !important;
+}
+.vision-box h3 { color: #ff4ecd !important; } /* rosado */
 
-    .bienvenida-box h1 {
-        font-size: 2rem !important;
-    }
+/* ====== MÓDULOS ====== */
+.modules-section {
+  margin: 2rem auto !important;
+  padding: 0 2rem !important;
+  max-width: 1200px !important;
+}
+
+.modules-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 2rem !important;
+}
+
+.module-card {
+  border-radius: 20px !important;
+  padding: 1.5rem !important;
+  text-align: center !important;
+  transition: transform .3s ease !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  position: relative !important;
+  overflow: hidden !important;
+  color: #fff !important;
+  background: rgba(20,20,20,0.45) !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+}
+.module-card:hover { transform: translateY(-6px) scale(1.02) !important; }
+
+.module-card > * {
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+.module-card::before {
+  content:"" !important;
+  position:absolute !important;
+  inset:0 !important;
+  border-radius:20px !important;
+  background-size:cover !important;
+  background-position:center !important;
+  background-repeat:no-repeat !important;
+  z-index:0 !important;
+  opacity:0.6 !important;
+}
+
+.module-card::after {
+  content:"" !important;
+  position:absolute !important;
+  inset:0 !important;
+  border-radius:20px !important;
+  background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.65)) !important;
+  z-index:1 !important;
+}
+
+.module-card.users-module::before {
+  background-image: url("../img/gestion_usuarios.jpg");
+}
+.module-card.academic-module::before {
+  background-image: url("../img/academico.jpg");
+}
+.module-card.reports-module::before {
+  background-image: url("../img/reportes.jpg");
+}
+
+.module-icon {
+  width: 80px !important; height: 80px !important; border-radius: 20px !important;
+  display: flex !important; align-items: center !important; justify-content: center !important;
+  margin: 0 auto 1.5rem auto !important;
+  background: rgba(255,255,255,0.2) !important;
+  color: #ffffff !important;
+}
+
+.module-card h5 { color: #ffffff !important; }
+.module-card p  { color: #f0f0f0 !important; text-align: justify !important; }
+
+/* ====== CONTACTO ====== */
+.contact-section {
+  margin: 2rem auto !important;
+  padding: 0 2rem !important;
+  max-width: 1200px !important;
+}
+
+.contact-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 1.5rem !important;
+}
+
+.contact-card {
+  background: rgba(255,255,255,0.05) !important;
+  border-radius: 16px !important;
+  padding: 1.5rem 1rem !important;
+  text-align: center !important;
+  transition: background .3s ease !important;
+  border: 1px solid rgba(255,255,255,0.1) !important;
+}
+
+.contact-card:hover {
+  background: rgba(255,255,255,0.1) !important;
+}
+
+.contact-icon {
+  color: #00cfff !important; /* azul */
+  font-size: 1.8rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.contact-card h6 {
+  margin-bottom: 0.5rem !important;
+  font-weight: 600 !important;
+  color: #ffffff !important;
+}
+
+.contact-card p {
+  font-size: 0.9rem !important;
+  color: #ddd !important;
+  margin: 0 !important;
+}
+
+@media (max-width: 992px) {
+  .contact-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+@media (max-width: 576px) {
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ====== BOTÓN ACCESO (estilo morado sobrio) ====== */
+.access-section {
+  background: rgba(255,255,255,0.05) !important;
+  margin: 2rem !important; 
+  padding: 3rem 2rem !important;
+  border-radius: 20px !important; 
+  text-align: center !important;
+}
+
+.access-content h3 { 
+  font-size: 1.8rem !important; 
+  font-weight: 600 !important; 
+  background: none !important;   /* quitamos gradiente heredado */
+  -webkit-background-clip: initial !important;
+  -webkit-text-fill-color: initial !important;
+  color: #00cfff !important;     /* celeste sólido */
+}
+
+.access-content p { 
+  color: #ccc !important; 
+}
+
+.access-btn {
+  display: inline-flex !important; 
+  align-items: center !important; 
+  gap: 0.75rem !important;
+  background: #9b5de5 !important;   /* morado sólido */
+  color: #ffffff !important; 
+  padding: 1rem 2.5rem !important; 
+  border-radius: 50px !important;
+  font-weight: 600 !important; 
+  font-size: 1.1rem !important; 
+  text-decoration: none !important;
+  transition: transform .3s ease, box-shadow .3s ease, background .3s ease !important;
+}
+
+.access-btn:hover { 
+  background: #7a3db8 !important;  /* morado más oscuro en hover */
+  transform: scale(1.05) !important; 
+  box-shadow: 0 8px 20px rgba(155,93,229,.35) !important; 
+}
+.access-section .access-content h3 {
+  font-size: 1.8rem !important;
+  font-weight: 600 !important;
+  background: linear-gradient(90deg, #9b5de5, #00cfff) !important; /* mismo gradiente que Contáctanos */
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
 }

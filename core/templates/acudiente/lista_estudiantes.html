@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Mis Estudiantes{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/lista_estudiantes.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container py-4" style="max-width: 900px;">
+
+  <div class="card shadow-sm rounded-4 border-0">
+    
+    <!-- Banner dentro de la tarjeta -->
+    <div class="banner-img">
+      <img src="{% static 'img/banner_acudiente.jpg' %}" alt="Banner Acudiente">
+    </div>
+
+    <!-- Encabezado -->
+    <div class="card-header text-white">
+      <h5 class="mb-0">
+        <i class="bi bi-people"></i> Estudiantes a Cargo
+      </h5>
+    </div>
+
+    <!-- Cuerpo -->
+    <div class="card-body">
+      {% if acudidos %}
+        <ul class="list-group list-group-flush">
+          {% for est in acudidos %}
+            <li class="list-group-item glass-list-item">
+              <i class="bi bi-person-badge"></i>
+              <strong>
+                {{ est.primer_nombre }} {{ est.segundo_nombre|default:"" }}
+                {{ est.primer_apellido }} {{ est.segundo_apellido|default:"" }}
+              </strong><br>
+              {% if est.grupo %}
+                Grupo: {{ est.grupo.nombre }} |
+                Grado: {{ est.grupo.grado.nombre }} |
+                Nivel: {{ est.grupo.grado.nivel.nombre }}
+              {% else %}
+                <span class="text-muted">Sin grupo asignado</span>
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="text-muted">
+          <i class="bi bi-exclamation-circle"></i> No tienes estudiantes asignados.
+        </p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

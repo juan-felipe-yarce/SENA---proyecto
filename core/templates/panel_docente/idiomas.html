@@ -1,62 +1,132 @@
 {% extends "panel_docente/dashboard_base.html" %}
 {% load static %}
+{% load widget_tweaks %}
+
 {% block title %}Idiomas del Docente{% endblock %}
 
+{% block extra_head %}
+  <!-- Estilos específicos para Idiomas -->
+  <link rel="stylesheet" href="{% static 'css/idiomas_docente.css' %}">
+  <!-- Choices.js para selects -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
+{% endblock %}
+
 {% block panel_content %}
-<div class="p-4 bg-white rounded-4 shadow mt-3" style="max-width: 800px; margin:auto;">
-    <h1 class="h4 fw-bold text-primary mb-3">
+<div class="container-fluid px-0" style="max-width: 1000px; margin: 0 auto;">
+  <div class="card glass-container">
+
+    <!-- Banner -->
+    <div class="banner-img">
+      <img src="{% static 'img/banner_docente.jpg' %}" alt="Banner Idiomas">
+    </div>
+
+    <div class="card-body">
+      <!-- Header -->
+      <h1 class="educacion-title mb-4">
         <i class="bi bi-translate"></i> Idiomas del Docente
-    </h1>
+      </h1>
 
-    <!-- Mensajes -->
-    {% if messages %}
-      {% for message in messages %}
-        <div class="alert alert-{{ message.tags }} mt-2">{{ message }}</div>
-      {% endfor %}
-    {% endif %}
+      <!-- Mensajes -->
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }} alert-dismissible fade show glass-alert" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+          </div>
+        {% endfor %}
+      {% endif %}
 
-    <!-- Formulario -->
-    <form method="post" enctype="multipart/form-data" class="row g-3 mb-4">
+      <!-- Formulario -->
+      <form method="post" enctype="multipart/form-data" class="row g-3 mb-4">
         {% csrf_token %}
-        {{ form.as_p }}
-        <div class="col-12">
-            <button type="submit" class="btn btn-primary">Agregar idioma</button>
-        </div>
-    </form>
 
-    <!-- Tabla de idiomas -->
-    <h3>Idiomas registrados</h3>
-    <table class="table table-striped mt-2">
-        <thead>
-            <tr>
+        <div class="col-md-6">
+          {{ form.idioma.label_tag }}
+          {{ form.idioma|add_class:"form-control" }}
+        </div>
+        <div class="col-md-4">
+          {{ form.nivel_habla.label_tag }}
+          {{ form.nivel_habla|add_class:"form-select" }}
+        </div>
+        <div class="col-md-4">
+          {{ form.nivel_lee.label_tag }}
+          {{ form.nivel_lee|add_class:"form-select" }}
+        </div>
+        <div class="col-md-4">
+          {{ form.nivel_escribe.label_tag }}
+          {{ form.nivel_escribe|add_class:"form-select" }}
+        </div>
+        <div class="col-md-8">
+          {{ form.documento_soporte.label_tag }}
+          {{ form.documento_soporte|add_class:"form-control" }}
+        </div>
+
+        <div class="col-12 mt-3 text-end">
+          <button type="submit" class="btn-guardar">
+            <i class="bi bi-plus-circle me-1"></i> Agregar Idioma
+          </button>
+        </div>
+      </form>
+
+      <!-- Tabla de idiomas -->
+      <h3 class="educacion-title h5 mt-4">Idiomas Registrados</h3>
+      {% if idiomas %}
+        <div class="table-responsive mt-3">
+          <table class="table align-middle rounded-3 overflow-hidden">
+            <thead>
+              <tr>
                 <th>Idioma</th>
                 <th>Habla</th>
                 <th>Lee</th>
                 <th>Escribe</th>
                 <th>Documento</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for idioma in idiomas %}
-            <tr>
+              </tr>
+            </thead>
+            <tbody>
+              {% for idioma in idiomas %}
+              <tr>
                 <td>{{ idioma.idioma }}</td>
                 <td>{{ idioma.nivel_habla }}</td>
                 <td>{{ idioma.nivel_lee }}</td>
                 <td>{{ idioma.nivel_escribe }}</td>
                 <td>
-                    {% if idioma.documento_soporte %}
-                        <a href="{{ idioma.documento_soporte.url }}" target="_blank" class="btn btn-sm btn-outline-info">Ver</a>
-                    {% else %}
-                        <span class="text-muted">No adjunto</span>
-                    {% endif %}
+                  {% if idioma.documento_soporte %}
+                    <a href="{{ idioma.documento_soporte.url }}" target="_blank" class="btn-editar btn-sm">
+                      <i class="bi bi-file-earmark-text"></i> Ver
+                    </a>
+                  {% else %}
+                    <span class="text-white-50">No adjunto</span>
+                  {% endif %}
                 </td>
-            </tr>
-            {% empty %}
-            <tr>
-                <td colspan="5" class="text-center">No hay idiomas registrados.</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      {% else %}
+        <div class="text-center py-5">
+          <i class="bi bi-translate display-1 text-muted"></i>
+          <h4 class="text-white-50 mt-3">No hay idiomas registrados</h4>
+          <p class="text-white-50">Comienza agregando tus idiomas y niveles.</p>
+        </div>
+      {% endif %}
+    </div>
+  </div>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+<!-- Choices.js -->
+<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('select').forEach(select => {
+      new Choices(select, {
+        searchEnabled: true,
+        itemSelectText: '',
+        shouldSort: false
+      });
+    });
+  });
+</script>
 {% endblock %}

@@ -1,0 +1,124 @@
+/* =========================================================
+   ASIGNAR ESTUDIANTE — Estética glass gris/violeta (match panel_acudiente)
+   ========================================================= */
+
+.card {
+  position: relative !important;
+  background: rgba(31, 41, 55, 0.5) !important;
+  backdrop-filter: blur(15px) !important;
+  -webkit-backdrop-filter: blur(15px) !important;
+  border-radius: 20px !important;
+  border: 1px solid rgba(139, 92, 246, 0.4) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45) !important;
+  overflow: hidden !important;
+}
+
+/* Banner */
+.banner-img {
+  height: 100px !important;
+  overflow: hidden !important;
+  border-bottom: 1px solid rgba(139, 92, 246, 0.4) !important;
+}
+.banner-img img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  opacity: 0.85 !important;
+  filter: brightness(0.85) saturate(0.9) !important;
+  transition: all 0.3s ease !important;
+}
+.banner-img img:hover {
+  opacity: 1 !important;
+  filter: brightness(1) saturate(1) !important;
+}
+
+/* Cuerpo */
+.card-body {
+  background: transparent !important;
+  padding: 2rem !important;
+  color: #fff !important;
+}
+
+/* Títulos */
+.card-body h2 {
+  color: #fff !important;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5) !important;
+}
+
+/* Formularios */
+.glass-form .form-label {
+  color: #fff !important;
+}
+
+/* Select personalizado estilo glass */
+.glass-select {
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #fff !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 10px !important;
+  padding: 0.6rem 2.5rem 0.6rem 0.9rem !important; /* espacio para la flechita */
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  transition: all 0.3s ease !important;
+  font-size: 0.95rem !important;
+  line-height: 1.4 !important;
+
+  background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 0.9rem center !important;
+  background-size: 16px 16px !important;
+}
+
+.glass-select option {
+  background: #1f2937 !important; /* gris oscuro */
+  color: #fff !important;
+  padding: 0.5rem !important;
+}
+
+.glass-select:focus {
+  border-color: #8b5cf6 !important;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.25) !important;
+  outline: none !important;
+}
+
+/* Botones */
+.btn.btn-pastel-blue {
+  background: rgba(99, 102, 241, 0.15) !important;
+  color: #6366f1 !important;
+  border-radius: 0.6rem !important;
+  border: 1px solid rgba(99, 102, 241, 0.4) !important;
+  font-weight: 600 !important;
+  padding: 0.45rem 1rem !important;
+  transition: all 0.3s ease !important;
+}
+.btn.btn-pastel-blue:hover {
+  background: rgba(99, 102, 241, 0.25) !important;
+  color: #4f46e5 !important;
+  transform: translateY(-2px) !important;
+}
+.btn.btn-primary {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: #fff !important;
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.35) !important;
+  transition: all 0.3s ease !important;
+}
+.btn.btn-primary:hover {
+  background: linear-gradient(135deg, #5850ec, #7c3aed) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4) !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .banner-img { height: 100px !important; }
+  .card-body { padding: 1.5rem !important; }
+}
+@media (max-width: 480px) {
+  .banner-img { height: 90px !important; }
+  .card-body { padding: 1rem !important; }
+}

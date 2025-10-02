@@ -1,713 +1,87 @@
-/* === RESET Y CONFIGURACIÓN BASE === */
-.requisitos-password {
-    display: none;
-}
-
-.requisitos-password.activo {
-    display: block;
-}
-
+/* === RESET Y CONFIGURACIÓN BASE LIMPIA === */
 html, body {
-    min-height: 100vh !important;
-    margin: 0 !important;
-    box-sizing: border-box !important;
-    overflow-x: hidden !important; /* FIX scroll horizontal */
-    width: 100% !important;
+  min-height: 100vh !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+  overflow-x: hidden !important;
+  width: 100% !important;
 
-    display: flex !important;
-    flex-direction: column !important;
+  display: flex !important;
+  flex-direction: column !important;
 }
 
 *, *::before, *::after {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-body {
-    min-height: 100vh;
-    background: #f8f9fa;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    padding-top: 64px !important; /* espacio para navbar fijo */
-}
-
-body.no-aside .layout-content {
-    left: 0 !important;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
+/* Fondo global con imagen */
+body, html {
+  background: url("../img/Fondo.jpg") no-repeat center center fixed !important;
+  background-size: cover !important;
+  background-attachment: fixed !important;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+  min-height: 100vh !important;
+  padding-top: 64px !important; /* espacio para navbar fijo */
 }
 
 /* === LAYOUT NAVBAR === */
 html body .layout-navbar,
 body .layout-navbar {
-    position: fixed !important;     /* navbar fijo */
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    z-index: 1050 !important;       /* más alto que aside */
-    height: 64px !important;
-    box-shadow: 0 1px 8px rgba(0,0,0,0.04) !important;
-    display: flex !important;
-    align-items: center !important;
-}
-
-/* === LAYOUT ASIDE (Rediseñado) === */
-/* === SIDEBAR FLOTANTE TIPO CÁPSULA REDISEÑADO === */
-
-/********** SIDEBAR PRINCIPAL **********/
-html body .layout-aside,
-body .layout-aside {
   position: fixed !important;
-  top: 90px !important;
-  bottom: 110px !important;
-  left: 20px !important;
-  width: 260px !important;
-  
-  /* Fondo glassmorphism con gradiente */
-  background: linear-gradient(145deg, 
-    rgba(32, 53, 0, 0.95) 0%, 
-    rgba(49, 71, 11, 0.92) 25%,
-    rgba(88, 102, 38, 0.89) 50%,
-    rgba(119, 140, 67, 0.86) 75%,
-    rgba(150, 172, 96, 0.83) 100%) !important;
-  
-  /* Efecto glassmorphism */
-  backdrop-filter: blur(20px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
-  
-  /* Sombras múltiples para profundidad */
-  box-shadow: 
-    0 20px 40px rgba(32, 53, 0, 0.4),
-    0 10px 25px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.1) !important;
-  
-  border-radius: 28px !important;
-  border: 1px solid rgba(150, 172, 96, 0.3) !important;
-  color: #d9ef9f !important;
-  padding: 1.5rem 1rem !important;
-  overflow: hidden !important;
-  z-index: 1200 !important;
-  
-  /* Animación de entrada */
-  animation: slideInLeft 0.6s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  
-  /* Scrollbar personalizado */
-  overflow-y: hidden !important;
-  scrollbar-width: thin !important;
-  scrollbar-color: rgba(150, 172, 96, 0.6) transparent !important;
-}
-
-
-
-/* Animación de entrada */
-@keyframes slideInLeft {
-  0% {
-    transform: translateX(-100%) scale(0.8);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0) scale(1);
-    opacity: 1;
-  }
-}
-
-/* Scrollbar webkit */
-body .layout-aside::-webkit-scrollbar {
-  width: 6px !important;
-}
-
-body .layout-aside::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05) !important;
-  border-radius: 10px !important;
-}
-
-body .layout-aside::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #96ac60, #b7cd7f) !important;
-  border-radius: 10px !important;
-  transition: all 0.3s ease !important;
-}
-
-body .layout-aside::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #b7cd7f, #d9ef9f) !important;
-}
-
-/* Efecto hover en todo el sidebar */
-body .layout-aside:hover {
-  transform: translateY(-2px) !important;
-  box-shadow: 
-    0 25px 50px rgba(32, 53, 0, 0.5),
-    0 15px 30px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-}
-
-/********** HEADER DEL COORDINADOR **********/
-body .layout-aside .aside-coordinador {
-
-  width: 100% !important;
-  text-align: center !important;
-  position: relative !important;
-  margin-bottom: 2rem !important;
-}
-
-body .layout-aside .aside-coordinador::before {
-
-  content: '' !important;
-  position: absolute !important;
-  top: -10px !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
-  width: 80% !important;
-  height: 2px !important;
-  background: linear-gradient(90deg, 
-    transparent 0%, 
-    rgba(217, 239, 159, 0.6) 20%, 
-    #d9ef9f 50%, 
-    rgba(217, 239, 159, 0.6) 80%, 
-    transparent 100%) !important;
-  border-radius: 2px !important;
-}
-
-body .layout-aside .aside-coordinador span {
-
-  display: inline-block !important;
-  font-size: 1.2rem !important;
-  font-weight: 700 !important;
-  color: #d9ef9f !important;
-  margin: 0 !important;
-  text-shadow: 
-    0 0 10px rgba(217, 239, 159, 0.4),
-    2px 2px 4px rgba(0, 0, 0, 0.6) !important;
-  letter-spacing: 0.8px !important;
-  position: relative !important;
-  padding: 0.8rem 1.5rem !important;
-  background: rgba(255, 255, 255, 0.08) !important;
-  border-radius: 20px !important;
-  border: 1px solid rgba(150, 172, 96, 0.4) !important;
-  transition: all 0.3s ease !important;
-}
-
-body .layout-aside .aside-coordinador span:hover {
-
-  transform: scale(1.05) !important;
-  background: rgba(150, 172, 96, 0.2) !important;
-  border-color: #96ac60 !important;
-  text-shadow: 
-    0 0 15px rgba(217, 239, 159, 0.6),
-    2px 2px 4px rgba(0, 0, 0, 0.8) !important;
-}
-
-
-/********** HEADER DEL DOCENTE **********/
-body .layout-aside .aside-docente > .mb-3 {
-  width: 100% !important;
-  text-align: center !important;
-  position: relative !important;
-  margin-bottom: 2rem !important;
-}
-body .layout-aside .aside-docente > .mb-3::before {
-  content: '' !important;
-  position: absolute !important;
-  top: -10px !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
-  width: 80% !important;
-  height: 2px !important;
-  background: linear-gradient(90deg, 
-    transparent 0%, 
-    rgba(217, 239, 159, 0.6) 20%, 
-    #d9ef9f 50%, 
-    rgba(217, 239, 159, 0.6) 80%, 
-    transparent 100%) !important;
-  border-radius: 2px !important;
-}
-body .layout-aside .aside-docente > .mb-3 span {
-  display: inline-block !important;
-  font-size: 1.2rem !important;
-  font-weight: 700 !important;
-  color: #d9ef9f !important;
-  margin: 0 !important;
-  text-shadow: 
-    0 0 10px rgba(217, 239, 159, 0.4),
-    2px 2px 4px rgba(0, 0, 0, 0.6) !important;
-  letter-spacing: 0.8px !important;
-  position: relative !important;
-  padding: 0.8rem 1.5rem !important;
-  background: rgba(255, 255, 255, 0.08) !important;
-  border-radius: 20px !important;
-  border: 1px solid rgba(150, 172, 96, 0.4) !important;
-  transition: all 0.3s ease !important;
-}
-body .layout-aside .aside-docente > .mb-3 span:hover {
-  transform: scale(1.05) !important;
-  background: rgba(150, 172, 96, 0.2) !important;
-  border-color: #96ac60 !important;
-  text-shadow: 
-    0 0 15px rgba(217, 239, 159, 0.6),
-    2px 2px 4px rgba(0, 0, 0, 0.8) !important;
-}
-
-/********** ESTRUCTURA DEL COORDINADOR **********/
-body .layout-aside .aside-coordinador, body .layout-aside .aside-docente {
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: flex-start !important;
-  align-items: stretch !important;
-  width: 100% !important;
-  height: 100% !important;
-  gap: 0.3rem !important;
-}
-
-/********** ENLACES DEL MENÚ **********/
-body .layout-aside a,
-body .layout-aside .aside-link,
-body .layout-aside .btn {
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 1050 !important; /* más alto que aside */
+  height: 64px !important;
   display: flex !important;
   align-items: center !important;
-  width: 100% !important;
-  padding: 0.9rem 1.2rem !important;
-  margin: 0.2rem 0 !important;
-  border-radius: 18px !important;
-  color: #b7cd7f !important;
-  
-  /* Fondo con gradiente sutil */
-  background: linear-gradient(135deg, 
-    rgba(255, 255, 255, 0.05) 0%,
-    rgba(150, 172, 96, 0.08) 100%) !important;
-  
-  border: 1px solid rgba(183, 205, 127, 0.25) !important;
-  text-decoration: none !important;
-  font-weight: 500 !important;
-  font-size: 0.95rem !important;
-  
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  
-  position: relative !important;
-  overflow: hidden !important;
-  
-  /* Sombra sutil */
-  box-shadow: 
-    0 2px 8px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
-}
-
-/* Efecto de ondas al hacer hover */
-body .layout-aside a::before,
-body .layout-aside .aside-link::before,
-body .layout-aside .btn::before {
-  content: '' !important;
-  position: absolute !important;
-  top: 50% !important;
-  left: 50% !important;
-  width: 0 !important;
-  height: 0 !important;
-  background: radial-gradient(circle, rgba(217, 239, 159, 0.15) 0%, transparent 70%) !important;
-  border-radius: 50% !important;
-  transform: translate(-50%, -50%) !important;
-  transition: all 0.6s ease !important;
-  z-index: -1 !important;
-}
-
-body .layout-aside a:hover::before,
-body .layout-aside .aside-link:hover::before,
-body .layout-aside .btn:hover::before {
-  width: 300px !important;
-  height: 300px !important;
-}
-
-/* Estado hover */
-body .layout-aside a:hover,
-body .layout-aside .aside-link:hover,
-body .layout-aside .btn:hover {
-  color: #d9ef9f !important;
-  background: linear-gradient(135deg, 
-    rgba(150, 172, 96, 0.25) 0%,
-    rgba(183, 205, 127, 0.15) 100%) !important;
-  border: 1px solid rgba(150, 172, 96, 0.6) !important;
-  
-  transform: translateX(8px) scale(1.02) !important;
-  
-  box-shadow: 
-    0 8px 25px rgba(150, 172, 96, 0.3),
-    0 4px 12px rgba(0, 0, 0, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
-  
-  text-shadow: 0 0 8px rgba(217, 239, 159, 0.4) !important;
-}
-
-/* Estado activo */
-body .layout-aside .active,
-body .layout-aside .list-group-item.active,
-body .layout-aside .btn.active {
-  background: linear-gradient(135deg, 
-    rgba(150, 172, 96, 0.4) 0%,
-    rgba(183, 205, 127, 0.25) 50%,
-    rgba(217, 239, 159, 0.15) 100%) !important;
-  color: #d9ef9f !important;
-  border: 1px solid #96ac60 !important;
-  
-  box-shadow: 
-    inset 4px 0 0 #96ac60,
-    0 5px 15px rgba(150, 172, 96, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
-  
-  transform: translateX(6px) !important;
-  font-weight: 600 !important;
-  text-shadow: 0 0 10px rgba(217, 239, 159, 0.5) !important;
-}
-
-/* Efecto de pulso para elemento activo */
-body .layout-aside .active::after,
-body .layout-aside .list-group-item.active::after,
-body .layout-aside .btn.active::after {
-  content: '' !important;
-  position: absolute !important;
-  left: 0 !important;
-  top: 50% !important;
-  transform: translateY(-50%) !important;
-  width: 4px !important;
-  height: 60% !important;
-  background: linear-gradient(180deg, #96ac60, #d9ef9f) !important;
-  border-radius: 0 4px 4px 0 !important;
-  animation: pulse 2s ease-in-out infinite !important;
-}
-
-@keyframes pulse {
-  0%, 100% { 
-    opacity: 1; 
-    box-shadow: 0 0 5px rgba(150, 172, 96, 0.5); 
-  }
-  50% { 
-    opacity: 0.7; 
-    box-shadow: 0 0 15px rgba(150, 172, 96, 0.8); 
-  }
-}
-
-/********** BOTÓN DE LOGOUT **********/
-body .layout-aside .aside-logout {
-  display: block !important;
-  width: 100% !important;
-  text-align: left !important;
-  margin-top: auto !important;
-  margin-bottom: 0.8rem !important;
-  position: relative !important;
-}
-
-body .layout-aside .aside-logout {
-  background: linear-gradient(135deg, 
-    rgba(198, 40, 40, 0.1) 0%,
-    rgba(211, 47, 47, 0.15) 100%) !important;
-  border: 1px solid rgba(198, 40, 40, 0.3) !important;
-}
-
-body .layout-aside .aside-logout:hover {
-  background: linear-gradient(135deg, 
-    rgba(198, 40, 40, 0.9) 0%,
-    rgba(211, 47, 47, 0.8) 100%) !important;
-  color: #fff !important;
-  border: 1px solid #c62828 !important;
-  
-  transform: translateX(8px) scale(1.02) !important;
-  
-  box-shadow: 
-    0 8px 25px rgba(198, 40, 40, 0.4),
-    0 4px 12px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
-  
-  text-shadow: 0 0 8px rgba(255, 255, 255, 0.3) !important;
-}
-
-/********** RESPONSIVE MEJORADO **********/
-@media (max-width: 900px) {
-  html body .layout-aside,
-  body .layout-aside {
-    width: calc(100% - 40px) !important;
-    top: 75px !important;
-    left: 20px !important;
-    right: 20px !important;
-    bottom: auto !important;
-    height: auto !important;
-    max-height: 60vh !important;
-    
-    border-radius: 20px !important;
-    padding: 1rem !important;
-    
-    /* Animación diferente para móvil */
-    animation: slideInTop 0.6s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  }
-  
-  body .layout-aside .aside-coordinador, body .layout-aside .aside-docente {
-    flex-direction: column !important;
-    gap: 0.5rem !important;
-  }
-  
-  body .layout-aside a,
-  body .layout-aside .aside-link,
-  body .layout-aside .btn {
-    padding: 0.7rem 1rem !important;
-    font-size: 0.9rem !important;
-    margin: 0.1rem 0 !important;
-  }
-}
-
-@keyframes slideInTop {
-  0% {
-    transform: translateY(-100%) scale(0.8);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
-}
-
-/* Efecto de enfoque mejorado */
-body .layout-aside a:focus,
-body .layout-aside .btn:focus {
-  outline: none !important;
-  box-shadow: 
-    0 0 0 3px rgba(150, 172, 96, 0.4),
-    0 8px 25px rgba(150, 172, 96, 0.3) !important;
 }
 
 /* === LAYOUT CONTENT === */
 html body .layout-content,
 body .layout-content {
-    position: relative !important;
-    left: 240px !important;
-    right: 0 !important;
-    top: 64px !important;
-    padding: 2rem 2rem 1.5rem 2rem !important;
-    overflow-y: visible !important;
-    padding-bottom: 80px !important; /* espacio antes del footer */
-
-    flex: 1 0 auto !important;
+  position: relative !important;
+  left: 240px !important;   /* espacio para el aside */
+  right: 0 !important;
+  top: 64px !important;     /* espacio para navbar */
+  padding: 2rem 2rem 1.5rem 2rem !important;
+  overflow-y: visible !important;
+  padding-bottom: 80px !important; /* espacio antes del footer */
+  flex: 1 0 auto !important;
 }
 
-/*-----------------------------------------------------------------------------------------------------------*/
-/* === FOOTER NUEVO (NORMAL, CON ESPACIO Y ANCHO COMPLETO) === */
+/* === FOOTER BASE (estructura limpia) === */
 html body .layout-footer,
 body .layout-footer {
-    background: linear-gradient(90deg, 
-        #203500 0%, 
-        #283e06 15%, 
-        #31470b 30%, 
-        #3b5110 45%, 
-        #445a14 60%, 
-        #586626 75%, 
-        #778c43 85%, 
-        #96ac60 95%, 
-        #b7cd7f 100%) !important;
-    border-top: 1px solid rgba(255,255,255,0.2) !important;
-    position: relative !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    padding: 0 !important;
-    height: auto !important;
-    border-radius: 0 !important;
-    box-shadow: none !important;
-    margin-top: 2rem !important;
-    margin-bottom: 2rem !important;
-    overflow-x: hidden !important;
-
-    flex-shrink: 0 !important;
-    overflow-y: visible !important;
+  position: relative !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-top: auto !important;
+  flex-shrink: 0 !important;
 }
 
-/* línea superior brillante */
-html body .layout-footer::before,
-body .layout-footer::before {
-    content: '' !important;
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    height: 1px !important;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent) !important;
-}
-
-/* contenido del footer */
-.footer-content {
-    max-width: 1200px !important;
-    margin: 0 auto !important;
-    padding: 18px 20px !important;
-    display: flex !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-    flex-wrap: wrap !important;
-    gap: 15px !important;
-}
-
-.footer-content .copyright {
-    color: #d9ef9f !important;
-    font-size: 0.9rem !important;
-    font-weight: 500 !important;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.3) !important;
-}
-
-.footer-content .contact-info {
-    display: flex !important;
-    align-items: center !important;
-    gap: 25px !important;
-    flex-wrap: wrap !important;
-}
-
-.footer-content .contact-item {
-    display: flex !important;
-    align-items: center !important;
-    gap: 8px !important;
-    color: #b7cd7f !important;
-    font-size: 0.85rem !important;
-    transition: all 0.3s ease !important;
-}
-
-.footer-content .contact-item:hover {
-    color: #d9ef9f !important;
-    transform: translateY(-1px) !important;
-}
-
-.footer-content .contact-icon {
-    width: 16px !important;
-    height: 16px !important;
-    fill: currentColor !important;
-    flex-shrink: 0 !important;
-}
-
-.footer-content .contact-item a {
-    color: inherit !important;
-    text-decoration: none !important;
-    transition: all 0.3s ease !important;
-}
-
-.footer-content .contact-item a:hover {
-    color: #d9ef9f !important;
-    text-shadow: 0 0 5px rgba(217, 239, 159, 0.3) !important;
-}
-
-.footer-content .divider {
-    height: 20px !important;
-    width: 1px !important;
-    background: rgba(255,255,255,0.2) !important;
-    margin: 0 5px !important;
-}
-
-/* === RESPONSIVE FOOTER === */
-@media (max-width: 768px) {
-    .footer-content {
-        flex-direction: column !important;
-        text-align: center !important;
-        padding: 15px 20px !important;
-        gap: 12px !important;
-    }
-
-    .footer-content .contact-info {
-        gap: 20px !important;
-        justify-content: center !important;
-    }
-
-    .footer-content .divider {
-        display: none !important;
-    }
-
-    .footer-content .copyright {
-        font-size: 0.8rem !important;
-    }
-
-    .footer-content .contact-item {
-        font-size: 0.8rem !important;
-    }
-}
-
-@media (max-width: 480px) {
-    .footer-content .contact-info {
-        flex-direction: column !important;
-        gap: 10px !important;
-    }
-}
-
-/*----------------------------------------------------------------------------------------------------------------------------*/
-/* === RESPONSIVE GLOBAL === */
-@media (max-width: 991px) {
-    html body .layout-aside,
-    body .layout-aside {
-        width: 65px !important;
-        padding-top: 0.5rem !important;
-    }
-    
-    html body .layout-content,
-    body .layout-content {
-        left: 65px !important;
-        padding-left: 1rem !important;
-        padding-right: 1rem !important;
-    }
-}
-
-@media (max-width: 768px) {
-    html body .layout-footer,
-    body .layout-footer {
-        min-height: 70px !important;
-        height: auto !important;
-        padding: 15px !important;
-        font-size: 14px !important;
-    }
-    
-    html body .layout-aside,
-    body .layout-aside {
-        bottom: 85px !important;
-    }
-    
-    html body .layout-content,
-    body .layout-content {
-        bottom: 85px !important;
-    }
-    
-    html body .layout-footer .separator,
-    body .layout-footer .separator {
-        display: block !important;
-        margin: 5px 0 !important;
-    }
-}
-
-/* === OVERRIDES ADICIONALES PARA BOOTSTRAP === */
-.footer, .layout-footer {
-    border: none !important;
-    border-radius: 0 !important;
-    box-shadow: none !important;
-}
-
-html body .layout-footer p,
-body .layout-footer p,
-html body .layout-footer span,
-body .layout-footer span {
-    color: #ffffff !important;
-    margin-bottom: 0 !important;
-    line-height: 1.6 !important;
-    font-size: inherit !important;
-}
-
-.layout-footer.bg-white,
-.layout-footer.bg-light,
-.layout-footer.text-muted,
-.layout-footer.text-dark {
-    background: linear-gradient(270deg, #203500, #31470b, #586e26, #778c43) !important;
-    color: #ffffff !important;
-}
-
-/********** LOGIN **********/
-:root{
+/* === LOGIN Y PÁGINAS SIN ASIDE === */
+:root {
   --navbar-h: 64px;
   --footer-h: 95px;
 }
 
-body.no-aside .layout-content{
+/* Ajuste cuando NO hay aside */
+body.no-aside .layout-content {
+  left: 0 !important;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
+body.no-aside .layout-content {
   margin: var(--navbar-h) 0 var(--footer-h) 0 !important;
   height: calc(100vh - var(--navbar-h) - var(--footer-h)) !important;
   padding: 0 !important;
   background: transparent !important;
 }
 
-body.no-aside .login-container{
+body.no-aside .login-container {
   height: 100% !important;
-  min-height: 0 !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -720,44 +94,12 @@ body.no-aside {
   padding-top: 64px !important;
 }
 
-/********** LIMPIEZA DE FONDOS **********/
-body, html {
-  background: url("../img/Fondo.jpg") no-repeat center center fixed !important;
-  background-size: cover !important;
-  background-attachment: fixed !important;
-}
-
-.layout-navbar,
-.layout-footer,
-.layout-content,
-.fondo,
-main,
-section,
-.container,
-.row,
-.col {
-  background: transparent !important;
-  background-color: transparent !important;
-  box-shadow: none !important;
-  border: none !important;
-}
-
-@media (max-width: 900px) {
-  html body .layout-aside,
-  body .layout-aside {
-    width: 100% !important;
-    top: 64px !important;
-    left: 0 !important;
-    bottom: auto !important;
-    height: auto !important;
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    overflow-x: auto !important;
-    border-radius: 0 !important;
-    margin: 0 !important;
-    box-shadow: 0 3px 10px rgba(32,53,0,.25) !important;
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  html body .layout-footer,
+  body .layout-footer {
+    min-height: 70px !important;
+    padding: 15px !important;
+    font-size: 14px !important;
   }
 }
-
-
