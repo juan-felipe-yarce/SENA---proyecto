@@ -1,95 +1,95 @@
 /* === RESET Y CONFIGURACIÓN BASE LIMPIA === */
 html, body {
-  min-height: 100vh !important;
-  margin: 0 !important;
-  box-sizing: border-box !important;
-  overflow-x: hidden !important;
-  width: 100% !important;
-
-  display: flex !important;
-  flex-direction: column !important;
+  min-height: 100vh !important; /* Garantiza que la altura mínima sea la del viewport */
+  margin: 0 !important; /* Elimina márgenes por defecto */
+  box-sizing: border-box !important; /* Incluye padding y borde en el cálculo de ancho/alto */
+  overflow-x: hidden !important; /* Evita scroll horizontal */
+  width: 100% !important; /* Ocupa todo el ancho */
+  display: flex !important; /* Layout flexbox */
+  flex-direction: column !important; /* Los hijos se apilan en columna */
 }
 
+/* Aplica box-sizing a todos los elementos y pseudoelementos */
 *, *::before, *::after {
   box-sizing: border-box;
 }
 
 /* Fondo global con imagen */
 body, html {
-  background: url("../img/Fondo.jpg") no-repeat center center fixed !important;
-  background-size: cover !important;
-  background-attachment: fixed !important;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
-  min-height: 100vh !important;
-  padding-top: 64px !important; /* espacio para navbar fijo */
+  background: url("../img/Fondo.jpg") no-repeat center center fixed !important; /* Imagen de fondo centrada y fija */
+  background-size: cover !important; /* La imagen se ajusta a todo el fondo */
+  background-attachment: fixed !important; /* El fondo permanece fijo al hacer scroll */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important; /* Fuente base */
+  min-height: 100vh !important; /* Altura mínima viewport */
+  padding-top: 64px !important; /* Espacio superior reservado para la navbar fija */
 }
 
 /* === LAYOUT NAVBAR === */
 html body .layout-navbar,
 body .layout-navbar {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  z-index: 1050 !important; /* más alto que aside */
-  height: 64px !important;
-  display: flex !important;
-  align-items: center !important;
+  position: fixed !important; /* Barra fija en la parte superior */
+  top: 0 !important; left: 0 !important; right: 0 !important; /* Ocupa todo el ancho */
+  z-index: 1050 !important; /* Se muestra encima del aside y contenido */
+  height: 64px !important; /* Altura estándar navbar */
+  display: flex !important; /* Flexbox */
+  align-items: center !important; /* Centra verticalmente el contenido */
 }
 
 /* === LAYOUT CONTENT === */
 html body .layout-content,
 body .layout-content {
-  position: relative !important;
-  left: 240px !important;   /* espacio para el aside */
+  position: relative !important; /* Posiciona relativo al body */
+  left: 240px !important;   /* Desplaza a la derecha para dejar espacio al aside */
   right: 0 !important;
-  top: 64px !important;     /* espacio para navbar */
-  padding: 2rem 2rem 1.5rem 2rem !important;
-  overflow-y: visible !important;
-  padding-bottom: 80px !important; /* espacio antes del footer */
-  flex: 1 0 auto !important;
+  top: 64px !important;     /* Deja espacio arriba para la navbar */
+  padding: 2rem 2rem 1.5rem 2rem !important; /* Espaciado interno */
+  overflow-y: visible !important; /* Permite overflow vertical visible */
+  padding-bottom: 80px !important; /* Deja espacio inferior para el footer */
+  flex: 1 0 auto !important; /* Crece y ocupa espacio disponible */
 }
 
 /* === FOOTER BASE (estructura limpia) === */
 html body .layout-footer,
 body .layout-footer {
-  position: relative !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  margin-top: auto !important;
-  flex-shrink: 0 !important;
+  position: relative !important; /* Posición normal en el flujo */
+  width: 100% !important; /* Ocupa todo el ancho */
+  max-width: 100% !important; /* No sobrepasa ancho máximo */
+  margin-top: auto !important; /* Empuja el footer hacia abajo */
+  flex-shrink: 0 !important; /* No se encoge */
 }
 
 /* === LOGIN Y PÁGINAS SIN ASIDE === */
 :root {
-  --navbar-h: 64px;
-  --footer-h: 95px;
+  --navbar-h: 64px;  /* Variable altura de la navbar */
+  --footer-h: 95px;  /* Variable altura del footer */
 }
 
-/* Ajuste cuando NO hay aside */
+/* Ajuste de contenido cuando NO hay aside */
 body.no-aside .layout-content {
-  left: 0 !important;
-  padding-left: 1rem !important;
+  left: 0 !important; /* Sin desplazamiento lateral */
+  padding-left: 1rem !important; /* Padding horizontal reducido */
   padding-right: 1rem !important;
 }
 
+/* Redefinición de layout content para páginas sin aside */
 body.no-aside .layout-content {
-  margin: var(--navbar-h) 0 var(--footer-h) 0 !important;
-  height: calc(100vh - var(--navbar-h) - var(--footer-h)) !important;
-  padding: 0 !important;
-  background: transparent !important;
+  margin: var(--navbar-h) 0 var(--footer-h) 0 !important; /* Margen para navbar y footer */
+  height: calc(100vh - var(--navbar-h) - var(--footer-h)) !important; /* Altura ajustada */
+  padding: 0 !important; /* Sin padding */
+  background: transparent !important; /* Fondo transparente */
 }
 
+/* Contenedor del login centrado vertical y horizontal */
 body.no-aside .login-container {
-  height: 100% !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  box-sizing: border-box !important;
+  height: 100% !important; /* Ocupa toda la altura */
+  display: flex !important; /* Flexbox */
+  align-items: center !important; /* Centrado vertical */
+  justify-content: center !important; /* Centrado horizontal */
+  padding: 0 !important; margin: 0 !important; /* Sin espacios */
+  box-sizing: border-box !important; /* Cálculo de tamaños con padding/borde */
 }
 
+/* Cuando no hay aside, deja margen superior para navbar */
 body.no-aside {
   padding-top: 64px !important;
 }
@@ -98,8 +98,8 @@ body.no-aside {
 @media (max-width: 768px) {
   html body .layout-footer,
   body .layout-footer {
-    min-height: 70px !important;
-    padding: 15px !important;
-    font-size: 14px !important;
+    min-height: 70px !important; /* Reduce altura mínima del footer */
+    padding: 15px !important; /* Más compacto */
+    font-size: 14px !important; /* Texto más pequeño */
   }
 }

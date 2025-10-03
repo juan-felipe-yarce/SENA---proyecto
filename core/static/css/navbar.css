@@ -1,135 +1,146 @@
 /* === RESET GENERAL === */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  margin: 0; /* Elimina márgenes por defecto */
+  padding: 0; /* Elimina paddings por defecto */
+  box-sizing: border-box; /* Incluye padding y borde en el cálculo de tamaños */
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-  min-height: 100vh !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important; /* Fuente base */
+  min-height: 100vh !important; /* Ocupa mínimo el alto de la pantalla */
 }
 
 
 /* === NAVBAR CAPSULA === */
 .school-navbar {
-  height: 64px !important;
-  position: relative !important;
-  background: linear-gradient(135deg, #2c2c2c 0%, #404040 50%, #2c2c2c 100%) !important;
-  border-radius: 2rem !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
-  padding: 1rem 2rem !important;
-  z-index: 1000 !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  overflow: hidden !important;
-  margin: 1.5rem auto 0 !important;
-  width: 90% !important;
-  max-width: 1200px !important;
+  height: 64px !important; /* Altura fija */
+  position: relative !important; /* Posicionamiento relativo */
+  background: linear-gradient(135deg, #2c2c2c 0%, #404040 50%, #2c2c2c 100%) !important; /* Fondo degradado oscuro */
+  border-radius: 2rem !important; /* Bordes muy redondeados (estilo cápsula) */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important; /* Sombra */
+  padding: 1rem 2rem !important; /* Espaciado interno */
+  z-index: 1000 !important; /* Prioridad sobre otros elementos */
+  display: flex !important; /* Flexbox */
+  align-items: center !important; /* Centrado vertical */
+  justify-content: space-between !important; /* Espacio entre marca y links */
+  overflow: hidden !important; /* Oculta exceso de contenido */
+  margin: 1.5rem auto 0 !important; /* Centrado horizontal y separación superior */
+  width: 90% !important; /* Ocupa 90% del ancho */
+  max-width: 1200px !important; /* Máximo ancho */
   transition: background-position 0.45s ease-in-out,
               box-shadow 0.4s ease,
-              transform 0.25s ease !important;
+              transform 0.25s ease !important; /* Transiciones suaves */
 }
 
+/* Línea superior decorativa */
 .school-navbar::before {
-  content: '' !important;
+  content: '' !important; /* Elemento virtual */
   position: absolute !important;
   top: 0; left: 0; right: 0;
-  height: 2px !important;
-  background: linear-gradient(90deg, #6366f1 0%, #8b5cf6 25%, #ec4899 50%, #ef4444 75%, #f59e0b 100%) !important;
+  height: 2px !important; /* Grosor */
+  background: linear-gradient(90deg, #6366f1 0%, #8b5cf6 25%, #ec4899 50%, #ef4444 75%, #f59e0b 100%) !important; /* Degradado multicolor */
 }
+
 
 /* === MARCA === */
 .school-navbar-brand {
-  font-size: 1.5rem !important;
-  font-weight: 700 !important;
-  color: #ffffff !important;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.3) !important;
-  position: relative !important;
-  animation: float 3s ease-in-out infinite !important;
+  font-size: 1.5rem !important; /* Tamaño de texto grande */
+  font-weight: 700 !important; /* Negrita */
+  color: #ffffff !important; /* Blanco */
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3) !important; /* Sombra de texto */
+  position: relative !important; /* Necesario para pseudo-elementos */
+  animation: float 3s ease-in-out infinite !important; /* Animación flotante */
 }
 
+/* Línea inferior decorativa bajo el texto */
 .school-navbar-brand::after {
   content: '' !important;
   position: absolute !important;
-  bottom: -3px !important;
+  bottom: -3px !important; /* Debajo del texto */
   left: 0 !important;
-  width: 0 !important;
-  height: 2px !important;
-  background: linear-gradient(90deg, #6366f1, #8b5cf6) !important;
-  transition: width 0.3s ease !important;
+  width: 0 !important; /* Inicialmente oculta */
+  height: 2px !important; /* Grosor */
+  background: linear-gradient(90deg, #6366f1, #8b5cf6) !important; /* Degradado violeta */
+  transition: width 0.3s ease !important; /* Se expande en hover */
 }
 
+/* Hover: la línea se extiende */
 .school-navbar-brand:hover::after {
   width: 100% !important;
 }
 
+
 /* === LINKS === */
 .school-navbar-link {
-  display: flex !important;
+  display: flex !important; /* Ícono + texto */
   align-items: center !important;
-  gap: 0.4rem !important;
-  color: #d1d5db !important;
-  text-decoration: none !important;
+  gap: 0.4rem !important; /* Separación ícono-texto */
+  color: #d1d5db !important; /* Gris claro */
+  text-decoration: none !important; /* Sin subrayado */
   font-weight: 500 !important;
-  padding: 0.4rem 1rem !important;
-  border-radius: 25px !important;
-  transition: all 0.3s ease !important;
-  position: relative !important;
+  padding: 0.4rem 1rem !important; /* Relleno */
+  border-radius: 25px !important; /* Bordes redondeados */
+  transition: all 0.3s ease !important; /* Transiciones suaves */
+  position: relative !important; /* Para pseudo-elementos */
   overflow: hidden !important;
 }
 
+/* Fondo decorativo en hover */
 .school-navbar-link::before {
   content: '' !important;
   position: absolute !important;
   top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%) !important;
+  width: 100%; height: 100%; /* Cubre el enlace */
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%) !important; /* Fondo translúcido */
   border-radius: 25px !important;
-  opacity: 0 !important;
+  opacity: 0 !important; /* Inicialmente invisible */
   transition: opacity 0.3s ease !important;
 }
 
+/* Hover: aparece el fondo */
 .school-navbar-link:hover::before {
   opacity: 1 !important;
 }
 
+/* Hover: efecto visual */
 .school-navbar-link:hover {
-  color: #ffffff !important;
-  transform: translateY(-1px) !important;
-  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.2) !important;
+  color: #ffffff !important; /* Texto blanco */
+  transform: translateY(-1px) !important; /* Se eleva levemente */
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.2) !important; /* Sombra */
 }
+
 
 /* === BOTONES LOGIN / REGISTRO === */
 .school-navbar-login-btn,
 .school-navbar-register-btn {
-  padding: 0.65rem 1.4rem !important;
-  border-radius: 25px !important;
-  font-weight: 600 !important;
+  padding: 0.65rem 1.4rem !important; /* Relleno amplio */
+  border-radius: 25px !important; /* Bordes redondeados */
+  font-weight: 600 !important; /* Negrita */
   text-decoration: none !important;
   border: 2px solid transparent !important;
   cursor: pointer !important;
   transition: all 0.3s ease !important;
 }
 
+/* Botón login (colorido) */
 .school-navbar-login-btn {
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%) !important;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%) !important; /* Degradado violeta */
   color: #fff !important;
   box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3) !important;
 }
 
 .school-navbar-login-btn:hover {
-  transform: translateY(-2px) !important;
-  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4) !important;
-  background: linear-gradient(135deg, #5856eb 0%, #7c3aed 100%) !important;
+  transform: translateY(-2px) !important; /* Se eleva */
+  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4) !important; /* Sombra más fuerte */
+  background: linear-gradient(135deg, #5856eb 0%, #7c3aed 100%) !important; /* Cambio de colores */
 }
 
+/* Botón registro (más ligero) */
 .school-navbar-register-btn {
-  background: rgba(255, 255, 255, 0.1) !important;
-  color: #e5e7eb !important;
+  background: rgba(255, 255, 255, 0.1) !important; /* Fondo translúcido */
+  color: #e5e7eb !important; /* Gris claro */
   border: 1px solid rgba(255, 255, 255, 0.2) !important;
-  backdrop-filter: blur(10px) !important;
+  backdrop-filter: blur(10px) !important; /* Efecto vidrio */
 }
 
 .school-navbar-register-btn:hover {
@@ -137,88 +148,94 @@ body {
   color: #fff !important;
   transform: translateY(-2px) !important;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2) !important;
-  border-color: rgba(139, 92, 246, 0.5) !important;
+  border-color: rgba(139, 92, 246, 0.5) !important; /* Resalta borde en violeta */
 }
+
 
 /* === USUARIO CON BOTONES === */
 .user-welcome {
-  display: flex !important;
+  display: flex !important; /* Ícono + texto */
   align-items: center !important;
   gap: 12px !important;
-  background: rgba(255, 255, 255, 0.1) !important;
-  border-radius: 2rem !important;
+  background: rgba(255, 255, 255, 0.1) !important; /* Fondo translúcido */
+  border-radius: 2rem !important; /* Cápsula */
   padding: 6px 14px !important;
-  border: 1.5px solid rgba(139, 92, 246, 0.5) !important;
+  border: 1.5px solid rgba(139, 92, 246, 0.5) !important; /* Borde violeta */
 }
 
+/* Avatar circular del usuario */
 .user-avatar {
-  border-radius: 50% !important;
-  border: 2px solid #8b5cf6 !important;
+  border-radius: 50% !important; /* Forma circular */
+  border: 2px solid #8b5cf6 !important; /* Borde morado */
   width: 40px !important;
   height: 40px !important;
-  object-fit: cover !important;
-  background: #fff !important;
+  object-fit: cover !important; /* Mantiene proporción */
+  background: #fff !important; /* Fondo blanco */
 }
 
+/* Texto del usuario */
 .user-text {
-  color: #ffffff !important;
-  font-weight: 600 !important;
-  font-size: 0.95rem !important;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.25) !important;
-  white-space: nowrap !important;
+  color: #ffffff !important; /* Blanco */
+  font-weight: 600 !important; /* Semi-negrita */
+  font-size: 0.95rem !important; /* Tamaño medio */
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.25) !important; /* Sombra para legibilidad */
+  white-space: nowrap !important; /* Evita que se corte en varias líneas */
 }
 
 /* ✅ FIX: alinear botones en fila dentro del navbar */
 .user-actions {
-  display: flex !important;
-  flex-direction: row !important;
-  align-items: center !important;
-  gap: 8px !important;
+  display: flex !important; /* Flexbox */
+  flex-direction: row !important; /* En fila */
+  align-items: center !important; /* Centrado vertical */
+  gap: 8px !important; /* Separación entre botones */
 }
 
+/* Botones de acción del usuario */
 .user-actions .action-btn {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  width: 32px !important;
-  height: 32px !important;
-  border-radius: 50% !important;
-  background: rgba(99, 102, 241, 0.2) !important;
+  width: 32px !important; height: 32px !important; /* Tamaño fijo */
+  border-radius: 50% !important; /* Forma circular */
+  background: rgba(99, 102, 241, 0.2) !important; /* Fondo translúcido violeta */
   color: #fff !important;
-  font-size: 1.2rem !important;
+  font-size: 1.2rem !important; /* Ícono algo grande */
   transition: all 0.3s ease !important;
   text-decoration: none !important;
   border: none !important;
   cursor: pointer !important;
 }
 
+/* Hover en botones de acción */
 .user-actions .action-btn:hover {
-  background: #6366f1 !important;
+  background: #6366f1 !important; /* Azul-violeta sólido */
   color: #fff !important;
-  transform: scale(1.1) !important;
-  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3) !important;
+  transform: scale(1.1) !important; /* Aumenta tamaño */
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3) !important; /* Sombra */
 }
+
 
 /* === RESPONSIVE === */
 @media (max-width: 768px) {
   .school-navbar {
-    flex-direction: column !important;
-    height: auto !important;
-    padding: 0.7rem 1rem !important;
-    gap: 0.5rem !important;
+    flex-direction: column !important; /* Elementos apilados */
+    height: auto !important; /* Ajusta altura */
+    padding: 0.7rem 1rem !important; /* Relleno menor */
+    gap: 0.5rem !important; /* Espaciado */
   }
   .school-navbar-brand {
-    font-size: 1.2rem !important;
+    font-size: 1.2rem !important; /* Texto más pequeño */
   }
   .school-navbar-login-btn,
   .school-navbar-register-btn {
-    padding: 0.6rem 1rem !important;
-    font-size: 0.9rem !important;
+    padding: 0.6rem 1rem !important; /* Botones más compactos */
+    font-size: 0.9rem !important; /* Texto reducido */
   }
 }
 
+
 /* === ANIMACIONES === */
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-2px); }
+  0%, 100% { transform: translateY(0px); } /* Estado inicial y final */
+  50% { transform: translateY(-2px); } /* Movimiento hacia arriba */
 }

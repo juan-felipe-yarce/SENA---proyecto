@@ -1,401 +1,401 @@
 /* ====== FIX DE LAYOUT SOLO PARA LA PÁGINA DE INICIO ====== */
 body.inicio-page {
-  display: block !important;            
-  overflow-x: hidden !important;
+  display: block !important;            /* Fuerza layout de bloque para el <body> solo en la página de inicio */
+  overflow-x: hidden !important;        /* Evita scroll horizontal si hay elementos desbordados */
 }
 
 body.inicio-page .layout-aside { 
-  display: none !important; 
+  display: none !important;             /* Oculta el aside en la página de inicio */
 }
 
 body.inicio-page .layout-content,
 body.inicio-page main.layout-content.fondo {
-  position: static !important;
-  margin: 0 !important;
-  margin-left: 0 !important;            
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  transform: none !important;
-  display: block !important;
-  left: 0 !important; right: 0 !important;
-  box-sizing: border-box !important;
+  position: static !important;          /* Quita posicionamiento relativo/absoluto; vuelve al flujo normal */
+  margin: 0 !important;                 /* Elimina márgenes */
+  margin-left: 0 !important;            /* Garantiza sin margen izquierdo (por si lo añade el layout del aside) */
+  padding-left: 0 !important;           /* Quita padding izquierdo */
+  padding-right: 0 !important;          /* Quita padding derecho */
+  width: 100% !important;               /* Ocupa todo el ancho disponible */
+  max-width: 100% !important;           /* Impide límites máximos de ancho */
+  transform: none !important;           /* Anula cualquier transformación previa (p.ej., desplazamientos) */
+  display: block !important;            /* Contenedor en bloque estándar */
+  left: 0 !important; right: 0 !important; /* Asegura que no quede desplazado lateralmente */
+  box-sizing: border-box !important;    /* Incluye padding/border en el cómputo del ancho */
 }
 
 /* ====== PALETA GENERAL ====== */
 body {
-  margin: 0 !important;
-  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
-  color: #ffffff !important; /* texto general blanco */
-  background: url("../img/Fondo.jpg") no-repeat center center fixed !important;
-  background-size: cover !important;
+  margin: 0 !important;                                                     /* Quita margen por defecto del body */
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important; /* Tipografía base */
+  color: #ffffff !important;                                                /* Texto general blanco */
+  background: url("../img/Fondo.jpg") no-repeat center center fixed !important; /* Fondo con imagen centrada y fija */
+  background-size: cover !important;                                        /* La imagen ocupa todo el viewport */
 }
 
 h1, h2, h3, h5, h6 {
-  color: #ffffff !important; /* títulos por defecto en blanco */
+  color: #ffffff !important;                                                /* Titulares en blanco por defecto */
 }
 
 .section-subtitle,
 .hero-subtitle,
 p {
-  color: #cccccc !important; /* gris claro */
+  color: #cccccc !important;                                                /* Subtítulos y párrafos en gris claro */
 }
 
 /* ====== WRAPPER Y CONTENEDOR ====== */
 .inicio-wrapper {
-  min-height: calc(100vh - 120px) !important; 
-  display: grid !important;
-  place-items: center !important;             
-  padding: 2rem 1rem !important;
-  position: relative !important;
+  min-height: calc(100vh - 120px) !important; /* Altura mínima: viewport menos 120px (navbar/footer) */
+  display: grid !important;                    /* Usa grid para centrar contenido */
+  place-items: center !important;              /* Centra horizontal y verticalmente */
+  padding: 2rem 1rem !important;               /* Espaciado interno general */
+  position: relative !important;               /* Permite posicionar elementos hijos relativos */
 }
 
 .inicio-container {
-  width: min(1200px, 100%) !important;
-  margin: 0 auto !important;
-  border-radius: 24px !important;
-  position: relative !important;
-  overflow: hidden !important;
+  width: min(1200px, 100%) !important;         /* Ancho máximo 1200px o 100% si es menor */
+  margin: 0 auto !important;                   /* Centrado horizontal */
+  border-radius: 24px !important;              /* Esquinas redondeadas marcadas */
+  position: relative !important;               /* Para superposiciones internas */
+  overflow: hidden !important;                 /* Recorta desbordes (efectos/imagenes) */
 
-  background: rgba(30, 30, 30, 0.6) !important;
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
-  border: 1px solid rgba(255,255,255,0.1) !important;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.5) !important;
+  background: rgba(30, 30, 30, 0.6) !important;       /* Capa translúcida oscura (glass) */
+  backdrop-filter: blur(20px) !important;              /* Difumina fondo detrás (efecto vidrio) */
+  -webkit-backdrop-filter: blur(20px) !important;      /* Compatibilidad WebKit/Safari */
+  border: 1px solid rgba(255,255,255,0.1) !important;  /* Borde sutil blanco translúcido */
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5) !important;  /* Sombra profunda para elevación */
 }
 
 /* ====== HERO CON IMAGEN DE FONDO ====== */
 .hero-section {
-  position: relative !important;
-  padding: 4rem 2rem !important;
-  text-align: center !important;
-  border-radius: 24px 24px 0 0 !important;
-  overflow: hidden !important;
-  background: none !important;
+  position: relative !important;               /* Necesario para el ::before de fondo */
+  padding: 4rem 2rem !important;               /* Espaciado generoso (arriba/abajo, lados) */
+  text-align: center !important;               /* Contenido centrado */
+  border-radius: 24px 24px 0 0 !important;     /* Redondeo arriba, base recta (si se desea unir a otro bloque) */
+  overflow: hidden !important;                 /* Recorta la imagen/fondos internos */
+  background: none !important;                 /* Sin fondo adicional (lo pone ::before) */
 }
 
 .hero-section::before {
-  content: "" !important;
-  position: absolute !important;
-  inset: 0 !important;
+  content: "" !important;                      /* Capa decorativa de fondo */
+  position: absolute !important;               /* Se posiciona encima del .hero-section */
+  inset: 0 !important;                         /* Ocupa todo el hero */
   background:
-    linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.45)),
-    url("../img/fondo_inicio.jpg") center / cover no-repeat;
-  z-index: 0 !important;
+    linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.45)), /* Velo oscuro superior→inferior */
+    url("../img/fondo_inicio.jpg") center / cover no-repeat;     /* Imagen de fondo del hero */
+  z-index: 0 !important;                       /* Detrás del contenido real del hero */
 }
 
-.hero-content { position: relative !important; z-index: 1 !important; }
+.hero-content { position: relative !important; z-index: 1 !important; } /* Asegura que el texto quede sobre el ::before */
 
 .hero-title {
-  font-family: 'Poppins', sans-serif !important;
-  font-size: 3.5rem !important;
-  font-weight: 800 !important;
-  margin-bottom: 1rem !important;
-  color: #ffd166 !important; /* amarillo */
+  font-family: 'Poppins', sans-serif !important; /* Tipografía de título */
+  font-size: 3.5rem !important;                  /* Título grande */
+  font-weight: 800 !important;                   /* Super negrita */
+  margin-bottom: 1rem !important;                /* Separación con el subtítulo */
+  color: #ffd166 !important;                     /* Amarillo destacado */
 }
 
 .hero-subtitle {
-  font-size: 1.3rem !important;
-  margin-bottom: 2rem !important; 
-  line-height: 1.6 !important;
-  max-width: 600px !important; 
-  margin-left: auto !important; 
-  margin-right: auto !important;
+  font-size: 1.3rem !important;                  /* Tamaño del subtítulo */
+  margin-bottom: 2rem !important;                /* Espaciado inferior */
+  line-height: 1.6 !important;                   /* Lectura cómoda */
+  max-width: 600px !important;                   /* Ancho máximo para texto controlado */
+  margin-left: auto !important;                  /* Centrado horizontal */
+  margin-right: auto !important;                 /* Centrado horizontal */
 }
 
 .hero-badge {
-  display: inline-flex !important; 
-  align-items: center !important; 
-  gap: 8px !important;
-  background: rgba(255,255,255,0.08) !important; 
-  padding: 0.75rem 1.5rem !important;
-  border-radius: 50px !important; 
-  border: 1px solid rgba(255,255,255,0.2) !important;
-  color: #ffd166 !important; /* amarillo */
-  font-weight: 600 !important; 
-  font-size: 0.9rem !important;
+  display: inline-flex !important;               /* Cinta en línea con flex */
+  align-items: center !important;                /* Centra verticalmente ícono/texto */
+  gap: 8px !important;                           /* Separación interna de elementos */
+  background: rgba(255,255,255,0.08) !important; /* Velo translúcido claro */
+  padding: 0.75rem 1.5rem !important;            /* Relleno interno */
+  border-radius: 50px !important;                /* Cápsula/píldora */
+  border: 1px solid rgba(255,255,255,0.2) !important; /* Borde claro translúcido */
+  color: #ffd166 !important;                     /* Texto amarillo */
+  font-weight: 600 !important;                   /* Seminegrita */
+  font-size: 0.9rem !important;                  /* Tamaño medio */
 }
 
 /* ====== SECCIONES GENERALES ====== */
 .section-box {
-  background: rgba(255,255,255,0.04) !important;
-  border-radius: 20px !important;
-  padding: 2.5rem 2rem !important;
-  margin: 2rem !important;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 8px 32px rgba(0,0,0,0.3) !important;
-  border: 1px solid rgba(255,255,255,0.05) !important;
-  transition: transform .3s ease !important;
+  background: rgba(255,255,255,0.04) !important; /* Fondo translúcido muy sutil */
+  border-radius: 20px !important;                /* Bordes redondeados */
+  padding: 2.5rem 2rem !important;               /* Espaciado interno cómodo */
+  margin: 2rem !important;                       /* Separación exterior */
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 8px 32px rgba(0,0,0,0.3) !important; /* Relieve sutil + profundidad */
+  border: 1px solid rgba(255,255,255,0.05) !important; /* Borde tenue */
+  transition: transform .3s ease !important;     /* Animación suave en hover */
 }
-.section-box:hover { transform: translateY(-4px) !important; }
+.section-box:hover { transform: translateY(-4px) !important; } /* Elevación ligera al pasar el cursor */
 
-.section-header { text-align: center !important; margin-bottom: 2rem !important; }
-.section-header i { font-size: 2.5rem !important; margin-bottom: 1rem !important; display: block !important; }
+.section-header { text-align: center !important; margin-bottom: 2rem !important; } /* Encabezado centrado y separado */
+.section-header i { font-size: 2.5rem !important; margin-bottom: 1rem !important; display: block !important; } /* Ícono grande sobre el título */
 
 .section-header h2 {
-  font-size: 2.2rem !important; font-weight: 700 !important;
-  background: linear-gradient(90deg, #ff4ecd, #00cfff);
-  background-clip: text; -webkit-background-clip: text !important;
-  color: transparent !important; -webkit-text-fill-color: transparent !important;
+  font-size: 2.2rem !important; font-weight: 700 !important; /* Tamaño y peso del título de sección */
+  background: linear-gradient(90deg, #ff4ecd, #00cfff);       /* Degradado rosa→celeste */
+  background-clip: text; -webkit-background-clip: text !important; /* Clip de fondo al texto */
+  color: transparent !important; -webkit-text-fill-color: transparent !important; /* Texto “relleno” por el degradado */
 }
 
 /* ====== TECNOLOGÍAS (badges) ===== */
 .tech-highlight {
-  display: flex !important;
-  justify-content: center !important;
-  gap: 1rem !important;
-  margin: 1.5rem 0 !important;
-  flex-wrap: wrap !important;
+  display: flex !important;                       /* Contenedor de badges en flex */
+  justify-content: center !important;             /* Centra horizontalmente */
+  gap: 1rem !important;                           /* Espaciado entre badges */
+  margin: 1.5rem 0 !important;                    /* Separación vertical */
+  flex-wrap: wrap !important;                     /* Permite salto de línea */
 }
 
 .tech-highlight .tech-badge {
-  background: rgba(255,255,255,0.1) !important;
-  color: #9be564 !important;
-  padding: 0.5rem 1rem !important;
-  border-radius: 25px !important;
-  font-weight: 600 !important;
-  font-size: 0.95rem !important;
-  border: 1px solid rgba(255,255,255,0.2) !important;
-  transition: background .3s ease !important;
+  background: rgba(255,255,255,0.1) !important;   /* Fondo translúcido */
+  color: #9be564 !important;                      /* Verde lima para texto */
+  padding: 0.5rem 1rem !important;                /* Relleno interno */
+  border-radius: 25px !important;                 /* Forma de píldora */
+  font-weight: 600 !important;                    /* Seminegrita */
+  font-size: 0.95rem !important;                  /* Tamaño de fuente medio */
+  border: 1px solid rgba(255,255,255,0.2) !important; /* Borde claro */
+  transition: background .3s ease !important;     /* Suavizado hover */
 }
 
 .tech-highlight .tech-badge:hover {
-  background: rgba(255,255,255,0.2) !important;
+  background: rgba(255,255,255,0.2) !important;   /* Más claro al pasar el cursor */
 }
 
 /* ====== FEATURES (lista con íconos) ===== */
 .features-grid {
-  display: grid !important;
-  grid-template-columns: repeat(2, 1fr) !important; 
-  gap: 1rem 2rem !important;
-  margin-top: 1.5rem !important;
+  display: grid !important;                       /* Layout en rejilla */
+  grid-template-columns: repeat(2, 1fr) !important; /* Dos columnas iguales */
+  gap: 1rem 2rem !important;                      /* Espaciado filas/columnas (fila:1rem, columna:2rem) */
+  margin-top: 1.5rem !important;                  /* Separación superior */
 }
 
 .feature-item {
-  display: flex !important;
-  align-items: center !important;
-  gap: 0.5rem !important;
-  font-size: 0.95rem !important;
-  color: #f0f0f0 !important;
+  display: flex !important;                       /* Ícono + texto en línea */
+  align-items: center !important;                 /* Alineación vertical centrada */
+  gap: 0.5rem !important;                         /* Separación entre ícono y texto */
+  font-size: 0.95rem !important;                  /* Tamaño de fuente */
+  color: #f0f0f0 !important;                      /* Texto claro */
 }
 
 .feature-item i {
-  color: #00cfff !important; /* azul celeste */
-  font-size: 1rem !important;
+  color: #00cfff !important;                      /* Ícono celeste */
+  font-size: 1rem !important;                     /* Tamaño del ícono */
 }
 
 @media (max-width: 768px) {
   .features-grid {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: 1fr !important;        /* En móviles: una sola columna */
   }
 }
 
 /* ====== MISIÓN ====== */
 .mission-box {
-  background: rgba(255, 215, 0, 0.1) !important;
-  border-radius: 20px !important;
-  padding: 2rem !important;
-  text-align: center !important;
-  border: 1px solid rgba(255, 215, 0, 0.3) !important;
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
-  box-shadow: 0 8px 25px rgba(255, 215, 0, 0.15) !important;
-  transition: all 0.3s ease !important;
+  background: rgba(255, 215, 0, 0.1) !important;  /* Fondo dorado translúcido */
+  border-radius: 20px !important;                  /* Bordes redondeados */
+  padding: 2rem !important;                        /* Relleno interno */
+  text-align: center !important;                   /* Texto centrado */
+  border: 1px solid rgba(255, 215, 0, 0.3) !important; /* Borde dorado tenue */
+  backdrop-filter: blur(20px) !important;          /* Efecto vidrio */
+  -webkit-backdrop-filter: blur(20px) !important;  /* Compatibilidad WebKit */
+  box-shadow: 0 8px 25px rgba(255, 215, 0, 0.15) !important; /* Sombra con matiz dorado */
+  transition: all 0.3s ease !important;           /* Suaviza interacciones */
 }
-.mission-box h3 { color: #ffd166 !important; } /* amarillo */
+.mission-box h3 { color: #ffd166 !important; }    /* Título en amarillo */
 
 /* ====== VISIÓN ====== */
 .vision-box {
-  background: rgba(255, 78, 205, 0.1) !important;
-  border-radius: 20px !important;
-  padding: 2rem !important;
-  text-align: center !important;
-  border: 1px solid rgba(255, 78, 205, 0.3) !important;
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
-  box-shadow: 0 8px 25px rgba(255, 78, 205, 0.15) !important;
-  transition: all 0.3s ease !important;
+  background: rgba(255, 78, 205, 0.1) !important; /* Fondo rosado translúcido */
+  border-radius: 20px !important;                  /* Bordes redondeados */
+  padding: 2rem !important;                        /* Relleno */
+  text-align: center !important;                   /* Centrado */
+  border: 1px solid rgba(255, 78, 205, 0.3) !important; /* Borde rosado tenue */
+  backdrop-filter: blur(20px) !important;          /* Efecto vidrio */
+  -webkit-backdrop-filter: blur(20px) !important;  /* Compatibilidad WebKit */
+  box-shadow: 0 8px 25px rgba(255, 78, 205, 0.15) !important; /* Sombra con matiz rosado */
+  transition: all 0.3s ease !important;           /* Suaviza interacciones */
 }
-.vision-box h3 { color: #ff4ecd !important; } /* rosado */
+.vision-box h3 { color: #ff4ecd !important; }     /* Título en rosado */
 
 /* ====== MÓDULOS ====== */
 .modules-section {
-  margin: 2rem auto !important;
-  padding: 0 2rem !important;
-  max-width: 1200px !important;
+  margin: 2rem auto !important;                   /* Bloque centrado con margen vertical */
+  padding: 0 2rem !important;                     /* Padding horizontal */
+  max-width: 1200px !important;                   /* Ancho máximo del contenedor de módulos */
 }
 
 .modules-grid {
-  display: grid !important;
-  grid-template-columns: repeat(3, 1fr) !important;
-  gap: 2rem !important;
+  display: grid !important;                       /* Rejilla de tarjetas */
+  grid-template-columns: repeat(3, 1fr) !important; /* Tres columnas iguales */
+  gap: 2rem !important;                           /* Separación entre tarjetas */
 }
 
 .module-card {
-  border-radius: 20px !important;
-  padding: 1.5rem !important;
-  text-align: center !important;
-  transition: transform .3s ease !important;
-  height: 100% !important;
-  max-width: 100% !important;
-  position: relative !important;
-  overflow: hidden !important;
-  color: #fff !important;
-  background: rgba(20,20,20,0.45) !important;
-  border: 1px solid rgba(255,255,255,0.08) !important;
-  backdrop-filter: blur(14px) !important;
-  -webkit-backdrop-filter: blur(14px) !important;
+  border-radius: 20px !important;                 /* Bordes redondeados */
+  padding: 1.5rem !important;                     /* Relleno interno */
+  text-align: center !important;                  /* Texto centrado */
+  transition: transform .3s ease !important;      /* Animación suave al pasar el cursor */
+  height: 100% !important;                        /* Ocupa toda la altura disponible del grid */
+  max-width: 100% !important;                     /* No excede el ancho de su celda */
+  position: relative !important;                  /* Necesario para las capas ::before/::after */
+  overflow: hidden !important;                    /* Recorta fondos/decors que sobresalgan */
+  color: #fff !important;                         /* Texto en blanco */
+  background: rgba(20,20,20,0.45) !important;     /* Fondo oscuro translúcido */
+  border: 1px solid rgba(255,255,255,0.08) !important; /* Borde claro tenue */
+  backdrop-filter: blur(14px) !important;         /* Efecto vidrio moderado */
+  -webkit-backdrop-filter: blur(14px) !important; /* Compatibilidad WebKit */
 }
-.module-card:hover { transform: translateY(-6px) scale(1.02) !important; }
+.module-card:hover { transform: translateY(-6px) scale(1.02) !important; } /* Ligera elevación + zoom en hover */
 
 .module-card > * {
-  position: relative !important;
-  z-index: 2 !important;
+  position: relative !important;                  /* Asegura que el contenido quede sobre las capas de fondo */
+  z-index: 2 !important;                          /* Contenido por encima de ::before/::after */
 }
 
 .module-card::before {
-  content:"" !important;
-  position:absolute !important;
-  inset:0 !important;
-  border-radius:20px !important;
-  background-size:cover !important;
-  background-position:center !important;
-  background-repeat:no-repeat !important;
-  z-index:0 !important;
-  opacity:0.6 !important;
+  content:"" !important;                           /* Capa de fondo con imagen */
+  position:absolute !important;                    /* Superpuesta a toda la tarjeta */
+  inset:0 !important;                              /* Cubre todo el contenedor */
+  border-radius:20px !important;                   /* Mismo radio que la tarjeta */
+  background-size:cover !important;                /* Imagen cubre todo el bloque */
+  background-position:center !important;           /* Centrada */
+  background-repeat:no-repeat !important;          /* Sin repetición */
+  z-index:0 !important;                            /* La capa más baja */
+  opacity:0.6 !important;                          /* Imagen semitransparente */
 }
 
 .module-card::after {
-  content:"" !important;
-  position:absolute !important;
-  inset:0 !important;
-  border-radius:20px !important;
-  background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.65)) !important;
-  z-index:1 !important;
+  content:"" !important;                           /* Capa de gradiente encima de la imagen */
+  position:absolute !important;                    /* Cubre todo */
+  inset:0 !important;                              /* Ocupa todo el contenedor */
+  border-radius:20px !important;                   /* Respeta el radio */
+  background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.65)) !important; /* Velo oscuro para legibilidad del texto */
+  z-index:1 !important;                            /* Sobre la imagen, bajo el contenido */
 }
 
 .module-card.users-module::before {
-  background-image: url("../img/gestion_usuarios.jpg");
+  background-image: url("../img/gestion_usuarios.jpg"); /* Fondo específico para módulo de usuarios */
 }
 .module-card.academic-module::before {
-  background-image: url("../img/academico.jpg");
+  background-image: url("../img/academico.jpg");         /* Fondo para módulo académico */
 }
 .module-card.reports-module::before {
-  background-image: url("../img/reportes.jpg");
+  background-image: url("../img/reportes.jpg");          /* Fondo para módulo de reportes */
 }
 
 .module-icon {
-  width: 80px !important; height: 80px !important; border-radius: 20px !important;
-  display: flex !important; align-items: center !important; justify-content: center !important;
-  margin: 0 auto 1.5rem auto !important;
-  background: rgba(255,255,255,0.2) !important;
-  color: #ffffff !important;
+  width: 80px !important; height: 80px !important; border-radius: 20px !important; /* Icono cuadrado con esquinas redondeadas */
+  display: flex !important; align-items: center !important; justify-content: center !important; /* Centrado */
+  margin: 0 auto 1.5rem auto !important;                   /* Centrado y separación inferior */
+  background: rgba(255,255,255,0.2) !important;            /* Fondo claro translúcido */
+  color: #ffffff !important;                               /* Ícono blanco (si es fuente/emoji) */
 }
 
-.module-card h5 { color: #ffffff !important; }
-.module-card p  { color: #f0f0f0 !important; text-align: justify !important; }
+.module-card h5 { color: #ffffff !important; }             /* Título de tarjeta en blanco */
+.module-card p  { color: #f0f0f0 !important; text-align: justify !important; } /* Texto claro justificado */
 
 /* ====== CONTACTO ====== */
 .contact-section {
-  margin: 2rem auto !important;
-  padding: 0 2rem !important;
-  max-width: 1200px !important;
+  margin: 2rem auto !important;                           /* Bloque centrado con margen vertical */
+  padding: 0 2rem !important;                             /* Padding horizontal */
+  max-width: 1200px !important;                           /* Ancho máximo */
 }
 
 .contact-grid {
-  display: grid !important;
-  grid-template-columns: repeat(4, 1fr) !important;
-  gap: 1.5rem !important;
+  display: grid !important;                               /* Rejilla para contactos */
+  grid-template-columns: repeat(4, 1fr) !important;       /* Cuatro columnas iguales */
+  gap: 1.5rem !important;                                 /* Separación entre tarjetas de contacto */
 }
 
 .contact-card {
-  background: rgba(255,255,255,0.05) !important;
-  border-radius: 16px !important;
-  padding: 1.5rem 1rem !important;
-  text-align: center !important;
-  transition: background .3s ease !important;
-  border: 1px solid rgba(255,255,255,0.1) !important;
+  background: rgba(255,255,255,0.05) !important;          /* Fondo translúcido claro */
+  border-radius: 16px !important;                         /* Bordes redondeados */
+  padding: 1.5rem 1rem !important;                        /* Relleno interior */
+  text-align: center !important;                          /* Contenido centrado */
+  transition: background .3s ease !important;             /* Suaviza cambio de fondo en hover */
+  border: 1px solid rgba(255,255,255,0.1) !important;     /* Borde claro */
 }
 
 .contact-card:hover {
-  background: rgba(255,255,255,0.1) !important;
+  background: rgba(255,255,255,0.1) !important;           /* Aumenta claridad en hover */
 }
 
 .contact-icon {
-  color: #00cfff !important; /* azul */
-  font-size: 1.8rem !important;
-  margin-bottom: 0.5rem !important;
+  color: #00cfff !important;                               /* Ícono en celeste */
+  font-size: 1.8rem !important;                            /* Ícono grande */
+  margin-bottom: 0.5rem !important;                        /* Separación con el texto */
 }
 
 .contact-card h6 {
-  margin-bottom: 0.5rem !important;
-  font-weight: 600 !important;
-  color: #ffffff !important;
+  margin-bottom: 0.5rem !important;                        /* Espacio inferior */
+  font-weight: 600 !important;                              /* Seminegrita */
+  color: #ffffff !important;                                /* Texto en blanco */
 }
 
 .contact-card p {
-  font-size: 0.9rem !important;
-  color: #ddd !important;
-  margin: 0 !important;
+  font-size: 0.9rem !important;                             /* Tamaño de párrafo */
+  color: #ddd !important;                                   /* Gris claro */
+  margin: 0 !important;                                     /* Sin márgenes extra */
 }
 
 @media (max-width: 992px) {
   .contact-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-columns: repeat(2, 1fr) !important;      /* En tablets/laptops chicas: 2 columnas */
   }
 }
 @media (max-width: 576px) {
   .contact-grid {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: 1fr !important;                 /* En móviles: 1 columna */
   }
 }
 
 /* ====== BOTÓN ACCESO (estilo morado sobrio) ====== */
 .access-section {
-  background: rgba(255,255,255,0.05) !important;
-  margin: 2rem !important; 
-  padding: 3rem 2rem !important;
-  border-radius: 20px !important; 
-  text-align: center !important;
+  background: rgba(255,255,255,0.05) !important;           /* Panel claro translúcido */
+  margin: 2rem !important;                                 /* Separación externa */
+  padding: 3rem 2rem !important;                           /* Relleno amplio */
+  border-radius: 20px !important;                           /* Bordes redondeados */
+  text-align: center !important;                            /* Contenido centrado */
 }
 
 .access-content h3 { 
-  font-size: 1.8rem !important; 
-  font-weight: 600 !important; 
-  background: none !important;   /* quitamos gradiente heredado */
-  -webkit-background-clip: initial !important;
-  -webkit-text-fill-color: initial !important;
-  color: #00cfff !important;     /* celeste sólido */
+  font-size: 1.8rem !important;                             /* Tamaño de título */
+  font-weight: 600 !important;                               /* Seminegrita */
+  background: none !important;                               /* Sin gradiente (se restablece) */
+  -webkit-background-clip: initial !important;               /* Quita clip de fondo al texto */
+  -webkit-text-fill-color: initial !important;               /* Restaura color de texto normal */
+  color: #00cfff !important;                                 /* Celeste sólido */
 }
 
 .access-content p { 
-  color: #ccc !important; 
+  color: #ccc !important;                                    /* Párrafo en gris claro */
 }
 
 .access-btn {
-  display: inline-flex !important; 
-  align-items: center !important; 
-  gap: 0.75rem !important;
-  background: #9b5de5 !important;   /* morado sólido */
-  color: #ffffff !important; 
-  padding: 1rem 2.5rem !important; 
-  border-radius: 50px !important;
-  font-weight: 600 !important; 
-  font-size: 1.1rem !important; 
-  text-decoration: none !important;
-  transition: transform .3s ease, box-shadow .3s ease, background .3s ease !important;
+  display: inline-flex !important;                           /* Botón en línea con flex */
+  align-items: center !important;                            /* Centrado vertical del contenido */
+  gap: 0.75rem !important;                                   /* Separación entre ícono/texto */
+  background: #9b5de5 !important;                            /* Morado sólido */
+  color: #ffffff !important;                                 /* Texto blanco */
+  padding: 1rem 2.5rem !important;                           /* Relleno generoso */
+  border-radius: 50px !important;                            /* Botón tipo cápsula */
+  font-weight: 600 !important;                                /* Seminegrita */
+  font-size: 1.1rem !important;                               /* Tamaño de fuente mayor */
+  text-decoration: none !important;                           /* Sin subrayado si es <a> */
+  transition: transform .3s ease, box-shadow .3s ease, background .3s ease !important; /* Suaviza hover */
 }
 
 .access-btn:hover { 
-  background: #7a3db8 !important;  /* morado más oscuro en hover */
-  transform: scale(1.05) !important; 
-  box-shadow: 0 8px 20px rgba(155,93,229,.35) !important; 
+  background: #7a3db8 !important;                            /* Morado más oscuro en hover */
+  transform: scale(1.05) !important;                         /* Ligero zoom */
+  box-shadow: 0 8px 20px rgba(155,93,229,.35) !important;    /* Sombra acorde al color */
 }
 .access-section .access-content h3 {
-  font-size: 1.8rem !important;
-  font-weight: 600 !important;
-  background: linear-gradient(90deg, #9b5de5, #00cfff) !important; /* mismo gradiente que Contáctanos */
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  color: transparent !important;
+  font-size: 1.8rem !important;                              /* Reconfirma tamaño (override específico) */
+  font-weight: 600 !important;                                /* Seminegrita */
+  background: linear-gradient(90deg, #9b5de5, #00cfff) !important; /* Gradiente morado→celeste */
+  -webkit-background-clip: text !important;                   /* Aplica el gradiente como relleno del texto */
+  -webkit-text-fill-color: transparent !important;            /* Hace el texto transparente para ver el gradiente */
+  color: transparent !important;                              /* Garantiza transparencia del texto */
 }

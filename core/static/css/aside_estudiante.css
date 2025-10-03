@@ -1,112 +1,137 @@
 /* === ASIDE ESTUDIANTE (mismo look&feel que Acudiente) === */
 
+/* Barra lateral principal */
 .sidebar {
-  background: rgba(15, 40, 55, 0.95) !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
-  border: 1px solid rgba(148, 163, 184, 0.2) !important;
-  border-radius: 12px !important;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3) !important;
-  width: 280px !important;
-  height: calc(100vh - 90px) !important;
-  top: 85px !important;
-  left: 20px !important;
-  position: fixed !important;
-  display: flex !important;
-  flex-direction: column !important;
-  overflow: hidden !important;
-  z-index: 1000 !important;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  background: rgba(15, 40, 55, 0.95) !important; /* Fondo oscuro con transparencia */
+  backdrop-filter: blur(12px) !important; /* Efecto de desenfoque tipo glassmorphism */
+  -webkit-backdrop-filter: blur(12px) !important; /* Versión para navegadores Webkit (Safari, etc.) */
+  border: 1px solid rgba(148, 163, 184, 0.2) !important; /* Borde sutil semitransparente */
+  border-radius: 12px !important; /* Bordes redondeados */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3) !important; /* Sombra proyectada */
+  width: 280px !important; /* Ancho de la barra lateral expandida */
+  height: calc(100vh - 90px) !important; /* Altura dinámica (pantalla completa menos 90px) */
+  top: 85px !important; /* Posicionamiento desde la parte superior */
+  left: 20px !important; /* Separación desde el borde izquierdo */
+  position: fixed !important; /* Se mantiene fija al hacer scroll */
+  display: flex !important; /* Usa modelo flexbox */
+  flex-direction: column !important; /* Los elementos se ordenan en columna */
+  overflow: hidden !important; /* Oculta contenido que sobresalga */
+  z-index: 1000 !important; /* Prioridad en la superposición (sobre otros elementos) */
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important; /* Animación suave al cambiar estado */
 }
 
+/* Estado colapsado de la barra lateral (se hace más angosta) */
 .sidebar.collapsed { width: 80px !important; }
 
-/* Header */
+/* Encabezado del sidebar */
 .sidebar-header {
-  padding: 14px 16px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  border-bottom: 1px solid rgba(148, 163, 184, 0.15) !important;
+  padding: 14px 16px !important; /* Espaciado interno */
+  display: flex !important; /* Flexbox */
+  align-items: center !important; /* Alineación vertical centrada */
+  justify-content: space-between !important; /* Logo a la izquierda y botón a la derecha */
+  border-bottom: 1px solid rgba(148, 163, 184, 0.15) !important; /* Línea divisoria inferior */
 }
+
+/* Contenedor de logo */
 .logo { display: flex !important; align-items: center !important; gap: 10px !important; }
+
+/* Ícono del logo */
 .logo i {
-  width: 36px !important; height: 36px !important;
-  display: grid !important; place-items: center !important;
-  color: #fff !important;
-  background: linear-gradient(135deg, #0d6efd, #20c997) !important;
-  border-radius: 10px !important;
-  box-shadow: 0 8px 20px rgba(13, 110, 253, 0.35) !important;
+  width: 36px !important; height: 36px !important; /* Tamaño cuadrado */
+  display: grid !important; place-items: center !important; /* Centrado horizontal y vertical */
+  color: #fff !important; /* Color blanco */
+  background: linear-gradient(135deg, #0d6efd, #20c997) !important; /* Fondo degradado azul-verde */
+  border-radius: 10px !important; /* Esquinas redondeadas */
+  box-shadow: 0 8px 20px rgba(13, 110, 253, 0.35) !important; /* Sombra */
 }
+
+/* Texto al lado del logo */
 .logo-text { color: #e5e7eb !important; font-weight: 700 !important; letter-spacing: .3px !important; }
 
+/* Botón de colapso */
 .toggle-btn {
-  border: none !important;
-  outline: none !important;
-  background: linear-gradient(135deg, #0d6efd, #20c997) !important;
-  color: #fff !important;
-  width: 36px !important; height: 36px !important;
-  border-radius: 10px !important;
-  display: grid !important; place-items: center !important;
-  box-shadow: 0 8px 20px rgba(32, 201, 151, 0.3) !important;
-  transition: transform .25s ease !important;
+  border: none !important; /* Sin borde */
+  outline: none !important; /* Quita contorno al enfocarse */
+  background: linear-gradient(135deg, #0d6efd, #20c997) !important; /* Degradado azul-verde */
+  color: #fff !important; /* Ícono blanco */
+  width: 36px !important; height: 36px !important; /* Botón cuadrado */
+  border-radius: 10px !important; /* Bordes redondeados */
+  display: grid !important; place-items: center !important; /* Ícono centrado */
+  box-shadow: 0 8px 20px rgba(32, 201, 151, 0.3) !important; /* Sombra ligera */
+  transition: transform .25s ease !important; /* Animación de movimiento */
 }
+
+/* Efecto hover en el botón de colapso */
 .toggle-btn:hover { transform: translateY(-2px) !important; }
 
-/* Menú */
+/* Contenedor del menú */
 .menu { padding: 10px !important; display: flex !important; flex-direction: column !important; gap: 6px !important; }
+
+/* Cada ítem ocupa todo el ancho */
 .menu-item { width: 100% !important; }
 
+/* Enlaces del menú */
 .menu-link {
-  position: relative !important;
-  display: flex !important;
-  align-items: center !important;
-  gap: 12px !important;
-  padding: 12px 14px !important;
-  border-radius: 10px !important;
-  text-decoration: none !important;
-  color: #cbd5e1 !important;
-  transition: all .25s ease !important;
-  overflow: hidden !important;
+  position: relative !important; /* Para pseudo-elementos (::before) */
+  display: flex !important; align-items: center !important; gap: 12px !important; /* Ícono + texto */
+  padding: 12px 14px !important; /* Espaciado interno */
+  border-radius: 10px !important; /* Bordes redondeados */
+  text-decoration: none !important; /* Quita subrayado */
+  color: #cbd5e1 !important; /* Color gris claro */
+  transition: all .25s ease !important; /* Animación suave */
+  overflow: hidden !important; /* Oculta decoraciones */
 }
 
+/* Fondo decorativo al pasar hover */
 .menu-link::before {
-  content: "" !important;
-  position: absolute !important;
-  inset: 0 0 0 auto !important;
-  width: 0 !important;
-  background: linear-gradient(180deg, #0d6efd, #20c997) !important;
-  opacity: .12 !important;
-  transition: width .25s ease !important;
-  border-radius: inherit !important;
+  content: "" !important; /* Crea elemento virtual */
+  position: absolute !important; /* Se coloca dentro del enlace */
+  inset: 0 0 0 auto !important; /* Se posiciona desde la derecha */
+  width: 0 !important; /* Inicia oculto */
+  background: linear-gradient(180deg, #0d6efd, #20c997) !important; /* Degradado vertical */
+  opacity: .12 !important; /* Muy tenue */
+  transition: width .25s ease !important; /* Animación al expandirse */
+  border-radius: inherit !important; /* Respeta el radio del enlace */
 }
 
+/* Hover en enlace: cambia color y se mueve un poco */
 .menu-link:hover { color: #e2e8f0 !important; transform: translateX(6px) !important; }
+/* Fondo animado se expande */
 .menu-link:hover::before { width: 100% !important; inset: 0 !important; }
 
+/* Enlace activo: resaltado con fondo y sombra */
 .menu-link.active {
-  background: linear-gradient(135deg, rgba(13,110,253,.20), rgba(32,201,151,.20)) !important;
-  color: #ffffff !important;
-  box-shadow: 0 4px 12px rgba(32, 201, 151, 0.2) !important;
+  background: linear-gradient(135deg, rgba(13,110,253,.20), rgba(32,201,151,.20)) !important; /* Fondo degradado tenue */
+  color: #ffffff !important; /* Texto blanco */
+  box-shadow: 0 4px 12px rgba(32, 201, 151, 0.2) !important; /* Sombra */
 }
 
+/* Ícono dentro del enlace */
 .menu-icon { font-size: 1.05rem !important; }
+
+/* Texto dentro del enlace */
 .menu-text { font-weight: 600 !important; letter-spacing: .2px !important; }
 
-/* Logout */
+/* Sección logout ubicada al final del sidebar */
 .logout { margin-top: auto !important; padding: 12px !important; }
+
+/* Enlace de logout */
 .logout-link {
-  display: flex !important; align-items: center !important; gap: 10px !important;
-  padding: 12px 14px !important;
-  border-radius: 10px !important;
-  text-decoration: none !important;
-  color: #ef4444 !important;
-  border: 1px solid rgba(239, 68, 68, 0.2) !important;
-  transition: all .25s ease !important;
+  display: flex !important; align-items: center !important; gap: 10px !important; /* Ícono + texto */
+  padding: 12px 14px !important; /* Espaciado */
+  border-radius: 10px !important; /* Bordes redondeados */
+  text-decoration: none !important; /* Sin subrayado */
+  color: #ef4444 !important; /* Color rojo de advertencia */
+  border: 1px solid rgba(239, 68, 68, 0.2) !important; /* Borde rojo tenue */
+  transition: all .25s ease !important; /* Animación suave */
 }
+
+/* Hover en logout: fondo rojo translúcido */
 .logout-link:hover { background: rgba(239, 68, 68, 0.1) !important; }
 
-/* Colapsado: oculta textos */
+/* Cuando el sidebar está colapsado se ocultan textos */
 .sidebar.collapsed .menu-text,
 .sidebar.collapsed .logo-text { display: none !important; }
+
+/* En estado colapsado, íconos centrados */
 .sidebar.collapsed .menu-link { justify-content: center !important; }

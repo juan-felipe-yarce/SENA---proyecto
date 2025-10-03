@@ -1,245 +1,255 @@
 /* =========================================================
-   NIVEL LIST â€” Glassmorphism Gris/Violeta (integrado tipo login)
+   NIVEL LIST — Glassmorphism Gris/Violeta (integrado tipo login)
    ========================================================= */
 
 /* === CARD CONTENEDOR con glass (igual al login-card) === */
 .card {
-  position: relative !important;
-  display: flex !important;
-  flex-direction: column !important;
-  overflow: hidden !important;
+  position: relative !important; /* El card será el contenedor de referencia para ::before/::after */
+  display: flex !important; /* Usa flexbox para organizar su contenido interno */
+  flex-direction: column !important; /* Apila hijos verticalmente (de arriba a abajo) */
+  overflow: hidden !important; /* Recorta cualquier desborde de contenidos/pseudoelementos */
 
-  /* Glass en el CONTENEDOR (no en el body) */
-  background: rgba(31, 41, 55, 0.50) !important;
-  backdrop-filter: blur(15px) !important;
-  -webkit-backdrop-filter: blur(15px) !important;
-  border-radius: 20px !important;
-  border: 1px solid rgba(139, 92, 246, 0.40) !important;
-  box-shadow:
-    0 8px 32px rgba(0,0,0,0.45),
-    inset 0 1px 0 rgba(139,92,246,0.15),
-    0 0 0 1px rgba(139,92,246,0.20) !important;
+  /* Fondo tipo glassmorphism */
+  background: rgba(31, 41, 55, 0.50) !important; /* Fondo gris oscuro semitransparente */
+  backdrop-filter: blur(15px) !important; /* Difumina el fondo que hay detrás (efecto vidrio) */
+  -webkit-backdrop-filter: blur(15px) !important; /* Prefijo para compatibilidad WebKit/Safari */
+  border-radius: 20px !important; /* Esquinas redondeadas pronunciadas */
+  border: 1px solid rgba(139, 92, 246, 0.40) !important; /* Borde violeta suave y translúcido */
+  box-shadow: /* Sombras internas y externas para dar profundidad */
+    0 8px 32px rgba(0,0,0,0.45), /* Sombra exterior principal (profundidad) */
+    inset 0 1px 0 rgba(139,92,246,0.15), /* Línea superior interna tenue violeta */
+    0 0 0 1px rgba(139,92,246,0.20) !important; /* Contorno adicional suave */
 }
 
 /* Efecto de brillo decorativo (similar al login) */
 .card::before {
-  content: "";
-  position: absolute; inset: 0 0 auto 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #8b5cf6, transparent);
-  opacity: 0.8;
-  z-index: 1;
+  content: ""; /* Crea un pseudoelemento vacío (línea decorativa superior) */
+  position: absolute; inset: 0 0 auto 0; /* top:0; right:0; bottom:auto; left:0 → barra arriba */
+  height: 2px; /* Grosor de la línea superior */
+  background: linear-gradient(90deg, transparent, #8b5cf6, transparent); /* Degradado violeta centrado */
+  opacity: 0.8; /* Ligera visibilidad para que no sea invasivo */
+  z-index: 1; /* Asegura que quede por encima del fondo del card */
 }
 .card::after {
-  content: "";
-  position: absolute; top: 20px; left: 0;
-  width: 2px; height: 60%;
-  background: linear-gradient(180deg, #8b5cf6, transparent);
-  z-index: 1;
+  content: ""; /* Crea el segundo pseudoelemento (barra lateral) */
+  position: absolute; top: 20px; left: 0; /* Lo ubica a 20px del top pegado al lado izquierdo */
+  width: 2px; height: 60%; /* Línea vertical delgada que ocupa 60% de la altura */
+  background: linear-gradient(180deg, #8b5cf6, transparent); /* Degradado de violeta a transparente */
+  z-index: 1; /* Encima del fondo del card pero bajo el contenido si este tiene mayor z-index */
 }
 
 /* === BANNER SUPERIOR con fade-in === */
 .banner-img {
-  position: relative !important;
-  height: 100px !important;
-  flex: 0 0 100px !important;
-  overflow: hidden !important;
+  position: relative !important; /* Posiciona sus hijos/pseudoelementos relativamente a este contenedor */
+  height: 100px !important; /* Altura visual del banner */
+  flex: 0 0 100px !important; /* Altura fija en layouts flex (no crece/encoge) */
+  overflow: hidden !important; /* Recorta la imagen si se sale del contenedor */
 
-  /* Glass base */
-  background: rgba(31,41,55,0.7) !important;
-  backdrop-filter: blur(15px) !important;
-  -webkit-backdrop-filter: blur(15px) !important;
-  border-bottom: 1px solid rgba(139, 92, 246, 0.4) !important;
+  /* Fondo tipo glass */
+  background: rgba(31,41,55,0.7) !important; /* Capa oscura translúcida detrás de la imagen */
+  backdrop-filter: blur(15px) !important; /* Desenfoque del fondo a través del banner */
+  -webkit-backdrop-filter: blur(15px) !important; /* Compatibilidad WebKit/Safari */
+  border-bottom: 1px solid rgba(139, 92, 246, 0.4) !important; /* Separador inferior violeta tenue */
 
-  /* Solo opacidad */
-  animation: fadeInBanner 0.6s ease-out forwards;
+  animation: fadeInBanner 0.6s ease-out forwards; /* Anima su aparición (opacidad) */
 }
 
-/* Imagen con efecto glass */
+/* Imagen dentro del banner con efecto glass */
 .banner-img img {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover !important;
-  display: block !important;
-  border-radius: inherit !important;
+  width: 100% !important; height: 100% !important; /* La imagen rellena completamente el banner */
+  object-fit: cover !important; /* Recorta/escala sin deformar para cubrir el contenedor */
+  display: block !important; /* Evita espacios blancos por display inline de <img> */
+  border-radius: inherit !important; /* Copia el mismo redondeo del contenedor padre */
 
-  /* Efecto glass */
-  opacity: 0.85 !important; 
-  filter: brightness(0.85) saturate(0.9) !important;
-  backdrop-filter: blur(4px) !important;
-  -webkit-backdrop-filter: blur(4px) !important;
+  opacity: 0.85 !important;  /* Ligero fade para integrarse con el glass */
+  filter: brightness(0.85) saturate(0.9) !important; /* Un poco más oscura y menos saturada */
+  backdrop-filter: blur(4px) !important; /* Difumina lo que haya detrás de la imagen */
+  -webkit-backdrop-filter: blur(4px) !important; /* Compatibilidad WebKit/Safari */
 
-  transition: opacity 0.3s ease, filter 0.3s ease !important;
-
-  /* AnimaciÃ³n fade */
-  animation: fadeInBanner 0.6s ease-out forwards;
+  transition: opacity 0.3s ease, filter 0.3s ease !important; /* Suaviza cambios en hover */
+  animation: fadeInBanner 0.6s ease-out forwards; /* Anima también la imagen al entrar */
 }
 .banner-img img:hover {
-  opacity: 1 !important;
-  filter: brightness(1) saturate(1) !important;
+  opacity: 1 !important; /* Recupera opacidad total al pasar el cursor */
+  filter: brightness(1) saturate(1) !important; /* Vuelve a brillo/saturación normales */
 }
 
-/* AnimaciÃ³n solo opacidad */
+/* Animación fade-in (solo opacidad) */
 @keyframes fadeInBanner {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from { opacity: 0; } /* Comienza invisible */
+  to   { opacity: 1; } /* Termina totalmente visible */
 }
 
-/* === CUERPO del card (transparente, sin bordes, pegado al banner) === */
+/* === CUERPO del card === */
 .card .card-body,
 .card-body {
-  background: transparent !important;
-  border: none !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
+  background: transparent !important; /* El cuerpo no agrega otra capa de fondo */
+  border: none !important; /* Sin bordes adicionales en el body */
+  border-radius: 0 !important; /* Sin redondeos extra (hereda del contenedor) */
+  box-shadow: none !important; /* Sin sombras en el body, ya las tiene el contenedor */
 
-  padding: 2rem !important;
-  margin: 0 !important;
+  padding: 2rem !important; /* Espaciado interno cómodo para el contenido */
+  margin: 0 !important; /* Sin márgenes extra dentro del card */
 
-  animation: fadeInUp 0.6s ease-out !important;
-  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+  animation: fadeInUp 0.6s ease-out !important; /* Aparece subiendo levemente + aumentando opacidad */
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important; /* Suaviza efectos en hover */
 }
 
 /* Hover leve en el contenido */
 .card .card-body:hover,
 .card-body:hover {
-  transform: translateY(-2px) !important;
+  transform: translateY(-2px) !important; /* Se eleva 2px para feedback sutil */
 }
 
-/* ===== TÃ­tulos ===== */
+/* ===== Títulos ===== */
 .card-body h2,
 .card-body .h4 {
-  color: #ffffff !important;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5) !important;
-  margin-bottom: 1.5rem !important;
-  font-weight: 700 !important;
+  color: #ffffff !important; /* Títulos en blanco para alto contraste sobre glass oscuro */
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5) !important; /* Halo que mejora legibilidad */
+  margin-bottom: 1.5rem !important; /* Espacio inferior para separar del contenido siguiente */
+  font-weight: 700 !important; /* Peso fuerte (negrita) */
 }
 
 /* ===== Tabla transparente ===== */
 .card-body .table {
-  background: transparent !important;
-  color: #ffffff !important;
-  border: none !important;
-  box-shadow: none !important;
+  background: transparent !important; /* Tabla sin fondo sólido (respeta el glass) */
+  color: #ffffff !important; /* Texto de la tabla en blanco */
+  border: none !important; /* Quita bordes por defecto */
+  box-shadow: none !important; /* Sin sombras en la propia tabla */
 }
 
 /* Encabezado de tabla */
 .card-body .table-light,
 .card-body .table thead th {
-  background: transparent !important;
-  color: #ffffff !important;
-  border: none !important;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.28) !important;
-  font-weight: 700 !important;
-  padding: 1rem !important;
-  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.3) !important;
+  background: transparent !important; /* Encabezado también transparente */
+  color: #ffffff !important; /* Texto del thead en blanco */
+  border: none !important; /* Sin bordes laterales/superiores */
+  border-bottom: 2px solid rgba(255, 255, 255, 0.28) !important; /* Solo una línea inferior sutil */
+  font-weight: 700 !important; /* Más peso para destacar encabezados */
+  padding: 1rem !important; /* Relleno cómodo para clicabilidad/lectura */
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.3) !important; /* Pequeño halo para legibilidad */
 }
 
-/* Filas */
+/* Filas de tabla */
 .card-body .table tbody tr {
-  background: transparent !important;
-  border: none !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.18) !important;
-  transition: background 0.3s ease !important;
+  background: transparent !important; /* Sin relleno sólido en filas */
+  border: none !important; /* Sin bordes laterales */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18) !important; /* Separador entre filas */
+  transition: background 0.3s ease !important; /* Suaviza el efecto hover */
 }
 .card-body .table tbody tr:hover {
-  background: rgba(255, 255, 255, 0.08) !important;
-  backdrop-filter: blur(4px) !important;
+  background: rgba(255, 255, 255, 0.08) !important; /* Resalta fila con velo claro */
+  backdrop-filter: blur(4px) !important; /* Añade un leve blur al resaltar */
 }
 
-/* Celdas */
+/* Celdas de tabla */
 .card-body .table td {
-  background: transparent !important;
-  color: #ffffff !important;
-  border: none !important;
-  padding: 1rem !important;
-  font-weight: 600 !important;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
+  background: transparent !important; /* Celdas sin fondo sólido */
+  color: #ffffff !important; /* Texto claro */
+  border: none !important; /* Sin bordes en celdas */
+  padding: 1rem !important; /* Espaciado cómodo para lectura/acción */
+  font-weight: 600 !important; /* Semi-negrita para mejor legibilidad */
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important; /* Halo tenue para contraste */
 }
 
-/* Texto corregido */
-.card-body .table .text-dark { color: #ffffff !important; font-weight: 600 !important; }
-.card-body .table .text-muted { color: rgba(229, 231, 235, 0.85) !important; font-weight: 500 !important; }
+/* Ajuste de textos */
+.card-body .table .text-dark { color: #ffffff !important; font-weight: 600 !important; } /* Fuerza “dark” a blanco en este tema */
+.card-body .table .text-muted { color: rgba(229, 231, 235, 0.85) !important; font-weight: 500 !important; } /* Gris claro para secundarios */
 
-/* ===== BotÃ³n Primary ===== */
+/* ===== Botón Primary ===== */
 .card-body .btn-primary {
-  background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
-  color: #ffffff !important;
-  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.35) !important;
-  transition: all 0.3s ease !important;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6) !important; /* Degradado violeta/índigo */
+  border: 1px solid rgba(255, 255, 255, 0.2) !important; /* Borde tenue para definición */
+  color: #ffffff !important; /* Texto blanco */
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.35) !important; /* Glow violeta */
+  transition: all 0.3s ease !important; /* Suaviza hover/focus */
 }
 .card-body .btn-primary:hover {
-  background: linear-gradient(135deg, #5850ec, #7c3aed) !important;
-  transform: translateY(-2px) !important;
-  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.40) !important;
+  background: linear-gradient(135deg, #5850ec, #7c3aed) !important; /* Degradado un punto más oscuro */
+  transform: translateY(-2px) !important; /* Se eleva sutilmente en hover */
+  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.40) !important; /* Sombra más intensa */
 }
 
-/* ===== Botones Pastel ===== */
+/* ===== Botones Pastel (azul y rojo) ===== */
 .btn.btn-pastel-blue {
-  background: rgba(99, 102, 241, 0.15);
-  color: #6366f1;
-  border-radius: 0.6rem;
-  border: 1px solid rgba(99, 102, 241, 0.4);
-  font-weight: 600;
-  padding: 0.4rem 1rem;
-  font-size: 0.95rem;
-  backdrop-filter: blur(8px);
-  transition: all 0.3s ease;
+  background: rgba(99, 102, 241, 0.15); /* Azul translúcido */
+  color: #6366f1; /* Texto azul */
+  border-radius: 0.6rem; /* Esquinas redondeadas suaves */
+  border: 1px solid rgba(99, 102, 241, 0.4); /* Borde azul tenue */
+  font-weight: 600; /* Semi-negrita */
+  padding: 0.4rem 1rem; /* Tamaño cómodo */
+  font-size: 0.95rem; /* Tamaño de fuente medio */
+  backdrop-filter: blur(8px); /* Efecto vidrio suave */
+  transition: all 0.3s ease; /* Suaviza interacciones */
 }
 .btn.btn-pastel-blue:hover,
 .btn.btn-pastel-blue:focus {
-  background: rgba(99, 102, 241, 0.25);
-  color: #4f46e5;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.35);
-  text-decoration: none;
+  background: rgba(99, 102, 241, 0.25); /* Un poco más sólido al interactuar */
+  color: #4f46e5; /* Azul más profundo para el texto */
+  transform: translateY(-2px); /* Elevación sutil */
+  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.35); /* Sombra acorde al color */
+  text-decoration: none; /* Evita subrayados en <a> */
 }
 .btn.btn-pastel-red {
-  background: rgba(239, 68, 68, 0.15);
-  color: #ef4444;
-  border-radius: 0.6rem;
-  border: 1px solid rgba(239, 68, 68, 0.4);
-  font-weight: 600;
-  padding: 0.4rem 1rem;
-  font-size: 0.95rem;
-  backdrop-filter: blur(8px);
-  transition: all 0.3s ease;
+  background: rgba(239, 68, 68, 0.15); /* Rojo translúcido */
+  color: #ef4444; /* Texto rojo */
+  border-radius: 0.6rem; /* Esquinas redondeadas */
+  border: 1px solid rgba(239, 68, 68, 0.4); /* Borde rojo tenue */
+  font-weight: 600; /* Semi-negrita */
+  padding: 0.4rem 1rem; /* Relleno cómodo */
+  font-size: 0.95rem; /* Tamaño medio */
+  backdrop-filter: blur(8px); /* Efecto vidrio */
+  transition: all 0.3s ease; /* Suaviza hover/focus */
 }
 .btn.btn-pastel-red:hover,
 .btn.btn-pastel-red:focus {
-  background: rgba(239, 68, 68, 0.25);
-  color: #dc2626;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(239, 68, 68, 0.35);
-  text-decoration: none;
+  background: rgba(239, 68, 68, 0.25); /* Un poco más sólido en hover/focus */
+  color: #dc2626; /* Rojo más oscuro para contraste */
+  transform: translateY(-2px); /* Elevación sutil */
+  box-shadow: 0 6px 16px rgba(239, 68, 68, 0.35); /* Sombra a juego */
+  text-decoration: none; /* Sin subrayado en enlaces */
 }
 
-/* Acciones en una sola lÃ­nea */
+/* Acciones en una sola línea (evita saltos) */
 td.text-end.pe-4,
 .acciones-col {
-  white-space: nowrap !important;
-  min-width: 210px !important;
+  white-space: nowrap !important; /* Impide que los botones/acciones hagan salto de línea */
+  min-width: 210px !important; /* Asegura un ancho mínimo para alinear acciones */
 }
 
 /* ===== Responsive ===== */
 @media (max-width: 768px) {
-  .banner-img { flex-basis: 90px !important; height: 90px !important; }
-  .card .card-body, .card-body { padding: 1.5rem !important; }
+  .banner-img { flex-basis: 90px !important; height: 90px !important; } /* Banner más bajo en tablets/móviles */
+  .card .card-body, .card-body { padding: 1.5rem !important; } /* Reduce el padding para pantallas medianas */
 }
 @media (max-width: 480px) {
-  .banner-img { flex-basis: 80px !important; height: 80px !important; }
-  .card .card-body, .card-body { padding: 1rem !important; }
+  .banner-img { flex-basis: 80px !important; height: 80px !important; } /* Banner aún más compacto en móviles pequeños */
+  .card .card-body, .card-body { padding: 1rem !important; } /* Padding mínimo para caber mejor */
 }
 
-/* ===== AnimaciÃ³n general (para el contenido) ===== */
+/* ===== Animación general (contenido) ===== */
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(20px); } /* Inicia oculto y 20px más abajo */
+  to   { opacity: 1; transform: translateY(0); }    /* Termina visible en su posición original */
 }
 
 /* === Ajuste para separar el card del footer === */
 .container-fluid .card {
-  margin-top: 1rem !important;       /* sube un poco */
-  margin-bottom: 3rem !important;    /* espacio con el footer */
+  margin-top: 1rem !important;    /* Espacio superior para respirar respecto al contenido previo */
+  margin-bottom: 3rem !important; /* Añade espacio inferior para no pegarse al footer */
 }
+
+
+/* Contenedor translúcido con sombras violetas.
+
+Banner superior con animación fade-in.
+
+Cuerpo transparente con hover leve y títulos destacados.
+
+Tablas transparentes con bordes sutiles.
+
+Botones primary degradados y pastel (azul/rojo) con efectos hover.
+
+Responsividad para móviles y animaciones de entrada.
+
+Separación final para no pegarse al footer. */

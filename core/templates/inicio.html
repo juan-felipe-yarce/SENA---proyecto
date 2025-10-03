@@ -1,30 +1,30 @@
-{% extends 'base.html' %}
-{% load static %}
+{% extends 'base.html' %}  {# Extiende de la plantilla base principal #}
+{% load static %}          {# Carga la etiqueta 'static' para usar archivos estáticos #}
 
-{% block title %}Inicio | Sistema Escolar{% endblock %}
+{% block title %}Inicio | Sistema Escolar{% endblock %} {# Título de la página en el navegador #}
 
 {% block extra_head %}
-  <link rel="stylesheet" href="{% static 'css/inicio.css' %}">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="{% static 'css/inicio.css' %}">  {# CSS personalizado de esta página #}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"> {# Iconos Bootstrap #}
 {% endblock %}
 
-{% block body_class %}inicio-page{% endblock %}
+{% block body_class %}inicio-page{% endblock %} {# Clase específica en el <body> para estilos de esta página #}
 
 {% block content %}
-<div class="inicio-wrapper">
-  <div class="inicio-container">
+<div class="inicio-wrapper"> {# Contenedor principal de la página de inicio #}
+  <div class="inicio-container"> {# Caja con glassmorphism y centrado #}
     
     <!-- ===== ENCABEZADO PRINCIPAL ===== -->
-    <div class="hero-section">
-      <div class="hero-content">
-        <h1 class="hero-title">Bienvenidos a la Escuela Rural San José</h1>
-        <p class="hero-subtitle">Educando con valores para un futuro mejor 🌱</p>
-        <div class="hero-badge">
-          <i class="bi bi-award"></i>
-          <span>Innovación Educativa 2025</span>
+    <div class="hero-section"> {# Sección principal tipo "Hero" #}
+      <div class="hero-content"> {# Contenido textual dentro del Hero #}
+        <h1 class="hero-title">Bienvenidos a la Escuela Rural San José</h1> {# Título principal amarillo #}
+        <p class="hero-subtitle">Educando con valores para un futuro mejor 🌱</p> {# Subtítulo motivacional #}
+        <div class="hero-badge"> {# Insignia destacada #}
+          <i class="bi bi-award"></i> {# Icono de trofeo/premio #}
+          <span>Innovación Educativa 2025</span> {# Texto dentro de la insignia #}
         </div>
       </div>
-      <div class="hero-decoration">
+      <div class="hero-decoration"> {# Elementos decorativos flotantes #}
         <div class="floating-element element-1"></div>
         <div class="floating-element element-2"></div>
         <div class="floating-element element-3"></div>
@@ -32,13 +32,13 @@
     </div>
 
     <!-- ===== DESCRIPCIÓN TÉCNICA ===== -->
-    <div class="section-box description-section">
+    <div class="section-box description-section"> {# Bloque con explicación técnica del sistema #}
       <div class="section-header">
-        <i class="bi bi-gear-wide-connected"></i>
+        <i class="bi bi-gear-wide-connected"></i> {# Ícono engranaje #}
         <h2>¿Qué es este Sistema?</h2>
       </div>
       <div class="description-content">
-        <div class="tech-highlight">
+        <div class="tech-highlight"> {# Badges de tecnologías usadas #}
           <span class="tech-badge">Django</span>
           <span class="tech-badge">PostgreSQL</span>
           <span class="tech-badge">Bootstrap</span>
@@ -48,7 +48,7 @@
           desarrollada con tecnologías modernas, diseñada para optimizar la administración 
           de instituciones educativas rurales y urbanas.
         </p>
-        <div class="features-grid">
+        <div class="features-grid"> {# Lista de características con íconos #}
           <div class="feature-item">
             <i class="bi bi-shield-check"></i>
             <span>Usuarios con roles diferenciados</span>
@@ -71,11 +71,11 @@
 
     <!-- ===== MISIÓN Y VISIÓN ===== -->
     <div class="mission-vision-section">
-      <div class="row g-4">
+      <div class="row g-4"> {# Bootstrap grid con dos columnas (Misión / Visión) #}
         <div class="col-md-6">
-          <div class="section-box mission-box text-center">
+          <div class="section-box mission-box text-center"> {# Caja para Misión #}
             <div class="section-icon">
-              <i class="bi bi-bullseye"></i> 
+              <i class="bi bi-bullseye"></i>  {# Ícono de objetivo #}
             </div>
             <h3>Misión</h3>
             <p>
@@ -83,13 +83,13 @@
               centralice y automatice la gestión académica, mejorando la eficiencia 
               administrativa y la comunicación entre la comunidad escolar.
             </p>
-            <div class="box-glow mission-glow"></div>
+            <div class="box-glow mission-glow"></div> {# Glow decorativo #}
           </div>
         </div>
         <div class="col-md-6">
-          <div class="section-box vision-box text-center">
+          <div class="section-box vision-box text-center"> {# Caja para Visión #}
             <div class="section-icon">
-              <i class="bi bi-eye"></i>
+              <i class="bi bi-eye"></i> {# Ícono de ojo #}
             </div>
             <h3>Visión</h3>
             <p>
@@ -106,11 +106,12 @@
     <!-- ===== MÓDULOS PRINCIPALES ===== -->
     <div class="modules-section">
       <div class="section-header">
-        <i class="bi bi-grid-3x3-gap"></i>
+        <i class="bi bi-grid-3x3-gap"></i> {# Ícono de cuadrícula #}
         <h2>Módulos Principales</h2>
         <p class="section-subtitle">Herramientas completas para la gestión educativa</p>
       </div>
       <div class="row g-4">
+        <!-- Módulo: Usuarios -->
         <div class="col-lg-4 col-md-6">
           <div class="module-card users-module">
             <div class="module-icon">
@@ -126,6 +127,7 @@
             <div class="module-glow"></div>
           </div>
         </div>
+        <!-- Módulo: Académico -->
         <div class="col-lg-4 col-md-6">
           <div class="module-card academic-module">
             <div class="module-icon">
@@ -141,6 +143,7 @@
             <div class="module-glow"></div>
           </div>
         </div>
+        <!-- Módulo: Reportes -->
         <div class="col-lg-4 col-md-6">
           <div class="module-card reports-module">
             <div class="module-icon">
@@ -167,6 +170,7 @@
         <p class="section-subtitle">Estamos aquí para ayudarte</p>
       </div>
       <div class="contact-grid">
+        <!-- Tarjeta de contacto: Ubicación -->
         <div class="contact-card">
           <div class="contact-icon">
             <i class="bi bi-geo-alt-fill"></i>
@@ -174,6 +178,7 @@
           <h6>Ubicación</h6>
           <p>Vereda El Carmen<br>Municipio San José</p>
         </div>
+        <!-- Teléfono -->
         <div class="contact-card">
           <div class="contact-icon">
             <i class="bi bi-telephone-fill"></i>
@@ -181,6 +186,7 @@
           <h6>Teléfono</h6>
           <p>+57 310 000 0000</p>
         </div>
+        <!-- Email -->
         <div class="contact-card">
           <div class="contact-icon">
             <i class="bi bi-envelope-fill"></i>
@@ -188,6 +194,7 @@
           <h6>Email</h6>
           <p>contacto@escuelarural.edu.co</p>
         </div>
+        <!-- Horario -->
         <div class="contact-card">
           <div class="contact-icon">
             <i class="bi bi-clock-fill"></i>
@@ -209,7 +216,7 @@
         <a href="{% url 'login' %}" class="access-btn">
           <i class="bi bi-box-arrow-in-right"></i>
           <span>Acceder al Sistema</span>
-          <div class="btn-glow"></div>
+          <div class="btn-glow"></div> {# Efecto de glow decorativo #}
         </a>
       </div>
     </div>
